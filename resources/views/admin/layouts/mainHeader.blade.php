@@ -5,7 +5,7 @@
       <!-- mini logo for sidebar mini 50x50 pixels -->
       <span class="logo-mini"><b>N</b>cms</span>
       <!-- logo for regular state and mobile devices -->
-      <span class="logo-lg"><b>Neo</b>CMS</span>
+      <span class="logo-lg"><b>后台</b>管理系统</span>
     </a>
 
     <!-- Header Navbar -->
