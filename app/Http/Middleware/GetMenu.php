@@ -4,6 +4,8 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Auth,Cache;
+use Mockery\CountValidator\Exception;
+
 class GetMenu
 {
     /**
@@ -15,7 +17,6 @@ class GetMenu
      */
     public function handle($request, Closure $next)
     {
-        
         view()->share('comData',$this->getMenu());
         return $next($request);
     }

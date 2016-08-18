@@ -18,6 +18,7 @@ class AuthenticateAdmin
      */
     public function handle($request, Closure $next, $guard = null)
     {
+
         //return $next($request);
         if(Auth::guard('admin')->user()->id === 1){
             return $next($request);
@@ -25,6 +26,7 @@ class AuthenticateAdmin
 
         $previousUrl = URL::previous();
         if(!Auth::guard('admin')->user()->can(Route::currentRouteName())) {
+
             if($request->ajax() && ($request->getMethod() != 'GET')) {
                 return response()->json([
                     'status' => -1,
@@ -32,10 +34,10 @@ class AuthenticateAdmin
                     'msg' => '您没有权限执行此操作'
                 ]);
             } else {
+                $next($request);
                 return response()->view('admin.errors.403', compact('previousUrl'));
             }
         }
-
         return $next($request);
     }
 }
