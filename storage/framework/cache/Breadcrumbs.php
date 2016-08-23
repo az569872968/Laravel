@@ -52,4 +52,18 @@ Breadcrumbs::register("admin.user.manage", function ($breadcrumbs){
                   $breadcrumbs->parent("admin.role.index");
                           $breadcrumbs->push("删除角色", route("admin.role.destroy"));
                         });
+                  Breadcrumbs::register("admin.article.manage", function ($breadcrumbs){
+        $breadcrumbs->push("内容管理", route("admin.article.manage"));
+    });Breadcrumbs::register("admin.article.index", function ($breadcrumbs) {
+                        $breadcrumbs->parent("admin.article.manage");
+                        $breadcrumbs->push("文章列表", route("admin.article.index"));
+                    });
+                    Breadcrumbs::register("admin.news.index", function ($breadcrumbs) {
+                        $breadcrumbs->parent("admin.article.manage");
+                        $breadcrumbs->push("新闻列表", route("admin.news.index"));
+                    });
+                    Breadcrumbs::register("admin.article.add", function ($breadcrumbs) {
+                  $breadcrumbs->parent("admin.article.index");
+                          $breadcrumbs->push("添加文章", route("admin.article.add"));
+                        });
                   
