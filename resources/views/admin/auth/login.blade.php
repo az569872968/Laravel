@@ -24,10 +24,10 @@
   <script src="/libs/respond/1.4.2/respond.min.js"></script>
   <![endif]-->
 </head>
-<body class="hold-transition login-page">
+<body class="hold-transition login-page" style="background-image:url('/imgs/admin/beijin.png');background-size:100% 100%;">
 <div class="login-box">
   <div class="login-logo">
-    <a><b>Neo</b>CMS</a>
+    <a style="color: #F6F6F6"><b>后台管理</b>平台</a>
   </div>
   <!-- /.login-logo -->
   <div class="login-box-body">
@@ -61,8 +61,8 @@
 
     <!-- /.social-auth-links -->
 
-    <a href="#">我忘了密码</a><br>
-    <a href="#" class="text-center">新注册用户</a>
+    {{--<a href="#">我忘了密码</a><br>--}}
+    {{--<a href="#" class="text-center">新注册用户</a>--}}
 
   </div>
   <!-- /.login-box-body -->

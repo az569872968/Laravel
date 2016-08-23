@@ -1,7 +1,7 @@
   <header class="main-header">
 
     <!-- Logo -->
-    <a href="/" class="logo">
+    <a href="/admin/index" class="logo">
       <!-- mini logo for sidebar mini 50x50 pixels -->
       <span class="logo-mini"><b>N</b>cms</span>
       <!-- logo for regular state and mobile devices -->
@@ -18,7 +18,7 @@
       <div class="navbar-custom-menu">
         <ul class="nav navbar-nav">
           <!-- Messages: style can be found in dropdown.less-->
-          <li class="dropdown messages-menu">
+{{--          <li class="dropdown messages-menu">
             <!-- Menu toggle button -->
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
               <i class="fa fa-envelope-o"></i>
@@ -52,7 +52,6 @@
             </ul>
           </li>
           <!-- /.messages-menu -->
-
           <!-- Notifications Menu -->
           <li class="dropdown notifications-menu">
             <!-- Menu toggle button -->
@@ -111,11 +110,11 @@
                 <a href="#">View all tasks</a>
               </li>
             </ul>
-          </li>
+          </li>--}}
           <!-- User Account Menu -->
           <li class="dropdown user user-menu">
             <!-- Menu Toggle Button -->
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" style="height: 50px">
               <!-- The user image in the navbar-->
               <img src="/imgs/avatar/u1.jpg" class="user-image" alt="User Image">
               <!-- hidden-xs hides the username on small devices so only the image appears. -->
@@ -149,7 +148,7 @@
               <!-- Menu Footer-->
               <li class="user-footer">
                 <div class="pull-left">
-                  <a href="#" class="btn btn-default btn-flat">编辑详情</a>
+                  <a href="/admin/user/1/edit" class="btn btn-default btn-flat">编辑详情</a>
                 </div>
                 <div class="pull-right">
                   <a href="/admin/logout" class="btn btn-default btn-flat">登出</a>
