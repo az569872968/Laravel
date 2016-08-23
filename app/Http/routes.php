@@ -29,7 +29,6 @@ $router->group(['namespace' => 'Admin', 'middleware' => ['auth','authAdmin','men
     Route::get('admin/permission/{cid}/create', ['as' => 'admin.permission.create', 'uses' => 'PermissionController@create']);
     Route::get('admin/permission/{cid?}', ['as' => 'admin.permission.index', 'uses' => 'PermissionController@index']);
     Route::post('admin/permission/index', ['as' => 'admin.permission.index', 'uses' => 'PermissionController@index']); //查询
-
     Route::resource('admin/permission', 'PermissionController');
     Route::put('admin/permission/update', ['as' => 'admin.permission.edit', 'uses' => 'PermissionController@update']); //修改
     Route::post('admin/permission/store', ['as' => 'admin.permission.create', 'uses' => 'PermissionController@store']); //添加
@@ -53,6 +52,7 @@ $router->group(['namespace' => 'Admin', 'middleware' => ['auth','authAdmin','men
     //内容管理路由
     Route::get('admin/article/manage', ['as' => 'admin.article.manage', 'article' => 'ArticleController@index']);  //用户管理
     Route::post('admin/article/index', ['as' => 'admin.article.index', 'article' => 'ArticleController@index']);
+    Route::resource('admin/article', 'ArticleController');
     Route::post('admin/news/index', ['as' => 'admin.news.index', 'news' => 'NewsController@index']);
 
 

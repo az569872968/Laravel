@@ -45,7 +45,6 @@
                     </ul>
                 </li>
             @endforeach
-
         </ul>
         <!-- /.sidebar-menu -->
     </section>
