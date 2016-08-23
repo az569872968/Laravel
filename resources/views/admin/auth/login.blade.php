@@ -24,7 +24,7 @@
   <script src="/libs/respond/1.4.2/respond.min.js"></script>
   <![endif]-->
 </head>
-<body class="hold-transition login-page" style="background-image:url('/imgs/admin/beijin.png');background-size:100% 100%;">
+<body class="hold-transition login-page" style="background-image:url('/imgs/admin/beijin.jpg');background-size:100% 100%;">
 <div class="login-box">
   <div class="login-logo">
     <a style="color: #F6F6F6"><b>后台管理</b>平台</a>
