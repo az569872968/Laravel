@@ -11,6 +11,10 @@ namespace App\Http\Controllers\Admin;
 use App\Models\Article;
 use Illuminate\Http\Request;
 
+use App\Models\Role;
+use App\Models\AdminUser as User;
+
+
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
@@ -18,10 +22,8 @@ class ArticleController extends Controller{
 
     public function index(Request $request){
 
-        if( $request->ajax() ){
-
+        if ($request->ajax()) {
         }
-        var_dump(12);die;
         return view('admin.Article.index');
     }
 
