@@ -1,7 +1,7 @@
 /*
 Navicat MySQL Data Transfer
 
-Source Server         : 本机
+Source Server         : 本地
 Source Server Version : 50547
 Source Host           : localhost:3306
 Source Database       : homestead
@@ -10,10 +10,27 @@ Target Server Type    : MYSQL
 Target Server Version : 50547
 File Encoding         : 65001
 
-Date: 2016-08-23 21:07:33
+Date: 2016-08-26 00:37:29
 */
 
 SET FOREIGN_KEY_CHECKS=0;
+
+-- ----------------------------
+-- Table structure for admin_log
+-- ----------------------------
+DROP TABLE IF EXISTS `admin_log`;
+CREATE TABLE `admin_log` (
+  `log_id` int(11) unsigned NOT NULL AUTO_INCREMENT COMMENT '自增ID',
+  `admin_id` int(11) DEFAULT NULL COMMENT '登录用户ID',
+  `log_time` int(11) DEFAULT NULL COMMENT '登录时间',
+  `log_ip` varchar(50) DEFAULT NULL COMMENT '登录IP',
+  `remark` text COMMENT '备注',
+  PRIMARY KEY (`log_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=gbk;
+
+-- ----------------------------
+-- Records of admin_log
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for admin_users
@@ -34,8 +51,8 @@ CREATE TABLE `admin_users` (
 -- ----------------------------
 -- Records of admin_users
 -- ----------------------------
-INSERT INTO `admin_users` VALUES ('1', 'admin', 'admin@admin.com', '$2y$10$66x80Mfjhj4dLCRtmvmSHOPDDtoXoSjJ5zo92nfFqmcPPX7Go/yoW', 'EEq2bDENlpijQZticfr7Kj2gCD8oGcpBPi0nIf68Nv0GNRr9zm9dBiHVmmA3', '2016-05-25 05:56:33', '2016-08-23 20:40:38');
-INSERT INTO `admin_users` VALUES ('4', 'admin916', 'zoudan916@163.com', '$2y$10$y2ncKaFg33g9fGhP/Vym7OMDMKCG62INduI/43fnE5d9E/tisK3Vu', 'fQl9ffv2maeueSF8YGbl1kIz0UOmCfCRAqyTMMmr4d1NwAsZpGnC3AJv2ZfY', '2016-08-18 12:41:21', '2016-08-23 18:04:41');
+INSERT INTO `admin_users` VALUES ('1', 'admin', 'admin@admin.com', '$2y$10$66x80Mfjhj4dLCRtmvmSHOPDDtoXoSjJ5zo92nfFqmcPPX7Go/yoW', 'kMoYS0gE8bXtF1MMPOl6YLgyD8EX44KPNNkrnFffhuBCbnGefvqZQZh6UeEO', '2016-05-25 05:56:33', '2016-08-26 00:10:32');
+INSERT INTO `admin_users` VALUES ('4', 'admin916', 'zoudan916@163.com', '$2y$10$y2ncKaFg33g9fGhP/Vym7OMDMKCG62INduI/43fnE5d9E/tisK3Vu', 'CxrnTlqQo2dnhkiY8av3wduVWMyCPMnk79DCTH4QPlWhCmAFHtJwY7ex7SM5', '2016-08-18 12:41:21', '2016-08-26 00:36:01');
 
 -- ----------------------------
 -- Table structure for migrations
