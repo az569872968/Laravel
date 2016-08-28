@@ -50,10 +50,12 @@ $router->group(['namespace' => 'Admin', 'middleware' => ['auth','authAdmin','men
     Route::post('admin/user/store', ['as' => 'admin.user.create', 'uses' => 'UserController@store']); //添加
 
     //内容管理路由
-    Route::get('admin/article/manage', ['as' => 'admin.article.manage', 'article' => 'ArticleController@index']);  //用户管理
-    Route::post('admin/article/index', ['as' => 'admin.article.index', 'article' => 'ArticleController@index']);
+    Route::get('admin/article/manage', ['as' => 'admin.article.manage', 'uses' => 'ArticleController@index']);  //用户管理
+    Route::post('admin/article/index', ['as' => 'admin.article.index', 'uses' => 'ArticleController@index']);
     Route::resource('admin/article', 'ArticleController');
-    Route::post('admin/news/index', ['as' => 'admin.news.index', 'news' => 'NewsController@index']);
+    Route::put('admin/article/update', ['as' => 'admin.article.edit', 'uses' => 'ArticleController@update']); //修改
+    Route::post('admin/article/store', ['as' => 'admin.article.create', 'uses' => 'ArticleController@store']); //添加
+    Route::post('admin/news/index', ['as' => 'admin.news.index', 'uses' => 'NewsController@index']);
 
 
 });

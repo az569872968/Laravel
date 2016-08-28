@@ -18,7 +18,6 @@ class AuthenticateAdmin
      */
     public function handle($request, Closure $next, $guard = null)
     {
-
         //return $next($request);
         if(Auth::guard('admin')->user()->id === 1){
             return $next($request);
@@ -26,7 +25,6 @@ class AuthenticateAdmin
 
         $previousUrl = URL::previous();
         if(!Auth::guard('admin')->user()->can(Route::currentRouteName())) {
-
             if($request->ajax() && ($request->getMethod() != 'GET')) {
                 return response()->json([
                     'status' => -1,

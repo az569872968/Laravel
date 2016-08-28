@@ -17,12 +17,6 @@ class GetMenu
      */
     public function handle($request, Closure $next)
     {
-        $arr = $this->getMenu();
-/*        var_dump($arr[5]);
-        echo "<br/>";
-        var_dump($arr[19]);
-        die;*/
-//        print_r($arr);die;
         view()->share('comData',$this->getMenu());
         return $next($request);
     }

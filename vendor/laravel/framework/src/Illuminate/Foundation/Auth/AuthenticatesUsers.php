@@ -33,7 +33,6 @@ trait AuthenticatesUsers
         if (view()->exists($view)) {
             return view($view);
         }
-
         return view('auth.login');
     }
 

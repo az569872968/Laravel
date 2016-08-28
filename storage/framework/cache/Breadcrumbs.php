@@ -62,8 +62,16 @@ Breadcrumbs::register("admin.user.manage", function ($breadcrumbs){
                         $breadcrumbs->parent("admin.article.manage");
                         $breadcrumbs->push("新闻列表", route("admin.news.index"));
                     });
-                    Breadcrumbs::register("admin.article.add", function ($breadcrumbs) {
+                    Breadcrumbs::register("admin.article.create", function ($breadcrumbs) {
                   $breadcrumbs->parent("admin.article.index");
-                          $breadcrumbs->push("添加文章", route("admin.article.add"));
+                          $breadcrumbs->push("添加文章", route("admin.article.create"));
+                        });
+                  Breadcrumbs::register("admin.article.edit", function ($breadcrumbs) {
+                  $breadcrumbs->parent("admin.article.index");
+                          $breadcrumbs->push("修改文章", route("admin.article.edit"));
+                        });
+                  Breadcrumbs::register("admin.article.destroy", function ($breadcrumbs) {
+                  $breadcrumbs->parent("admin.article.index");
+                          $breadcrumbs->push("删除文章", route("admin.article.destroy"));
                         });
                   
