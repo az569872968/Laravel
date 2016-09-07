@@ -18,7 +18,16 @@ class Article extends Model{
     public $timestamps      = false;
     /* 打印错误 */
     private $err            = '';
-
+    /* 表字段 */
+    public $fields = [
+        'title' => '',
+        'bewrite' => '',
+        'author' => '',
+        'scan_num' => 0,
+        'user_id' => '',
+        'sort' => 0,
+        'remark' => '',
+    ];
 
     /**
      * 获取当前时间

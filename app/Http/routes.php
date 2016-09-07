@@ -24,7 +24,7 @@ $this->group(['namespace' => 'Admin','prefix' => '/admin',], function () {
     Route::auth();
 });
 
-$router->group(['namespace' => 'Admin', 'middleware' => ['auth','authAdmin','menu']], function () {
+$router->group(['namespace' => 'Admin', 'middleware' => ['auth','authAdmin','menu','web']], function () {
     //权限管理路由
     Route::get('admin/permission/{cid}/create', ['as' => 'admin.permission.create', 'uses' => 'PermissionController@create']);
     Route::get('admin/permission/{cid?}', ['as' => 'admin.permission.index', 'uses' => 'PermissionController@index']);
@@ -56,8 +56,6 @@ $router->group(['namespace' => 'Admin', 'middleware' => ['auth','authAdmin','men
     Route::put('admin/article/update', ['as' => 'admin.article.edit', 'uses' => 'ArticleController@update']); //修改
     Route::post('admin/article/store', ['as' => 'admin.article.create', 'uses' => 'ArticleController@store']); //添加
     Route::post('admin/news/index', ['as' => 'admin.news.index', 'uses' => 'NewsController@index']);
-
-
 });
 
 Route::get('admin', function () {

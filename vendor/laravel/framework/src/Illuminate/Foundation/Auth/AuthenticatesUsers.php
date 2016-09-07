@@ -44,6 +44,7 @@ trait AuthenticatesUsers
      */
     public function postLogin(Request $request)
     {
+
         return $this->login($request);
     }
 

@@ -10,17 +10,6 @@ use App\Http\Controllers\Controller;
 
 class ArticleController extends Controller
 {
-    protected $fields = [
-        'title' => '',
-        'bewrite' => '',
-        'author' => '',
-        'scan_num' => 0,
-        'user_id' => '',
-        'sort' => 0,
-        'remark' => '',
-    ];
-
-
 
     /**
      * Display the specified resource.
@@ -81,11 +70,13 @@ class ArticleController extends Controller
      */
     public function create()
     {
-        $user = \Auth::user();
-        $this->fields['user_id']      = $user->id;
+        $article    = new Article();
+        $user       = \Auth::user();
+        $article->fields['user_id']      = $user->id;
+
 
         $data = [];
-        foreach ($this->fields as $field => $default) {
+        foreach ($article->fields as $field => $default) {
             $data[$field] = old($field, $default);
         }
         return view('admin.article.create', $data);
@@ -101,7 +92,7 @@ class ArticleController extends Controller
     public function store(Request $request)
     {
         $article = new Article();
-        foreach (array_keys($this->fields) as $field) {
+        foreach (array_keys($article->fields) as $field) {
             $article->$field = $request->get($field);
         }
         $article->save();
@@ -116,10 +107,11 @@ class ArticleController extends Controller
      */
     public function edit($id)
     {
-        $article = Article::find((int)$id);
+        $article        = new Article();
+        $article_info   = Article::find((int)$id);
         if (!$article) return redirect('/admin/article')->withErrors("找不到该文章!");
-        foreach (array_keys($this->fields) as $field) {
-            $data[$field] = old($field, $article->$field);
+        foreach (array_keys($article->fields) as $field) {
+            $data[$field] = old($field, $article_info->$field);
         }
         $data['id'] = (int)$id;
         return view('admin.article.edit', $data);
@@ -134,9 +126,10 @@ class ArticleController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $article = Article::find((int)$id);
+        $article        = new Article();
+        $article_info   = Article::find((int)$id);
         foreach (array_keys($this->fields) as $field) {
-            $article->$field = $request->get($field);
+            $article_info->$field = $request->get($field);
         }
         $article->save();
         return redirect('/admin/article')->withSuccess('修改成功');
