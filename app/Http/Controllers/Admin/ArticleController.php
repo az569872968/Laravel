@@ -73,8 +73,6 @@ class ArticleController extends Controller
         $article    = new Article();
         $user       = \Auth::user();
         $article->fields['user_id']      = $user->id;
-
-
         $data = [];
         foreach ($article->fields as $field => $default) {
             $data[$field] = old($field, $default);
@@ -107,11 +105,10 @@ class ArticleController extends Controller
      */
     public function edit($id)
     {
-        $article        = new Article();
-        $article_info   = Article::find((int)$id);
+        $article   = Article::find((int)$id);
         if (!$article) return redirect('/admin/article')->withErrors("找不到该文章!");
         foreach (array_keys($article->fields) as $field) {
-            $data[$field] = old($field, $article_info->$field);
+            $data[$field] = old($field, $article->$field);
         }
         $data['id'] = (int)$id;
         return view('admin.article.edit', $data);
@@ -126,10 +123,9 @@ class ArticleController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $article        = new Article();
-        $article_info   = Article::find((int)$id);
-        foreach (array_keys($this->fields) as $field) {
-            $article_info->$field = $request->get($field);
+        $article   = Article::find((int)$id);
+        foreach (array_keys($article->fields) as $field) {
+            $article->$field = $request->get($field);
         }
         $article->save();
         return redirect('/admin/article')->withSuccess('修改成功');
