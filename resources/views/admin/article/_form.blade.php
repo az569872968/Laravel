@@ -25,4 +25,3 @@
         <textarea name="remark" class="form-control" rows="3">{{ $remark }}</textarea>
     </div>
 </div>
-

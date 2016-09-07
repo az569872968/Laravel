@@ -16,8 +16,6 @@ class Article extends Model{
     protected $table        = 'article';
     /* 不需要默认时间戳 */
     public $timestamps      = false;
-    /* 打印错误 */
-    private $err            = '';
     /* 表字段 */
     public $fields = [
         'title' => '',

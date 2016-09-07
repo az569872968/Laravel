@@ -3,17 +3,20 @@
 
  * ar:
     * validation : dimensions
+    * validation : file
     * validation : present
 
  * be:
     * validation : dimensions
     * validation : distinct
+    * validation : file
     * validation : in_array
     * validation : present
 
  * bg:
     * validation : dimensions
     * validation : distinct
+    * validation : file
     * validation : in_array
     * validation : present
     * validation : required_unless
@@ -23,6 +26,7 @@
     * auth : throttle
     * validation : dimensions
     * validation : distinct
+    * validation : file
     * validation : in_array
     * validation : json
     * validation : present
@@ -31,22 +35,19 @@
  * ca:
     * validation : dimensions
     * validation : distinct
+    * validation : file
     * validation : in_array
     * validation : present
     * validation : required_unless
 
  * cs:
-    * validation : dimensions
-    * validation : distinct
-    * validation : in_array
-    * validation : present
-    * validation : required_unless
 
  * cy:
     * auth : failed
     * auth : throttle
     * validation : dimensions
     * validation : distinct
+    * validation : file
     * validation : in_array
     * validation : json
     * validation : present
@@ -55,23 +56,23 @@
 
  * da:
     * validation : dimensions
+    * validation : file
 
  * de:
-    * validation : dimensions
-    * validation : distinct
-    * validation : in_array
-    * validation : present
 
  * el:
     * validation : dimensions
     * validation : distinct
+    * validation : file
     * validation : in_array
     * validation : present
 
  * es:
+    * validation : file
 
  * fa:
     * validation : dimensions
+    * validation : file
 
  * fi:
     * auth : failed
@@ -80,6 +81,7 @@
     * validation : digits_between
     * validation : dimensions
     * validation : distinct
+    * validation : file
     * validation : in_array
     * validation : json
     * validation : present
@@ -98,14 +100,17 @@
  * gl:
     * validation : dimensions
     * validation : distinct
+    * validation : file
     * validation : in_array
     * validation : present
 
  * he:
+    * validation : file
 
  * hr:
     * validation : dimensions
     * validation : distinct
+    * validation : file
     * validation : filled
     * validation : in_array
     * validation : json
@@ -115,15 +120,16 @@
 
  * hu:
     * validation : dimensions
+    * validation : file
 
  * id:
-    * validation : dimensions
 
  * is:
     * auth : failed
     * auth : throttle
     * validation : dimensions
     * validation : distinct
+    * validation : file
     * validation : in_array
     * validation : json
     * validation : present
@@ -135,20 +141,24 @@
     * validation : string
 
  * it:
+    * validation : file
 
  * ja:
     * validation : dimensions
     * validation : distinct
+    * validation : file
     * validation : in_array
     * validation : present
 
  * ka:
+    * validation : file
 
  * km:
     * auth : failed
     * auth : throttle
     * validation : dimensions
     * validation : distinct
+    * validation : file
     * validation : in_array
     * validation : json
     * validation : present
@@ -160,6 +170,7 @@
  * ko:
     * validation : dimensions
     * validation : distinct
+    * validation : file
     * validation : in_array
     * validation : json
     * validation : present
@@ -167,10 +178,11 @@
     * validation : string
 
  * lt:
-    * validation : dimensions
+    * validation : file
 
  * me:
     * validation : dimensions
+    * validation : file
     * validation : timezone
 
  * mk:
@@ -178,6 +190,7 @@
     * auth : throttle
     * validation : dimensions
     * validation : distinct
+    * validation : file
     * validation : in_array
     * validation : json
     * validation : present
@@ -188,41 +201,29 @@
     * validation : timezone
 
  * ms:
-    * validation : dimensions
-    * validation : distinct
-    * validation : exists
-    * validation : in
-    * validation : in_array
-    * validation : not_in
-    * validation : present
-    * validation : required_unless
+    * validation : file
 
  * nb:
     * validation : dimensions
     * validation : distinct
+    * validation : file
     * validation : in_array
     * validation : present
 
  * ne:
     * validation : dimensions
     * validation : distinct
+    * validation : file
     * validation : in_array
     * validation : present
 
  * nl:
-    * validation : dimensions
 
  * nn:
     * validation : dimensions
+    * validation : file
 
  * pl:
-    * validation : dimensions
-    * validation : distinct
-    * validation : in_array
-    * validation : json
-    * validation : present
-    * validation : required_unless
-    * validation : string
 
  * pt:
 
@@ -231,18 +232,19 @@
  * ro:
     * validation : dimensions
     * validation : distinct
+    * validation : file
     * validation : in_array
     * validation : present
     * validation : required_unless
 
  * ru:
-    * validation : dimensions
 
  * sc:
     * auth : failed
     * auth : throttle
     * validation : dimensions
     * validation : distinct
+    * validation : file
     * validation : in_array
     * validation : json
     * validation : present
@@ -251,12 +253,14 @@
 
  * sk:
     * validation : dimensions
+    * validation : file
 
  * sl:
     * auth : failed
     * auth : throttle
     * validation : dimensions
     * validation : distinct
+    * validation : file
     * validation : filled
     * validation : in_array
     * validation : json
@@ -270,6 +274,7 @@
     * auth : throttle
     * validation : dimensions
     * validation : distinct
+    * validation : file
     * validation : in_array
     * validation : json
     * validation : present
@@ -278,27 +283,24 @@
  * sr:
     * validation : dimensions
     * validation : distinct
+    * validation : file
     * validation : in_array
     * validation : json
     * validation : present
     * validation : required_unless
 
  * sv:
-    * validation : dimensions
-    * validation : distinct
-    * validation : in_array
-    * validation : json
-    * validation : present
-    * validation : required_unless
 
  * th:
     * validation : dimensions
+    * validation : file
 
  * tk:
     * auth : failed
     * auth : throttle
     * validation : dimensions
     * validation : distinct
+    * validation : file
     * validation : in_array
     * validation : json
     * validation : present
@@ -308,24 +310,21 @@
  * tr:
     * validation : dimensions
     * validation : distinct
+    * validation : file
     * validation : in_array
     * validation : json
     * validation : present
     * validation : required_unless
 
  * uk:
-    * validation : dimensions
-    * validation : distinct
-    * validation : in_array
-    * validation : present
-    * validation : required_unless
-    * validation : string
+    * validation : file
 
  * vi:
     * auth : failed
     * auth : throttle
     * validation : dimensions
     * validation : distinct
+    * validation : file
     * validation : in_array
     * validation : json
     * validation : present
@@ -334,10 +333,7 @@
     * validation : string
 
  * zh-CN:
-    * validation : dimensions
 
  * zh-HK:
-    * validation : dimensions
 
  * zh-TW:
-    * validation : dimensions

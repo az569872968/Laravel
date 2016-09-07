@@ -33,6 +33,7 @@ abstract class Controller
         foreach ((array) $middleware as $middlewareName) {
             $this->middleware[$middlewareName] = &$options;
         }
+
         return new ControllerMiddlewareOptions($options);
     }
 
