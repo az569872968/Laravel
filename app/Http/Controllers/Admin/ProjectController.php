@@ -2,55 +2,51 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Requests\CreateArticleRequest;
-use App\Models\Article;
+use App\Http\Requests\ProjectCreateRequest;
+use App\Models\Project;
 use Dotenv\Validator;
 use Illuminate\Http\Request;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Input;
 
-class ArticleController extends Controller
+class ProjectController extends Controller
 {
-
     /**
      * Display the specified resource.
      *
      * @return \Illuminate\Http\Response
      */
     public function index( Request $request ){
-
         if ($request->ajax()) {
             $data = array();
-            $data['draw']   = $request->get('draw');
-            $start          = $request->get('start');
-            $length         = $request->get('length');
-            $order          = $request->get('order');
-            $columns        = $request->get('columns');
-            $search         = $request->get('search');
-            $data['recordsTotal'] = Article::count();
+            $data['draw'] = $request->get('draw');
+            $start = $request->get('start');
+            $length = $request->get('length');
+            $order = $request->get('order');
+            $columns = $request->get('columns');
+            $search = $request->get('search');
+            $data['recordsTotal'] = Project::count();
             if (strlen($search['value']) > 0) {
-                $data['recordsFiltered'] = Article::where(function ($query) use ($search) {
-                    $query->where('title', 'LIKE', '%' . $search['value'] . '%')
-                        ->orWhere('author', 'like', '%' . $search['value'] . '%');
+                $data['recordsFiltered'] = Project::where(function ($query) use ($search) {
+                    $query->where('project_name', 'LIKE', '%' . $search['value'] . '%');
                 })->count();
-                $data['data'] = Article::where(function ($query) use ($search) {
-                    $query->where('title', 'LIKE', '%' . $search['value'] . '%')
-                        ->orWhere('author', 'like', '%' . $search['value'] . '%');
+                $data['data'] = Project::where(function ($query) use ($search) {
+                    $query->where('project_name', 'LIKE', '%' . $search['value'] . '%');
                 })
                     ->skip($start)->take($length)
                     ->orderBy($columns[$order[0]['column']]['data'], $order[0]['dir'])
                     ->get();
             } else {
-                $data['recordsFiltered'] = Article::count();
-                $data['data'] = Article::
+                $data['recordsFiltered'] = Project::count();
+                $data['data'] = Project::
                 skip($start)->take($length)
                     ->orderBy($columns[$order[0]['column']]['data'], $order[0]['dir'])
                     ->get();
             }
             return response()->json($data);
         }
-        return view('admin.article.index');
+        return view('admin.project.index');
     }
 
 
@@ -72,14 +68,12 @@ class ArticleController extends Controller
      */
     public function create()
     {
-        $article    = new Article();
-        $user       = \Auth::user();
-        $article->fields['user_id']      = $user->id;
+        $project     = new Project();
         $data = [];
-        foreach ($article->fields as $field => $default) {
+        foreach ($project->fields as $field => $default) {
             $data[$field] = old($field, $default);
         }
-        return view('admin.article.create', $data);
+        return view('admin.project.create', $data);
     }
 
 
@@ -89,14 +83,14 @@ class ArticleController extends Controller
      * @param PremissionCreateRequest|Request $request
      * @return \Illuminate\Http\Response
      */
-    public function store(CreateArticleRequest $request)
+    public function store(ProjectCreateRequest $request)
     {
-        $article = new Article();
-        foreach (array_keys($article->fields) as $field) {
-            $article->$field = $request->get($field);
+        $project = new Project();
+        foreach (array_keys($project->fields) as $field) {
+            $project->$field = $request->get($field);
         }
-        $article->save();
-        return redirect('/admin/article')->withSuccess('添加成功！');
+        $project->save();
+        return redirect('/admin/project')->withSuccess('添加成功！');
     }
 
     /**
@@ -107,13 +101,15 @@ class ArticleController extends Controller
      */
     public function edit($id)
     {
-        $article   = Article::find((int)$id);
-        if (!$article) return redirect('/admin/article')->withErrors("找不到该文章!");
-        foreach (array_keys($article->fields) as $field) {
-            $data[$field] = old($field, $article->$field);
+        $project   = Project::find((int)$id);
+        if (!$project) {
+            return redirect('/admin/project')->withErrors("找不到该工程!");
+        }
+        foreach (array_keys($project->fields) as $field) {
+            $data[$field] = old($field, $project->$field);
         }
         $data['id'] = (int)$id;
-        return view('admin.article.edit', $data);
+        return view('admin.project.edit', $data);
     }
 
     /**
@@ -125,12 +121,12 @@ class ArticleController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $article   = Article::find((int)$id);
-        foreach (array_keys($article->fields) as $field) {
-            $article->$field = $request->get($field);
+        $project   = Project::find((int)$id);
+        foreach (array_keys($project->fields) as $field) {
+            $project->$field = $request->get($field);
         }
-        $article->save();
-        return redirect('/admin/article')->withSuccess('修改成功');
+        $project->save();
+        return redirect('/admin/project')->withSuccess('修改成功');
     }
 
     /**
@@ -141,9 +137,9 @@ class ArticleController extends Controller
      */
     public function destroy($id)
     {
-        $article = Article::find((int)$id);
-        if ($article) {
-            $article->delete();
+        $project = Project::find((int)$id);
+        if ($project) {
+            $project->delete();
         } else {
             return redirect()->back()
                 ->withErrors("删除失败");

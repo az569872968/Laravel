@@ -58,9 +58,13 @@ Breadcrumbs::register("admin.user.manage", function ($breadcrumbs){
                         $breadcrumbs->parent("admin.article.manage");
                         $breadcrumbs->push("文章列表", route("admin.article.index"));
                     });
-                    Breadcrumbs::register("admin.news.index", function ($breadcrumbs) {
+                    Breadcrumbs::register("admin.project.index", function ($breadcrumbs) {
                         $breadcrumbs->parent("admin.article.manage");
-                        $breadcrumbs->push("新闻列表", route("admin.news.index"));
+                        $breadcrumbs->push("工程列表", route("admin.project.index"));
+                    });
+                    Breadcrumbs::register("admin.poxy.index", function ($breadcrumbs) {
+                        $breadcrumbs->parent("admin.article.manage");
+                        $breadcrumbs->push("gongc", route("admin.poxy.index"));
                     });
                     Breadcrumbs::register("admin.article.create", function ($breadcrumbs) {
                   $breadcrumbs->parent("admin.article.index");
@@ -73,5 +77,17 @@ Breadcrumbs::register("admin.user.manage", function ($breadcrumbs){
                   Breadcrumbs::register("admin.article.destroy", function ($breadcrumbs) {
                   $breadcrumbs->parent("admin.article.index");
                           $breadcrumbs->push("删除文章", route("admin.article.destroy"));
+                        });
+                  Breadcrumbs::register("admin.project.create", function ($breadcrumbs) {
+                  $breadcrumbs->parent("admin.project.index");
+                          $breadcrumbs->push("添加工程", route("admin.project.create"));
+                        });
+                  Breadcrumbs::register("admin.project.edit", function ($breadcrumbs) {
+                  $breadcrumbs->parent("admin.project.index");
+                          $breadcrumbs->push("修改工程", route("admin.project.edit"));
+                        });
+                  Breadcrumbs::register("admin.project.destroy", function ($breadcrumbs) {
+                  $breadcrumbs->parent("admin.project.index");
+                          $breadcrumbs->push("删除工程", route("admin.project.destroy"));
                         });
                   

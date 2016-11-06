@@ -18,13 +18,13 @@ Route::get('/home',function(){
     return view('welcome');
 });
 
-Route::get('admin/index', ['as' => 'admin.index', 'middleware' => ['auth','menu'], 'uses'=>'Admin\\IndexController@index']);
+Route::get('admin/index', ['as' => 'admin.index', 'middleware' => ['auth','menu','web'], 'uses'=>'Admin\\IndexController@index']);
 
 $this->group(['namespace' => 'Admin','prefix' => '/admin',], function () {
     Route::auth();
 });
 
-$router->group(['namespace' => 'Admin', 'middleware' => ['auth','authAdmin','menu','web']], function () {
+$router->group(['namespace' => 'Admin', 'middleware' => ['auth','menu','web','authAdmin']], function () {
     //权限管理路由
     Route::get('admin/permission/{cid}/create', ['as' => 'admin.permission.create', 'uses' => 'PermissionController@create']);
     Route::get('admin/permission/{cid?}', ['as' => 'admin.permission.index', 'uses' => 'PermissionController@index']);
@@ -49,14 +49,28 @@ $router->group(['namespace' => 'Admin', 'middleware' => ['auth','authAdmin','men
     Route::put('admin/user/update', ['as' => 'admin.user.edit', 'uses' => 'UserController@update']); //修改
     Route::post('admin/user/store', ['as' => 'admin.user.create', 'uses' => 'UserController@store']); //添加
 
-    //内容管理路由
-    Route::get('admin/article/manage', ['as' => 'admin.article.manage', 'uses' => 'ArticleController@index']);  //用户管理
+    //新闻管理路由
+    Route::get('admin/article/manage', ['as' => 'admin.article.manage', 'uses' => 'ArticleController@index']);  //内容管理
     Route::post('admin/article/index', ['as' => 'admin.article.index', 'uses' => 'ArticleController@index']);
     Route::resource('admin/article', 'ArticleController');
     Route::put('admin/article/update', ['as' => 'admin.article.edit', 'uses' => 'ArticleController@update']); //修改
     Route::post('admin/article/store', ['as' => 'admin.article.create', 'uses' => 'ArticleController@store']); //添加
-    Route::post('admin/news/index', ['as' => 'admin.news.index', 'uses' => 'NewsController@index']);
+
+    //工程项目路由
+    Route::post('admin/project/index', ['as' => 'admin.project.index', 'uses' => 'ProjectController@index']);
+    Route::resource('admin/project', 'ProjectController');
+    Route::put('admin/project/update', ['as' => 'admin.project.edit', 'uses' => 'ProjectController@update']); //修改
+    Route::post('admin/project/store', ['as' => 'admin.project.create', 'uses' => 'ProjectController@store']); //添加
+
+    //代理招投标
+    Route::post('admin/poxy/index', ['as' => 'admin.poxy.index', 'uses' => 'PoxyController@index']);
+    Route::resource('admin/poxy', 'PoxyController');
+    Route::put('admin/poxy/update', ['sas' => 'admin.poxy.edit', 'uses' => 'PoxyController@update']); //修改
+    Route::post('admin/poxy/store', ['as' => 'admin.poxy.create', 'uses' => 'PoxyController@store']); //添加
+
 });
+
+
 
 Route::get('admin', function () {
     return redirect('/admin/index');

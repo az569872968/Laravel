@@ -1,8 +1,8 @@
 @extends('admin.layouts.base')
 
-@section('title','控制面板')
+@section('title','后台管理系统')
 
-@section('pageHeader','控制面板')
+@section('pageHeader','后台管理系统')
 
 @section('pageDesc','DashBoard')
 
@@ -18,7 +18,7 @@
                         <div class="panel-body">
                             @include('admin.partials.errors')
                             @include('admin.partials.success')
-                            <form class="form-horizontal" role="form" method="POST" action="/admin/article">
+                            <form class="form-horizontal" role="form" method="POST" action="/admin/article/store">
                                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                 <input type="hidden" name="cove_image"/>
                                 @include('admin.article._form')

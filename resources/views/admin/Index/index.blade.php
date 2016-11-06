@@ -1,8 +1,8 @@
 @extends('admin.layouts.base')
 
-@section('title','控制面板')
+@section('title','后台管理系统')
 
-@section('pageHeader','控制面板')
+@section('pageHeader','后台管理系统')
 
 @section('pageDesc','DashBoard')
 

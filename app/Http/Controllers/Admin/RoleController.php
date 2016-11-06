@@ -87,7 +87,7 @@ class RoleController extends Controller
      * @param PremissionCreateRequest|Request $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(RoleCreateRequest $request)
     {
         // dd($request->get('permission'));
         $role = new Role();
@@ -175,11 +175,9 @@ class RoleController extends Controller
         if ($role) {
             $role->delete();
         } else {
-            return redirect()->back()
-                ->withErrors("删除失败");
+            return redirect()->back()->withErrors("删除失败");
         }
 
-        return redirect()->back()
-            ->withSuccess("删除成功");
+        return redirect()->back()->withSuccess("删除成功");
     }
 }

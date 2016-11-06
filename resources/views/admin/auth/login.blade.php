@@ -32,7 +32,7 @@
   <!-- /.login-logo -->
   <div class="login-box-body">
     <p class="login-box-msg">万事登录难</p>
-
+    @include('admin.partials.errors')
     <form action="{{ url('/admin/login') }}" method="post">
 		{!! csrf_field() !!}
       <div class="form-group has-feedback">

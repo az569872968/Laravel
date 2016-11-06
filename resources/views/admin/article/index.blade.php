@@ -1,8 +1,8 @@
 @extends('admin.layouts.base')
 
-@section('title','控制面板')
+@section('title','后台管理系统')
 
-@section('pageHeader','控制面板')
+@section('pageHeader','后台管理系统')
 
 @section('pageDesc','DashBoard')
 
@@ -13,7 +13,7 @@
         </div>
         <div class="col-md-6 text-right">
             <a href="/admin/article/create" class="btn btn-success btn-md">
-                <i class="fa fa-plus-circle"></i> 添加文章
+                <i class="fa fa-plus-circle"></i> 添加工程
             </a>
         </div>
     </div>
