@@ -47,7 +47,6 @@ class GetMenu
         });
         foreach ($table as $v) {
             if ($v->cid == 0 || Auth::guard('admin')->user()->can($v->name)) {
-
                 if ($v->name == $urlPath) {
                     $openArr[] = $v->id;
                     $openArr[] = $v->cid;

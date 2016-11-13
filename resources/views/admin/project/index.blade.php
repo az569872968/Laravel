@@ -19,8 +19,17 @@
     </div>
     <div class="row page-title-row" style="margin:5px;">
         <div class="col-md-6">
+            查询数量<select>
+                <option>10</option>
+                <option>20</option>
+                <option>30</option>
+            </select>
         </div>
         <div class="col-md-6 text-right">
+            <form action="" method="get">
+                工程名称<input type="text">
+                <input type="submit" value="搜索">
+            </form>
         </div>
     </div>
     <div class="row">
@@ -36,13 +45,44 @@
                             <th class="hidden-sm">拼音码</th>
                             <th class="hidden-sm">工程名称</th>
                             <th class="hidden-md">创建时间</th>
+                            <th class="hidden-sm">项目相关资料</th>
                             <th data-sortable="false">操作</th>
                         </tr>
+                        @foreach($data['list'] as $item=>$value)
+                            <tr>
+                                <th data-sortable="false" class="hidden-sm">{{$item+1}}</th>
+                                <th class="hidden-sm">{{$value['project_pinyin']}}</th>
+                                <th class="hidden-sm">{{$value['project_name']}}</th>
+                                <th class="hidden-md">{{$value['created_at']}}</th>
+                                <th class="hidden-sm"><a href="">查看招投标</a>&nbsp;&nbsp;<a href="">查看进度及变更</a>&nbsp;&nbsp;<a href="">查看施工预算</a>&nbsp;&nbsp;<a href="">查看结算</a>&nbsp;&nbsp;<a href="">查看审计</a> </th>
+                                <th class="hidden-md"><a href="">添加用户</a>&nbsp;&nbsp;<a href="/admin/project/{{$value['id']}}/edit">编辑</a>&nbsp;&nbsp;<a href="" class="delBtn X-Small btn-xs text-danger "><li class="fa fa-times-circle-o" onclick="check_del({{$value['id']}})">删除</li></a> </th>
+                            </tr>
+                        @endforeach
                         </thead>
                         <tbody>
                         </tbody>
                     </table>
                 </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-5">
+            {{--<div class="dataTables_info" id="tags-table_info" role="status" aria-live="polite">显示第 1 至 2 项结果，共 2 项</div>--}}
+        </div>
+        <div class="col-sm-7">
+            <div class="dataTables_paginate paging_simple_numbers">
+                <ul class="pagination">
+                    <li class="paginate_button previous disabled">
+                        <a href="#" aria-controls="tags-table" data-dt-idx="0" tabindex="0">上页</a>
+                    </li>
+                    <li class="paginate_button active">
+                        <a href="#" aria-controls="tags-table" data-dt-idx="1" tabindex="0">1</a>
+                    </li>
+                    <li class="paginate_button next disabled">
+                        <a href="#" aria-controls="tags-table" data-dt-idx="2" tabindex="0">下页</a>
+                    </li>
+                </ul>
             </div>
         </div>
     </div>
@@ -73,91 +113,10 @@
                         </button>
                     </form>
                 </div>
-
             </div>
-
-            @stop
-
-            @section('js')
-                <script>
-                    $(function () {
-                        var table = $("#tags-table").DataTable({
-                            language: {
-                                "sProcessing": "处理中...",
-                                "sLengthMenu": "显示 _MENU_ 项结果",
-                                "sZeroRecords": "没有匹配结果",
-                                "sInfo": "显示第 _START_ 至 _END_ 项结果，共 _TOTAL_ 项",
-                                "sInfoEmpty": "显示第 0 至 0 项结果，共 0 项",
-                                "sInfoFiltered": "(由 _MAX_ 项结果过滤)",
-                                "sInfoPostFix": "",
-                                "sSearch": "搜索:",
-                                "sUrl": "",
-                                "sEmptyTable": "表中数据为空",
-                                "sLoadingRecords": "载入中...",
-                                "sInfoThousands": ",",
-                                "oPaginate": {
-                                    "sFirst": "首页",
-                                    "sPrevious": "上页",
-                                    "sNext": "下页",
-                                    "sLast": "末页"
-                                },
-                                "oAria": {
-                                    "sSortAscending": ": 以升序排列此列",
-                                    "sSortDescending": ": 以降序排列此列"
-                                }
-                            },
-                            order: [[1, "desc"]],
-                            serverSide: true,
-                            ajax: {
-                                url: '/admin/project/index',
-                                type: 'POST',
-                                headers: {
-                                    'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
-                                }
-                            },
-                            "columns": [
-                                {"data": "id"},
-                                {"data": "project_pinyin"},
-                                {"data": "project_name"},
-                                {"data": "created_at"},
-                                {"data": "action"},
-                            ],
-                            columnDefs: [
-                            {
-                                'targets': -1, "render": function (data, type, row) {
-                                    var caozuo = '';
-                                    caozuo  += '<a style="margin:0px;" href="/admin/project/' + row['id'] + '/edit" class="X-Small btn-xs text-success "> 查看招投标</a>';
-                                    caozuo  += '<a style="margin:0px;" href="/admin/project/' + row['id'] + '/edit" class="X-Small btn-xs text-success "> 查看进度款</a>';
-                                    caozuo  += '<a style="margin:0px;" href="/admin/project/' + row['id'] + '/edit" class="X-Small btn-xs text-success "> 查看施工图</a>';
-                                    caozuo  += '<a style="margin:0px;" href="/admin/project/' + row['id'] + '/edit" class="X-Small btn-xs text-success "> 查看结算</a>';
-                                    caozuo  += '<a style="margin:0px;" href="/admin/project/' + row['id'] + '/edit" class="X-Small btn-xs text-success "><i class="fa fa-edit"></i> 编辑</a>';
-                                    caozuo  += '<a style="margin:0px;" href="#" attr="' + row['id'] + '" class="delBtn X-Small btn-xs text-danger "><i class="fa fa-times-circle-o"></i> 删除</a>';
-
-                                return caozuo;
-                                }
-                            }]
-                        });
-
-                        table.on('preXhr.dt', function () {
-                            loadShow();
-                        });
-
-                        table.on('draw.dt', function () {
-                            loadFadeOut();
-                        });
-
-                        table.on('order.dt search.dt', function () {
-                            table.column(0, {search: 'applied', order: 'applied'}).nodes().each(function (cell, i) {
-                                cell.innerHTML = i + 1;
-                            });
-                        }).draw();
-
-                        $("table").delegate('.delBtn', 'click', function () {
-                            var id = $(this).attr('attr');
-                            $('.deleteForm').attr('action', '/admin/project/' + id);
-                            $("#modal-delete").modal();
-                        });
-
-                    });
-                </script>
+    <script type="text/javascript">
+        function check_del(id) {
+            $("#modal-delete").modal();
+        }
+    </script>
 @stop

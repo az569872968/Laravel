@@ -18,35 +18,16 @@ class ProjectController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index( Request $request ){
-        if ($request->ajax()) {
-            $data = array();
-            $data['draw'] = $request->get('draw');
-            $start = $request->get('start');
-            $length = $request->get('length');
-            $order = $request->get('order');
-            $columns = $request->get('columns');
-            $search = $request->get('search');
-            $data['recordsTotal'] = Project::count();
-            if (strlen($search['value']) > 0) {
-                $data['recordsFiltered'] = Project::where(function ($query) use ($search) {
-                    $query->where('project_name', 'LIKE', '%' . $search['value'] . '%');
-                })->count();
-                $data['data'] = Project::where(function ($query) use ($search) {
-                    $query->where('project_name', 'LIKE', '%' . $search['value'] . '%');
-                })
-                    ->skip($start)->take($length)
-                    ->orderBy($columns[$order[0]['column']]['data'], $order[0]['dir'])
-                    ->get();
-            } else {
-                $data['recordsFiltered'] = Project::count();
-                $data['data'] = Project::
-                skip($start)->take($length)
-                    ->orderBy($columns[$order[0]['column']]['data'], $order[0]['dir'])
-                    ->get();
-            }
-            return response()->json($data);
-        }
-        return view('admin.project.index');
+        $data = array();
+        $data['draw'] = $request->get('draw');
+        $start = $request->get('start');
+        $length = $request->get('length');
+        $order = $request->get('order');
+        $columns = $request->get('columns');
+        $search = $request->get('search');
+        $data['recordsTotal'] = Project::count();
+        $data['list']         = Project::select()->get();
+        return view('admin.Project.index')->with('data',$data);
     }
 
 

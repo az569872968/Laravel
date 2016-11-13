@@ -62,12 +62,6 @@ $router->group(['namespace' => 'Admin', 'middleware' => ['auth','menu','web','au
     Route::put('admin/project/update', ['as' => 'admin.project.edit', 'uses' => 'ProjectController@update']); //修改
     Route::post('admin/project/store', ['as' => 'admin.project.create', 'uses' => 'ProjectController@store']); //添加
 
-    //代理招投标
-    Route::post('admin/poxy/index', ['as' => 'admin.poxy.index', 'uses' => 'PoxyController@index']);
-    Route::resource('admin/poxy', 'PoxyController');
-    Route::put('admin/poxy/update', ['sas' => 'admin.poxy.edit', 'uses' => 'PoxyController@update']); //修改
-    Route::post('admin/poxy/store', ['as' => 'admin.poxy.create', 'uses' => 'PoxyController@store']); //添加
-
 });
 
 
