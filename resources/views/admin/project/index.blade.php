@@ -55,7 +55,7 @@
                                 <th class="hidden-sm">{{$value['project_name']}}</th>
                                 <th class="hidden-md">{{$value['created_at']}}</th>
                                 <th class="hidden-sm"><a href="">查看招投标</a>&nbsp;&nbsp;<a href="">查看进度及变更</a>&nbsp;&nbsp;<a href="">查看施工预算</a>&nbsp;&nbsp;<a href="">查看结算</a>&nbsp;&nbsp;<a href="">查看审计</a> </th>
-                                <th class="hidden-md"><a href="">添加用户</a>&nbsp;&nbsp;<a href="/admin/project/{{$value['id']}}/edit">编辑</a>&nbsp;&nbsp;<a href="" class="delBtn X-Small btn-xs text-danger "><li class="fa fa-times-circle-o" onclick="check_del({{$value['id']}})">删除</li></a> </th>
+                                <th class="hidden-md"><a href="">添加用户</a>&nbsp;&nbsp;<a href="/admin/project/{{$value['id']}}/edit">编辑</a>&nbsp;&nbsp;<span style="cursor: pointer;" class="delBtn X-Small btn-xs text-danger "><li class="fa fa-times-circle-o" onclick="check_del({{$value['id']}})">删除</li></span> </th>
                             </tr>
                         @endforeach
                         </thead>
@@ -117,6 +117,7 @@
     <script type="text/javascript">
         function check_del(id) {
             $("#modal-delete").modal();
+            return false;
         }
     </script>
 @stop
