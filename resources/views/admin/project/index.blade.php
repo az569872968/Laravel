@@ -116,6 +116,7 @@
             </div>
     <script type="text/javascript">
         function check_del(id) {
+            $('.deleteForm').attr('action', '/admin/project/' + id);
             $("#modal-delete").modal();
             return false;
         }

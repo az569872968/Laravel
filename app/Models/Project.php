@@ -17,6 +17,7 @@ class Project extends Model
         'project_path_min'=>'',
         'project_pinyin'=>'',
         'project_start_time'=>'',
-        'project_end_time'=>''
+        'project_end_time'=>'',
+        'user_id'=>''
     ];
 }

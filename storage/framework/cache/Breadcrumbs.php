@@ -62,6 +62,10 @@ Breadcrumbs::register("admin.user.manage", function ($breadcrumbs){
                         $breadcrumbs->parent("admin.article.manage");
                         $breadcrumbs->push("工程列表", route("admin.project.index"));
                     });
+                    Breadcrumbs::register("admin.member.index", function ($breadcrumbs) {
+                        $breadcrumbs->parent("admin.article.manage");
+                        $breadcrumbs->push("会员管理", route("admin.member.index"));
+                    });
                     Breadcrumbs::register("admin.article.create", function ($breadcrumbs) {
                   $breadcrumbs->parent("admin.article.index");
                           $breadcrumbs->push("添加文章", route("admin.article.create"));
