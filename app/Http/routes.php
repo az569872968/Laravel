@@ -65,6 +65,8 @@ $router->group(['namespace' => 'Admin', 'middleware' => ['auth','menu','web','au
     //会员管理路由
     Route::post('admin/member/index', ['as' => 'admin.member.index', 'uses' => 'MemberController@index']);
     Route::resource('admin/member', 'MemberController');
+    Route::put('admin/member/update', ['as' => 'admin.member.edit', 'uses' => 'MemberController@update']); //修改
+    Route::post('admin/member/store', ['as' => 'admin.member.create', 'uses' => 'MemberController@store']); //添加
 });
 
 

@@ -24,7 +24,12 @@ class MemberCreateRequest extends Request
     public function rules()
     {
         return [
-            //
+            'user_name'     => ['required', 'unique:member,user_name', 'max:255'],
+            'user_pass'     => ['required', 'min:6'],
+            'user_nickname' => ['required', 'max:255'],
+            'user_phone'    => ['required', 'max:11', 'min:11'],
+            'user_mail'     => ['regex:/^\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*/'],
+            'user_role'     => ['in:施工商,承包商,中间人'],
         ];
     }
 }

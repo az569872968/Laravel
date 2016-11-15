@@ -19,7 +19,6 @@ class ArticleController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index( Request $request ){
-
         if ($request->ajax()) {
             $data = array();
             $data['draw']   = $request->get('draw');
@@ -89,8 +88,7 @@ class ArticleController extends Controller
      * @param PremissionCreateRequest|Request $request
      * @return \Illuminate\Http\Response
      */
-    public function store(CreateArticleRequest $request)
-    {
+    public function store(CreateArticleRequest $request){
         $article = new Article();
         foreach (array_keys($article->fields) as $field) {
             $article->$field = $request->get($field);
@@ -105,8 +103,7 @@ class ArticleController extends Controller
      * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
-    {
+    public function edit($id){
         $article   = Article::find((int)$id);
         if (!$article) return redirect('/admin/article')->withErrors("找不到该文章!");
         foreach (array_keys($article->fields) as $field) {
@@ -123,8 +120,7 @@ class ArticleController extends Controller
      * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
-    {
+    public function update(Request $request, $id){
         $article   = Article::find((int)$id);
         foreach (array_keys($article->fields) as $field) {
             $article->$field = $request->get($field);
@@ -139,16 +135,13 @@ class ArticleController extends Controller
      * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
-    {
+    public function destroy($id){
         $article = Article::find((int)$id);
         if ($article) {
             $article->delete();
         } else {
-            return redirect()->back()
-                ->withErrors("删除失败");
+            return redirect()->back()->withErrors("删除失败");
         }
-        return redirect()->back()
-            ->withSuccess("删除成功");
+        return redirect()->back()->withSuccess("删除成功");
     }
 }

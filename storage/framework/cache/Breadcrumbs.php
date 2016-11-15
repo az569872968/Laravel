@@ -90,4 +90,16 @@ Breadcrumbs::register("admin.user.manage", function ($breadcrumbs){
                   $breadcrumbs->parent("admin.project.index");
                           $breadcrumbs->push("删除工程", route("admin.project.destroy"));
                         });
+                  Breadcrumbs::register("admin.member.create", function ($breadcrumbs) {
+                  $breadcrumbs->parent("admin.member.index");
+                          $breadcrumbs->push("添加会员", route("admin.member.create"));
+                        });
+                  Breadcrumbs::register("admin.member.edit", function ($breadcrumbs) {
+                  $breadcrumbs->parent("admin.member.index");
+                          $breadcrumbs->push("修改会员", route("admin.member.edit"));
+                        });
+                  Breadcrumbs::register("admin.member.destroy", function ($breadcrumbs) {
+                  $breadcrumbs->parent("admin.member.index");
+                          $breadcrumbs->push("删除会员", route("admin.member.destroy"));
+                        });
                   
