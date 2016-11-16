@@ -29,7 +29,6 @@ class MemberCreateRequest extends Request
             'user_nickname' => ['required', 'max:255'],
             'user_phone'    => ['required', 'max:11', 'min:11'],
             'user_mail'     => ['regex:/^\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*/'],
-            'user_role'     => ['in:施工商,承包商,中间人'],
         ];
     }
 }

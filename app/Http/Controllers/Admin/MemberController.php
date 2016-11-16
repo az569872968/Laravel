@@ -58,8 +58,8 @@ class MemberController extends Controller{
      * @return \Illuminate\Http\Response
      */
     public function create(){
-        $Member    = new Member();
-        $data = [];
+        $Member     = new Member();
+        $data       = [];
         foreach ($Member->fields as $field => $default) {
             $data[$field] = old($field, $default);
         }

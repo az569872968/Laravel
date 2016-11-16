@@ -44,12 +44,3 @@
         <textarea name="user_exp" class="form-control" rows="3">{{ $user_exp }}</textarea>
     </div>
 </div>
-@if (count($errors) > 0)
-    <div class="alert alert-danger">
-        <ul>
-            @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
-            @endforeach
-        </ul>
-    </div>
-@endif
