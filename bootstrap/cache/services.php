@@ -22,15 +22,14 @@
     18 => 'Illuminate\\Translation\\TranslationServiceProvider',
     19 => 'Illuminate\\Validation\\ValidationServiceProvider',
     20 => 'Illuminate\\View\\ViewServiceProvider',
-    21 => 'Collective\\Html\\HtmlServiceProvider',
-    22 => 'App\\Providers\\AppServiceProvider',
-    23 => 'App\\Providers\\AuthServiceProvider',
-    24 => 'App\\Providers\\EventServiceProvider',
-    25 => 'App\\Providers\\RouteServiceProvider',
-    26 => 'Zizaco\\Entrust\\EntrustServiceProvider',
-    27 => 'Barryvdh\\Debugbar\\ServiceProvider',
-    28 => 'DaveJamesMiller\\Breadcrumbs\\ServiceProvider',
-    29 => 'Arcanedev\\LogViewer\\LogViewerServiceProvider',
+    21 => 'App\\Providers\\AppServiceProvider',
+    22 => 'App\\Providers\\AuthServiceProvider',
+    23 => 'App\\Providers\\EventServiceProvider',
+    24 => 'App\\Providers\\RouteServiceProvider',
+    25 => 'Zizaco\\Entrust\\EntrustServiceProvider',
+    26 => 'Barryvdh\\Debugbar\\ServiceProvider',
+    27 => 'DaveJamesMiller\\Breadcrumbs\\ServiceProvider',
+    28 => 'Arcanedev\\LogViewer\\LogViewerServiceProvider',
   ),
   'eager' => 
   array (
@@ -137,10 +136,6 @@
     'translation.loader' => 'Illuminate\\Translation\\TranslationServiceProvider',
     'validator' => 'Illuminate\\Validation\\ValidationServiceProvider',
     'validation.presence' => 'Illuminate\\Validation\\ValidationServiceProvider',
-    'html' => 'Collective\\Html\\HtmlServiceProvider',
-    'form' => 'Collective\\Html\\HtmlServiceProvider',
-    'Collective\\Html\\HtmlBuilder' => 'Collective\\Html\\HtmlServiceProvider',
-    'Collective\\Html\\FormBuilder' => 'Collective\\Html\\HtmlServiceProvider',
   ),
   'when' => 
   array (
@@ -178,9 +173,6 @@
     array (
     ),
     'Illuminate\\Validation\\ValidationServiceProvider' => 
-    array (
-    ),
-    'Collective\\Html\\HtmlServiceProvider' => 
     array (
     ),
   ),
