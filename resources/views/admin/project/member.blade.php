@@ -10,24 +10,22 @@
 
     <div class="row page-title-row" style="margin:5px;">
         <div class="col-md-6">
+            <a style="margin:3px;"  href="/admin/project"
+               class="btn btn-warning btn-md animation-shake reloadBtn"><i class="fa fa-mail-reply-all"></i> 返回项目列表
+            </a>
         </div>
         <div class="col-md-6 text-right">
-            <a href="/admin/project/create" class="btn btn-success btn-md">
-                <i class="fa fa-plus-circle"></i> 添加工程
+            <a href="/admin/project/user" class="btn btn-success btn-md">
+                <i class="fa fa-plus-circle"></i> 添加会员
             </a>
         </div>
     </div>
     <div class="row page-title-row" style="margin:5px;">
         <div class="col-md-6">
-            查询数量<select>
-                <option>10</option>
-                <option>20</option>
-                <option>30</option>
-            </select>
         </div>
         <div class="col-md-6 text-right">
             <form action="" method="get">
-                工程名称<input type="text">
+                会员昵称<input type="text">
                 <input type="submit" value="搜索">
             </form>
         </div>
@@ -42,20 +40,22 @@
                         <thead>
                         <tr>
                             <th data-sortable="false" class="hidden-sm"></th>
-                            <th class="hidden-sm">拼音码</th>
-                            <th class="hidden-sm">工程名称</th>
-                            <th class="hidden-md">创建时间</th>
-                            <th class="hidden-sm">项目相关资料</th>
+                            <th class="hidden-sm">会员账号</th>
+                            <th class="hidden-sm">会员昵称</th>
+                            <th class="hidden-sm">手机号码</th>
+                            <th class="hidden-md">注册时间</th>
+                            <th class="hidden-sm">会员类型</th>
                             <th data-sortable="false">操作</th>
                         </tr>
-                        @foreach($data['list'] as $item=>$value)
+                        @foreach($list as $item=>$value)
                             <tr>
                                 <th data-sortable="false" class="hidden-sm">{{$item+1}}</th>
-                                <th class="hidden-sm">{{$value['project_pinyin']}}</th>
-                                <th class="hidden-sm">{{$value['project_name']}}</th>
+                                <th class="hidden-sm">{{$value['user_name']}}</th>
+                                <th class="hidden-sm">{{$value['user_nickname']}}</th>
+                                <th class="hidden-sm">{{$value['user_phone']}}</th>
                                 <th class="hidden-md">{{$value['created_at']}}</th>
-                                <th class="hidden-sm"><a href="">查看招投标</a>&nbsp;&nbsp;<a href="">查看进度及变更</a>&nbsp;&nbsp;<a href="">查看施工预算</a>&nbsp;&nbsp;<a href="">查看结算</a>&nbsp;&nbsp;<a href="">查看审计</a> </th>
-                                <th class="hidden-md"><a href="/admin/project/{{$value['id']}}/user">会员列表</a>&nbsp;&nbsp;<a href="/admin/project/{{$value['id']}}/edit">编辑</a>&nbsp;&nbsp;<span style="cursor: pointer;" class="delBtn X-Small btn-xs text-danger "><li class="fa fa-times-circle-o" onclick="check_del({{$value['id']}})">删除</li></span> </th>
+                                <th class="hidden-md">{{$value['user_role']}}</th>
+                                <th class="hidden-md"><span style="cursor: pointer;" class="delBtn X-Small btn-xs text-danger "><li class="fa fa-times-circle-o" onclick="check_del({{$value['id']}})">删除</li></span> </th>
                             </tr>
                         @endforeach
                         </thead>
@@ -114,11 +114,11 @@
                     </form>
                 </div>
             </div>
-    <script type="text/javascript">
-        function check_del(id) {
-            $('.deleteForm').attr('action', '/admin/project/' + id);
-            $("#modal-delete").modal();
-            return false;
-        }
-    </script>
+            <script type="text/javascript">
+                function check_del(id) {
+                    $('.deleteForm').attr('action', '/admin/project/' + id);
+                    $("#modal-delete").modal();
+                    return false;
+                }
+            </script>
 @stop

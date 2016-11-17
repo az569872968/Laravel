@@ -102,4 +102,8 @@ Breadcrumbs::register("admin.user.manage", function ($breadcrumbs){
                   $breadcrumbs->parent("admin.member.index");
                           $breadcrumbs->push("删除会员", route("admin.member.destroy"));
                         });
+                  Breadcrumbs::register("admin.project.user", function ($breadcrumbs) {
+                  $breadcrumbs->parent("admin.project.index");
+                          $breadcrumbs->push("工程会员", route("admin.project.user"));
+                        });
                   

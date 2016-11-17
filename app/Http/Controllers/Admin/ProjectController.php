@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Requests\ProjectCreateRequest;
+use App\Models\Member;
 use App\Models\Project;
 use Dotenv\Validator;
 use Illuminate\Http\Request;
@@ -28,6 +29,16 @@ class ProjectController extends Controller
         $data['recordsTotal'] = Project::count();
         $data['list']         = Project::select()->get();
         return view('admin.Project.index')->with('data',$data);
+    }
+
+
+
+    public function user( $id ){
+        $project      = Project::find( (int)$id );
+        $user_id      = $project->user_id;
+        $MapUser      = explode( ',', rtrim($user_id, ",") );
+        $MemberList   = Member::select('id','user_name','user_nickname','created_at','user_role','user_phone')->whereIn('id', $MapUser)->get();
+        return view('admin.Project.member')->with('list',$MemberList);
     }
 
 
