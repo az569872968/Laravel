@@ -73,9 +73,13 @@ class MemberController extends Controller{
      * @return \Illuminate\Http\Response
      */
     public function store(Requests\MemberCreateRequest $request){
-        $Member = new Member();
+        $Member     = new Member();
         foreach (array_keys($Member->fields) as $field) {
-            $Member->$field = $request->get($field);
+            if( $field == "user_pass" && $request->get("user_pass") != ""){
+                $Member->$field = bcrypt( $request->get('user_pass') );
+            }else{
+                $Member->$field = $request->get($field);
+            }
         }
         $Member->save();
         return redirect('/admin/member')->withSuccess('添加成功！');
@@ -107,7 +111,14 @@ class MemberController extends Controller{
     public function update(Requests\MemberUpdateRequest $request, $id){
         $Member   = Member::find((int)$id);
         foreach (array_keys($Member->fields) as $field) {
-            $Member->$field = $request->get($field);
+            if( empty($request->get('user_pass')) ){
+                continue;
+            }
+            if( $field == "user_pass" && $request->get("user_pass") != ""){
+                $Member->$field = bcrypt( $request->get('user_pass') );
+            }else{
+                $Member->$field = $request->get($field);
+            }
         }
         $Member->save();
         return redirect('/admin/member')->withSuccess('修改成功');

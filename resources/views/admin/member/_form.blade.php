@@ -13,7 +13,7 @@
 <div class="form-group">
     <label for="tag" class="col-md-3 control-label">密码</label>
     <div class="col-md-6">
-        <input type="password" class="form-control" name="user_pass" id="tag" value="{{ $user_pass }}" autofocus>
+        <input type="password" class="form-control" name="user_pass" id="tag" value="" autofocus>
     </div>
 </div>
 <div class="form-group">

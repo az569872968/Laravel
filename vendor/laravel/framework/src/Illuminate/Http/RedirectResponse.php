@@ -134,7 +134,6 @@ class RedirectResponse extends BaseRedirectResponse
         $this->session->flash(
             'errors', $this->session->get('errors', new ViewErrorBag)->put($key, $value)
         );
-
         return $this;
     }
 

@@ -63,7 +63,7 @@
                 <div class="modal-body">
                     <p class="lead">
                         <i class="fa fa-question-circle fa-lg"></i>
-                        确认要删除这个文章吗?
+                        确认要删除这个会员吗?
                     </p>
                 </div>
                 <div class="modal-footer">
@@ -132,11 +132,9 @@
                                 {
                                     'targets': -1, "render": function (data, type, row) {
                                     var caozuo = '<a style="margin:3px;" href="/admin/member/' + row['id'] + '/edit" class="X-Small btn-xs text-success "><i class="fa fa-edit"></i> 编辑</a>';
-                                    if (row['id'] != 1) {
                                         caozuo += '<a style="margin:3px;" href="#" attr="' + row['id'] + '" class="delBtn X-Small btn-xs text-danger "><i class="fa fa-times-circle-o"></i> 删除</a>';
-                                    }
                                     return caozuo;
-                                }
+                                    }
                                 }
                             ]
                         });
