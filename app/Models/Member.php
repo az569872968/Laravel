@@ -25,6 +25,5 @@ class Member extends Model{
         'user_mail'     => '',      //邮箱
         'user_exp'      => '',      //简介
         'user_role'     => '',      //用户组
-        'user_id'       => '',      //用户组
     );
 }

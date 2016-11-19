@@ -62,6 +62,8 @@ $router->group(['namespace' => 'Admin', 'middleware' => ['auth','menu','web','au
     Route::put('admin/project/update', ['as' => 'admin.project.edit', 'uses' => 'ProjectController@update']); //修改
     Route::post('admin/project/store', ['as' => 'admin.project.create', 'uses' => 'ProjectController@store']); //添加
     Route::get('admin/project/{id?}/user', ['as' => 'admin.project.user', 'uses' => 'ProjectController@user']); //会员列表
+    Route::get('admin/project/{id}/user_add', ['as' => 'admin.project.user_add', 'uses' => 'ProjectController@user_add']); //会员列表
+    Route::get('admin/project/{id}/user_del', ['as' => 'admin.project.user_del', 'uses' => 'ProjectController@user_del']); //会员列表
 
     //会员管理路由
     Route::post('admin/member/index', ['as' => 'admin.member.index', 'uses' => 'MemberController@index']);

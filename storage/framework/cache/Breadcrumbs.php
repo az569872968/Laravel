@@ -106,4 +106,12 @@ Breadcrumbs::register("admin.user.manage", function ($breadcrumbs){
                   $breadcrumbs->parent("admin.project.index");
                           $breadcrumbs->push("工程会员", route("admin.project.user"));
                         });
+                  Breadcrumbs::register("admin.project.user_add", function ($breadcrumbs) {
+                  $breadcrumbs->parent("admin.project.index");
+                          $breadcrumbs->push("添加工程会员", route("admin.project.user_add"));
+                        });
+                  Breadcrumbs::register("admin.project.user_del", function ($breadcrumbs) {
+                  $breadcrumbs->parent("admin.project.index");
+                          $breadcrumbs->push("删除工程会员", route("admin.project.user_del"));
+                        });
                   

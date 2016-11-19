@@ -15,9 +15,9 @@
             </a>
         </div>
         <div class="col-md-6 text-right">
-            <a href="/admin/project/user" class="btn btn-success btn-md">
-                <i class="fa fa-plus-circle"></i> 添加会员
-            </a>
+            {{--<a href="/admin/project/user" class="btn btn-success btn-md">--}}
+                {{--<i class="fa fa-plus-circle"></i> 添加会员--}}
+            {{--</a>--}}
         </div>
     </div>
     <div class="row page-title-row" style="margin:5px;">
@@ -25,7 +25,7 @@
         </div>
         <div class="col-md-6 text-right">
             <form action="" method="get">
-                会员昵称<input type="text">
+                会员账号/昵称:<input type="text" name="search" value="{{ Request::get('search') }}">
                 <input type="submit" value="搜索">
             </form>
         </div>
@@ -43,8 +43,8 @@
                             <th class="hidden-sm">会员账号</th>
                             <th class="hidden-sm">会员昵称</th>
                             <th class="hidden-sm">手机号码</th>
-                            <th class="hidden-md">注册时间</th>
                             <th class="hidden-sm">会员类型</th>
+                            <th class="hidden-md">注册时间</th>
                             <th data-sortable="false">操作</th>
                         </tr>
                         @foreach($list as $item=>$value)
@@ -53,9 +53,14 @@
                                 <th class="hidden-sm">{{$value['user_name']}}</th>
                                 <th class="hidden-sm">{{$value['user_nickname']}}</th>
                                 <th class="hidden-sm">{{$value['user_phone']}}</th>
-                                <th class="hidden-md">{{$value['created_at']}}</th>
                                 <th class="hidden-md">{{$value['user_role']}}</th>
-                                <th class="hidden-md"><span style="cursor: pointer;" class="delBtn X-Small btn-xs text-danger "><li class="fa fa-times-circle-o" onclick="check_del({{$value['id']}})">删除</li></span> </th>
+                                <th class="hidden-md">{{$value['created_at']}}</th>
+                                <th class="hidden-md">
+                                @if( !in_array($value['id'], $mapuser) )
+                                    <li class="fa fa-plus-circle" onclick=""><a href="/admin/project/{{$id}}/user_add?user_id={{$value['id']}}">添加 </a></li>
+                                @endif
+                                    <li class="fa fa-times-circle-o"><a href="/admin/project/{{$id}}/user_del?user_id={{$value['id']}}" style="color: red"> 删除</a></li>
+                                </th>
                             </tr>
                         @endforeach
                         </thead>

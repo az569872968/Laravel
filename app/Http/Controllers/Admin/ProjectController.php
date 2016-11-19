@@ -33,15 +33,6 @@ class ProjectController extends Controller
 
 
 
-    public function user( $id ){
-        $project      = Project::find( (int)$id );
-        $user_id      = $project->user_id;
-        $MapUser      = explode( ',', rtrim($user_id, ",") );
-        $MemberList   = Member::select('id','user_name','user_nickname','created_at','user_role','user_phone')->whereIn('id', $MapUser)->get();
-        return view('admin.Project.member')->with('list',$MemberList);
-    }
-
-
     /**
      * Display the specified resource.
      *
@@ -137,5 +128,68 @@ class ProjectController extends Controller
         }
         return redirect()->back()
             ->withSuccess("删除成功");
+    }
+
+
+    /**
+     * 项目会员列表
+     *
+     * @param Request $request
+     * @param $id
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function user( Request $request, $id ){
+        $project      = Project::find( (int)$id );
+        $search       = $request->get('search');
+        $user_id      = ltrim( $project->user_id, ',');
+        $MapUser      = explode( ',', rtrim($user_id, ",") );
+        if( empty($search) ){
+            $MemberList   = Member::select('id','user_name','user_nickname','created_at','user_role','user_phone')->whereIn('id', $MapUser)->get();
+        }else{
+            $MemberList   = Member::select('id','user_name','user_nickname','created_at','user_role','user_phone')->where('user_name', 'LIKE', '%' .$search. '%')->orwhere('user_nickname', 'LIKE', '%'.$search.'%')->get();
+        }
+        return view('admin.Project.member', array('id'=>$id, 'list'=>$MemberList, 'mapuser'=>$MapUser));
+    }
+
+
+    /**
+     * 追加项目会员
+     *
+     * @param Request $request
+     * @param $id
+     * @return mixed
+     */
+    public function user_add( Request $request, $id){
+        $project            = Project::find( (int)$id );
+        $user_id            = $request->get('user_id');
+        $row                = $project->user_id;
+        if( empty($row) ){
+            $row            = ','.$user_id.',';   //追加会员
+        }else{
+            $row            = $row.$user_id.',';   //追加会员
+        }
+        $project->user_id   = $row;
+        $project->save();
+        return redirect("/admin/project/$id/user")->withSuccess('添加成功！');
+    }
+
+
+    /**
+     * 删除项目会员
+     *
+     * @param Request $request
+     * @param $id
+     * @return mixed
+     */
+    public function user_del( Request $request, $id){
+        $project            = Project::find( (int)$id );
+        $user_id            = $request->get('user_id');
+        $row                = ltrim(rtrim($project->user_id, ','), ',');
+        $row                = explode(',', $row);
+        $key                = array_search($user_id, $row);
+        $row                = array_splice($row,$key,1);
+        $project->user_id   = ','.implode(',', $row);
+        $project->save();
+        return redirect("/admin/project/$id/user")->withSuccess('添加成功！');
     }
 }
