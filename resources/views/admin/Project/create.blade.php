@@ -21,7 +21,7 @@
                             <form class="form-horizontal" role="form" method="POST" action="/admin/project/store">
                                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                 <input type="hidden" name="cove_image"/>
-                                @include('admin.project._form')
+                                @include('admin.Project._form')
                                 <div class="form-group">
                                     <div class="col-md-7 col-md-offset-3">
                                         <button type="submit" class="btn btn-primary btn-md">

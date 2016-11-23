@@ -2,28 +2,30 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Models\Tender;
 use Illuminate\Http\Request;
 
+use App\Http\Controllers\Controller;
 use App\Http\Requests;
 
-class TenderConntroler extends Controller
+class TenderController extends Controller
 {
     /**
      * Display the specified resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index( Request $request ){
+    public function index( Request $request , $id){
         $data = array();
-        $data['draw'] = $request->get('draw');
-        $start = $request->get('start');
-        $length = $request->get('length');
-        $order = $request->get('order');
-        $columns = $request->get('columns');
-        $search = $request->get('search');
-        $data['recordsTotal'] = Project::count();
-        $data['list']         = Project::select()->get();
-        return view('admin.Project.index')->with('data',$data);
+        $data['draw']   = $request->get('draw');
+        $start          = $request->get('start');
+        $length         = $request->get('length');
+        $order          = $request->get('order');
+        $columns        = $request->get('columns');
+        $search         = $request->get('search');
+        $data['recordsTotal'] = Tender::count();
+        $data['list']         = Tender::select()->get();
+        return view('admin.Tender.index')->with('data',$data);
     }
 
 
@@ -46,12 +48,12 @@ class TenderConntroler extends Controller
      */
     public function create()
     {
-        $project     = new Project();
-        $data = [];
-        foreach ($project->fields as $field => $default) {
+        $tender     = new Tender();
+        $data       = [];
+        foreach ($tender->fields as $field => $default) {
             $data[$field] = old($field, $default);
         }
-        return view('admin.project.create', $data);
+        return view('admin.Tender.create', $data);
     }
 
 
@@ -63,12 +65,12 @@ class TenderConntroler extends Controller
      */
     public function store(ProjectCreateRequest $request)
     {
-        $project = new Project();
-        foreach (array_keys($project->fields) as $field) {
-            $project->$field = $request->get($field);
+        $tender = new Tender();
+        foreach (array_keys($tender->fields) as $field) {
+            $tender->$field = $request->get($field);
         }
-        $project->save();
-        return redirect('/admin/project')->withSuccess('添加成功！');
+        $tender->save();
+        return redirect('/admin/Tender')->withSuccess('添加成功！');
     }
 
     /**
@@ -79,15 +81,15 @@ class TenderConntroler extends Controller
      */
     public function edit($id)
     {
-        $project   = Project::find((int)$id);
-        if (!$project) {
-            return redirect('/admin/project')->withErrors("找不到该工程!");
+        $tender   = Tender::find((int)$id);
+        if (!$tender) {
+            return redirect('/admin/Tender')->withErrors("找不到该工程!");
         }
-        foreach (array_keys($project->fields) as $field) {
-            $data[$field] = old($field, $project->$field);
+        foreach (array_keys($tender->fields) as $field) {
+            $data[$field] = old($field, $tender->$field);
         }
         $data['id'] = (int)$id;
-        return view('admin.project.edit', $data);
+        return view('admin.Tender.edit', $data);
     }
 
     /**
@@ -99,12 +101,12 @@ class TenderConntroler extends Controller
      */
     public function update(Request $request, $id)
     {
-        $project   = Project::find((int)$id);
-        foreach (array_keys($project->fields) as $field) {
-            $project->$field = $request->get($field);
+        $tender   = Tender::find((int)$id);
+        foreach (array_keys($tender->fields) as $field) {
+            $tender->$field = $request->get($field);
         }
-        $project->save();
-        return redirect('/admin/project')->withSuccess('修改成功');
+        $tender->save();
+        return redirect('/admin/Tender')->withSuccess('修改成功');
     }
 
     /**

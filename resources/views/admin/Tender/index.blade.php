@@ -13,7 +13,7 @@
         </div>
         <div class="col-md-6 text-right">
             <a href="/admin/project/create" class="btn btn-success btn-md">
-                <i class="fa fa-plus-circle"></i> 添加工程
+                <i class="fa fa-plus-circle"></i> 添加招标文件
             </a>
         </div>
     </div>
@@ -42,20 +42,24 @@
                         <thead>
                         <tr>
                             <th data-sortable="false" class="hidden-sm"></th>
-                            <th class="hidden-sm">拼音码</th>
-                            <th class="hidden-sm">工程名称</th>
-                            <th class="hidden-md">创建时间</th>
-                            <th class="hidden-sm">项目相关资料</th>
+                            <th class="hidden-sm">合同编号</th>
+                            <th class="hidden-sm">招标文件名称</th>
+                            <th class="hidden-md">招标文件编号</th>
+                            <th class="hidden-sm">添加日期</th>
+                            <th class="hidden-sm">备注</th>
+                            <th class="hidden-sm">文件下载</th>
                             <th data-sortable="false">操作</th>
                         </tr>
                         @foreach($data['list'] as $item=>$value)
                             <tr>
                                 <th data-sortable="false" class="hidden-sm">{{$item+1}}</th>
-                                <th class="hidden-sm">{{$value['project_pinyin']}}</th>
-                                <th class="hidden-sm">{{$value['project_name']}}</th>
+                                <th class="hidden-sm">{{$value['numbering']}}</th>
+                                <th class="hidden-sm">{{$value['tender_name']}}</th>
+                                <th class="hidden-md">{{$value['file_num']}}</th>
                                 <th class="hidden-md">{{$value['created_at']}}</th>
-                                <th class="hidden-sm"><a href="">查看招投标</a>&nbsp;&nbsp;<a href="">查看进度及变更</a>&nbsp;&nbsp;<a href="">查看施工预算</a>&nbsp;&nbsp;<a href="">查看结算</a>&nbsp;&nbsp;<a href="">查看审计</a> </th>
-                                <th class="hidden-md"><a href="/admin/project/{{$value['id']}}/user">会员列表</a>&nbsp;&nbsp;<a href="/admin/project/{{$value['id']}}/edit">编辑</a>&nbsp;&nbsp;<span style="cursor: pointer;" class="delBtn X-Small btn-xs text-danger "><li class="fa fa-times-circle-o" onclick="check_del({{$value['id']}})">删除</li></span> </th>
+                                <th class="hidden-md">{{$value['remark']}}</th>
+                                <th class="hidden-md">{{$value['file_path']}}</th>
+                                <th class="hidden-md"><a href="/admin/project/{{$value['id']}}/user">添加子文件</a>&nbsp;&nbsp;<a href="/admin/project/{{$value['id']}}/edit">编辑</a>&nbsp;&nbsp;<span style="cursor: pointer;" class="delBtn X-Small btn-xs text-danger "><li class="fa fa-times-circle-o" onclick="check_del({{$value['id']}})">删除</li></span> </th>
                             </tr>
                         @endforeach
                         </thead>

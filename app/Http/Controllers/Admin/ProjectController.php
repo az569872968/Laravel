@@ -56,7 +56,7 @@ class ProjectController extends Controller
         foreach ($project->fields as $field => $default) {
             $data[$field] = old($field, $default);
         }
-        return view('admin.project.create', $data);
+        return view('admin.Project.create', $data);
     }
 
 
@@ -92,7 +92,7 @@ class ProjectController extends Controller
             $data[$field] = old($field, $project->$field);
         }
         $data['id'] = (int)$id;
-        return view('admin.project.edit', $data);
+        return view('admin.Project.edit', $data);
     }
 
     /**

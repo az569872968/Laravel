@@ -65,8 +65,13 @@ $router->group(['namespace' => 'Admin', 'middleware' => ['auth','menu','web','au
     Route::get('admin/project/{id}/user_add', ['as' => 'admin.project.user_add', 'uses' => 'ProjectController@user_add']); //会员列表
     Route::get('admin/project/{id}/user_del', ['as' => 'admin.project.user_del', 'uses' => 'ProjectController@user_del']); //会员列表
 
+    //招标文件路由
+    Route::get('admin/tender/index/{id}', ['as' => 'admin.tender.index', 'uses' => 'TenderController@index']);
+    Route::put('admin/tender/update', ['as' => 'admin.tender.edit', 'uses' => 'TenderController@update']); //修改
+    Route::post('admin/tender/store', ['as' => 'admin.tender.create', 'uses' => 'TenderController@store']); //添加
+
     //会员管理路由
-    Route::post('admin/member/index', ['as' => 'admin.member.index', 'uses' => 'MemberController@index']);
+    Route::get('admin/member/index', ['as' => 'admin.member.index', 'uses' => 'MemberController@index']);
     Route::resource('admin/member', 'MemberController');
     Route::put('admin/member/update', ['as' => 'admin.member.edit', 'uses' => 'MemberController@update']); //修改
     Route::post('admin/member/store', ['as' => 'admin.member.create', 'uses' => 'MemberController@store']); //添加
