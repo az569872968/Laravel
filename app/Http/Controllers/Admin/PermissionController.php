@@ -18,6 +18,7 @@ class PermissionController extends Controller
         'display_name' => '',
         'description' => '',
         'cid' => 0,
+        'is_use' => 1,
         'icon'=>'',
     ];
 

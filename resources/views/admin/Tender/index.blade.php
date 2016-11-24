@@ -12,7 +12,7 @@
         <div class="col-md-6">
         </div>
         <div class="col-md-6 text-right">
-            <a href="/admin/project/create" class="btn btn-success btn-md">
+            <a href="{{ URL("/admin/tender/create/$id") }}" class="btn btn-success btn-md">
                 <i class="fa fa-plus-circle"></i> 添加招标文件
             </a>
         </div>

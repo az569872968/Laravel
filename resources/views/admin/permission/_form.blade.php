@@ -14,6 +14,13 @@
         <input type="text" class="form-control" name="display_name" id="tag" value="{{ $display_name }}" autofocus>
     </div>
 </div>
+<div class="form-group">
+    <label for="tag" class="col-md-3 control-label">是否显示</label>
+    <div class="col-md-6">
+        是&nbsp;&nbsp;<input type="radio" class="" name="is_use" id="tag" @if($is_use == 1) checked="checked" @endif value="1">
+        否&nbsp;&nbsp;<input type="radio" class="" name="is_use" id="tag" @if($is_use == 0) checked="checked" @endif value="0">
+    </div>
+</div>
 @if($cid == 0 )
 {{--图标修改--}}
     <link rel="stylesheet" href="/plugins/bootstrap-iconpicker/icon-fonts/font-awesome-4.2.0/css/font-awesome.min.css"/>

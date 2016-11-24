@@ -25,7 +25,7 @@ class TenderController extends Controller
         $search         = $request->get('search');
         $data['recordsTotal'] = Tender::count();
         $data['list']         = Tender::select()->get();
-        return view('admin.Tender.index')->with('data',$data);
+        return view('admin.Tender.index', array('data'=>$data, 'id'=>$id));
     }
 
 
@@ -46,7 +46,7 @@ class TenderController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create( $id )
     {
         $tender     = new Tender();
         $data       = [];
