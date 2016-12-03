@@ -49,6 +49,7 @@ class TenderController extends Controller
     public function create( $id )
     {
         $tender     = new Tender();
+        $tender->fields['project_id']   = (int)$id;
         $data       = [];
         foreach ($tender->fields as $field => $default) {
             $data[$field] = old($field, $default);
