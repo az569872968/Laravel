@@ -18,6 +18,7 @@ class Tender extends Model{
     //设置表字段
     public $fields  = [
         'project_id'=>'',
+        'fid'=>0,
         'numbering'=>'',
         'tender_name'=>'',
         'file_num'=>'',
