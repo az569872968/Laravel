@@ -28,3 +28,22 @@
         <input type="text" class="form-control" name="project_end_time" id="tag" value="{{ $project_end_time }}" autofocus>
     </div>
 </div>
+<div class="form-group">
+    <label for="tag" class="col-md-3 control-label">工程小图</label>
+    <input id="file_upload" name="file_upload" type="file" multiple="true">
+    <script src="/plugins/uploadify/jquery.uploadify.min.js" type="text/javascript"></script>
+    <link rel="stylesheet" type="text/css" href="/plugins/uploadify/uploadify.css">
+</div>
+<script type="text/javascript">
+    <?php $timestamp = time();?>
+    $(function() {
+        $('#file_upload').uploadify({
+            'formData'     : {
+                'timestamp' : '<?php echo $timestamp;?>',
+                'token'     : '<?php echo md5('unique_salt' . $timestamp);?>'
+            },
+            'swf'      : '/plugins/uploadify/uploadify.swf',
+            'uploader' : '/plugins/uploadify/uploadify.php'
+        });
+    });
+</script>

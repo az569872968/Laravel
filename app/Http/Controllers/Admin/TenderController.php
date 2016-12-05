@@ -15,7 +15,7 @@ class TenderController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index( Request $request , $id){
+    public function index( Request $request ){
         $data = array();
         $data['draw']   = $request->get('draw');
         $start          = $request->get('start');
@@ -25,7 +25,7 @@ class TenderController extends Controller
         $search         = $request->get('search');
         $data['recordsTotal'] = Tender::count();
         $data['list']         = Tender::select()->get();
-        return view('admin.Tender.index', array('data'=>$data, 'id'=>$id));
+        return view('admin.Tender.index', array('data'=>$data, 'id'=>$request->get('project_id')));
     }
 
 
@@ -46,11 +46,11 @@ class TenderController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create( $id )
+    public function create( Request $request )
     {
-        $tender     = new Tender();
-        $tender->fields['project_id']   = (int)$id;
-        $data       = [];
+        $tender                         = new Tender();
+        $tender->fields['project_id']   = (int)$request->get('project_id');
+        $data                           = [];
         foreach ($tender->fields as $field => $default) {
             $data[$field] = old($field, $default);
         }
@@ -64,14 +64,14 @@ class TenderController extends Controller
      * @param PremissionCreateRequest|Request $request
      * @return \Illuminate\Http\Response
      */
-    public function store(ProjectCreateRequest $request)
+    public function store(Requests\TenderCreateRequest $request)
     {
         $tender = new Tender();
         foreach (array_keys($tender->fields) as $field) {
             $tender->$field = $request->get($field);
         }
         $tender->save();
-        return redirect('/admin/Tender')->withSuccess('添加成功！');
+        return redirect("/admin/Tender/index/".$request->get('project_id'))->withSuccess('添加成功！');
     }
 
     /**
@@ -80,11 +80,11 @@ class TenderController extends Controller
      * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Request $request, $id)
     {
         $tender   = Tender::find((int)$id);
         if (!$tender) {
-            return redirect('/admin/Tender')->withErrors("找不到该工程!");
+            return redirect('/admin/tender?project_id='.$request->get('project_id'))->withErrors("找不到招标文件!");
         }
         foreach (array_keys($tender->fields) as $field) {
             $data[$field] = old($field, $tender->$field);
@@ -107,7 +107,7 @@ class TenderController extends Controller
             $tender->$field = $request->get($field);
         }
         $tender->save();
-        return redirect('/admin/Tender')->withSuccess('修改成功');
+        return redirect('/admin/tender?project_id='.$request->get('project_id'))->withSuccess('修改成功');
     }
 
     /**
@@ -117,9 +117,9 @@ class TenderController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function destroy($id){
-        $project = Project::find((int)$id);
-        if ($project) {
-            $project->delete();
+        $tender = Tender::find((int)$id);
+        if ($tender) {
+            $tender->delete();
         } else {
             return redirect()->back()
                 ->withErrors("删除失败");

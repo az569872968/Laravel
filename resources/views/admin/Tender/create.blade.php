@@ -13,12 +13,12 @@
                 <div class="col-md-8 col-md-offset-2">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            <h3 class="panel-title">添加工程</h3>
+                            <h3 class="panel-title">添加招标文件</h3>
                         </div>
                         <div class="panel-body">
                             @include('admin.partials.errors')
                             @include('admin.partials.success')
-                            <form class="form-horizontal" role="form" method="POST" action="/admin/project/store">
+                            <form class="form-horizontal" role="form" method="POST" action="/admin//store">
                                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                 <input type="hidden" name="cove_image"/>
                                 @include('admin.Tender._form')
