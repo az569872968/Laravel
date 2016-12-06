@@ -1,3 +1,4 @@
+<link rel="stylesheet" type="text/css" href="/plugins/upload-form/css/jquery.filer.css">
 <div class="form-group">
     <label for="tag" class="col-md-3 control-label">拼音码</label>
     <div class="col-md-6">
@@ -30,20 +31,16 @@
 </div>
 <div class="form-group">
     <label for="tag" class="col-md-3 control-label">工程小图</label>
-    <input id="file_upload" name="file_upload" type="file" multiple="true">
-    <script src="/plugins/uploadify/jquery.uploadify.min.js" type="text/javascript"></script>
-    <link rel="stylesheet" type="text/css" href="/plugins/uploadify/uploadify.css">
+    <div class="col-md-6">
+         <input type="file" name="files[]" id="demo-fileInput-7" multiple="multiple">
+    </div>
 </div>
 <script type="text/javascript">
-    <?php $timestamp = time();?>
-    $(function() {
-        $('#file_upload').uploadify({
-            'formData'     : {
-                'timestamp' : '<?php echo $timestamp;?>',
-                'token'     : '<?php echo md5('unique_salt' . $timestamp);?>'
-            },
-            'swf'      : '/plugins/uploadify/uploadify.swf',
-            'uploader' : '/plugins/uploadify/uploadify.php'
-        });
+    $('#filer_input').filer({
+        limit: 3,
+        maxSize: 5,
+        extensions: ['jpg', 'jpeg', 'png', 'gif', 'xlsx'],
+        changeInput: true,
+        showThumbs: true
     });
 </script>
