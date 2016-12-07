@@ -60,7 +60,7 @@ $router->group(['namespace' => 'Admin', 'middleware' => ['auth','menu','web','au
     Route::post('admin/project/index', ['as' => 'admin.project.index', 'uses' => 'ProjectController@index']);
     Route::resource('admin/project', 'ProjectController');
     Route::put('admin/project/update', ['as' => 'admin.project.edit', 'uses' => 'ProjectController@update']); //修改
-    Route::post('admin/project/store', ['as' => 'admin.project.create', 'uses' => 'ProjectController@store']); //添加
+    Route::any('admin/project/store', ['as' => 'admin.project.create', 'uses' => 'ProjectController@store']); //添加
     Route::get('admin/project/{id?}/user', ['as' => 'admin.project.user', 'uses' => 'ProjectController@user']); //会员列表
     Route::get('admin/project/{id}/user_add', ['as' => 'admin.project.user_add', 'uses' => 'ProjectController@user_add']); //会员列表
     Route::get('admin/project/{id}/user_del', ['as' => 'admin.project.user_del', 'uses' => 'ProjectController@user_del']); //会员列表
@@ -69,7 +69,7 @@ $router->group(['namespace' => 'Admin', 'middleware' => ['auth','menu','web','au
     Route::get('admin/tender/index', ['as' => 'admin.tender.index', 'uses' => 'TenderController@index']);
     Route::resource('admin/tender', 'TenderController');
     Route::put('admin/tender/update', ['as' => 'admin.tender.edit', 'uses' => 'TenderController@update']); //修改
-    Route::post('admin/tender/store', ['as' => 'admin.tender.create', 'uses' => 'TenderController@store']); //添加
+    Route::any('admin/tender/store', ['as' => 'admin.tender.create', 'uses' => 'TenderController@store']); //添加
 
     //会员管理路由
     Route::post('admin/member/index', ['as' => 'admin.member.index', 'uses' => 'MemberController@index']);

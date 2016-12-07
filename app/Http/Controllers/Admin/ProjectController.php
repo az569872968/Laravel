@@ -72,6 +72,14 @@ class ProjectController extends Controller
         foreach (array_keys($project->fields) as $field) {
             $project->$field = $request->get($field);
         }
+        $file           = $request->file('files');
+        if($file[0]->isValid()){
+            $entension  = $file[0]-> getClientOriginalExtension(); //上传文件的后缀.
+            $newName    = date('YmdHis').mt_rand(100,999).'.'.$entension;
+            $path       = $file[0]-> move(base_path().'/uploads/'.date('Ymd'),$newName);
+            $filepath   = 'uploads/'.date('Ymd').'/'.$newName;
+            $project->project_path = $filepath;
+        }
         $project->save();
         return redirect('/admin/project')->withSuccess('添加成功！');
     }
@@ -107,6 +115,14 @@ class ProjectController extends Controller
         $project   = Project::find((int)$id);
         foreach (array_keys($project->fields) as $field) {
             $project->$field = $request->get($field);
+        }
+        $file           = $request->file('files');
+        if($file[0]->isValid()){
+            $entension  = $file[0]-> getClientOriginalExtension(); //上传文件的后缀.
+            $newName    = date('YmdHis').mt_rand(100,999).'.'.$entension;
+            $path       = $file[0]-> move(base_path().'/uploads/imges/'.date('Ymd'),$newName);
+            $filepath   = 'uploads/imges/'.date('Ymd').'/'.$newName;
+            $project->project_path = $filepath;
         }
         $project->save();
         return redirect('/admin/project')->withSuccess('修改成功');

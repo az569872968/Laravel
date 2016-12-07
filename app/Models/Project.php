@@ -21,9 +21,9 @@ class Project extends Model{
     public $fields  = [
         'project_name'=>'',
         'project_exp'=>'',
-        'project_path_max'=>'',
-        'project_path_min'=>'',
+        'project_path'=>'',
         'project_pinyin'=>'',
+        'project_address'=>'',
         'project_start_time'=>'',
         'project_end_time'=>'',
         'user_id'=>''

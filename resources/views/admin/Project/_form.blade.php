@@ -12,35 +12,32 @@
     </div>
 </div>
 <div class="form-group">
-    <label for="tag" class="col-md-3 control-label">工程介绍</label>
+    <label for="tag" class="col-md-3 control-label">工程地址</label>
     <div class="col-md-6">
-        <input type="text" class="form-control" name="project_exp" id="tag" value="{{ $project_exp }}" autofocus>
+        <input type="text" class="form-control" name="project_address" id="tag" value="{{ $project_address }}" autofocus>
     </div>
 </div>
 <div class="form-group">
     <label for="tag" class="col-md-3 control-label">工程开始时间</label>
     <div class="col-md-6">
-        <input type="text" class="form-control" name="project_start_time" id="tag" value="{{ $project_start_time }}" autofocus>
+        <input type="date" class="form-control" name="project_start_time" id="tag" value="{{ $project_start_time }}" autofocus>
     </div>
 </div>
 <div class="form-group">
     <label for="tag" class="col-md-3 control-label">工程竣工时间</label>
     <div class="col-md-6">
-        <input type="text" class="form-control" name="project_end_time" id="tag" value="{{ $project_end_time }}" autofocus>
+        <input type="date" class="form-control" name="project_end_time" id="tag" value="{{ $project_end_time }}" autofocus>
     </div>
 </div>
 <div class="form-group">
-    <label for="tag" class="col-md-3 control-label">工程小图</label>
+    <label for="tag" class="col-md-3 control-label">工程介绍</label>
     <div class="col-md-6">
-         <input type="file" name="files[]" id="demo-fileInput-7" multiple="multiple">
+        <textarea name="project_exp" class="form-control" rows="3">{{ $project_exp }}</textarea>
     </div>
 </div>
-<script type="text/javascript">
-    $('#filer_input').filer({
-        limit: 3,
-        maxSize: 5,
-        extensions: ['jpg', 'jpeg', 'png', 'gif', 'xlsx'],
-        changeInput: true,
-        showThumbs: true
-    });
-</script>
+<div class="form-group">
+    <label for="tag" class="col-md-3 control-label">工程图片</label>
+    <div class="col-md-6">
+         <input type="file" name="files" id="demo-fileInput-3" value="{{ $project_path }}" multiple="multiple">
+    </div>
+</div>
