@@ -12,7 +12,7 @@
         <div class="col-md-6">
         </div>
         <div class="col-md-6 text-right">
-            <a href="{{ URL("/admin/tender/create?project_id=$id") }}" class="btn btn-success btn-md">
+            <a href="{{ URL("/admin/tender/create?project_id=$project_id&fid=$fid") }}" class="btn btn-success btn-md">
                 <i class="fa fa-plus-circle"></i> 添加招标文件
             </a>
         </div>
@@ -58,8 +58,8 @@
                                 <th class="hidden-md">{{$value['file_num']}}</th>
                                 <th class="hidden-md">{{$value['created_at']}}</th>
                                 <th class="hidden-md">{{$value['remark']}}</th>
-                                <th class="hidden-md">{{$value['file_path']}}</th>
-                                <th class="hidden-md"><a href="/admin/tender/create/{{$value['id']}}">添加子文件</a>&nbsp;&nbsp;<a href="/admin/tender/{{$value['id']}}/edit?project_id={{ $value['project_id'] }}">编辑</a>&nbsp;&nbsp;<span style="cursor: pointer;" class="delBtn X-Small btn-xs text-danger "><li class="fa fa-times-circle-o" onclick="check_del({{$value['id']}})">删除</li></span> </th>
+                                <th class="hidden-md"><a href="/admin/common/download?path={{ $value['file_path'] }}&name={{$value['tender_name']}}" >下载</a></th>
+                                <th class="hidden-md"><a href="{{ URL("/admin/tender/index?project_id=$project_id&fid=".$value['id']) }}">查看下级文件</a>&nbsp;&nbsp;<a href="/admin/tender/{{$value['id']}}/edit?project_id={{ $value['project_id'] }}">编辑</a>&nbsp;&nbsp;<span style="cursor: pointer;" class="delBtn X-Small btn-xs text-danger "><li class="fa fa-times-circle-o" onclick="check_del({{$value['id']}})">删除</li></span> </th>
                             </tr>
                         @endforeach
                         </thead>

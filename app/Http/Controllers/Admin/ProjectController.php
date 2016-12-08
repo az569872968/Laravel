@@ -73,7 +73,7 @@ class ProjectController extends Controller
             $project->$field = $request->get($field);
         }
         $file           = $request->file('files');
-        if($file[0]->isValid()){
+        if(!empty($file[0]) && $file[0]->isValid()){
             $entension  = $file[0]-> getClientOriginalExtension(); //上传文件的后缀.
             $newName    = date('YmdHis').mt_rand(100,999).'.'.$entension;
             $path       = $file[0]-> move(base_path().'/uploads/'.date('Ymd'),$newName);
@@ -117,7 +117,7 @@ class ProjectController extends Controller
             $project->$field = $request->get($field);
         }
         $file           = $request->file('files');
-        if($file[0]->isValid()){
+        if(!empty($file[0]) && $file[0]->isValid()){
             $entension  = $file[0]-> getClientOriginalExtension(); //上传文件的后缀.
             $newName    = date('YmdHis').mt_rand(100,999).'.'.$entension;
             $path       = $file[0]-> move(base_path().'/uploads/imges/'.date('Ymd'),$newName);

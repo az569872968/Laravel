@@ -23,9 +23,11 @@ class TenderController extends Controller
         $order          = $request->get('order');
         $columns        = $request->get('columns');
         $search         = $request->get('search');
+        $Map['project_id']    = $request->get('project_id');
+        $Map['fid']           = $request->get('fid');
         $data['recordsTotal'] = Tender::count();
-        $data['list']         = Tender::select()->get();
-        return view('admin.Tender.index', array('data'=>$data, 'id'=>$request->get('project_id')));
+        $data['list']         = Tender::select()->where($Map)->get();
+        return view('admin.Tender.index', array('data'=>$data, 'project_id'=>$request->get('project_id'), 'fid'=>$request->get('fid')));
     }
 
 
@@ -54,6 +56,9 @@ class TenderController extends Controller
         foreach ($tender->fields as $field => $default) {
             $data[$field] = old($field, $default);
         }
+        if( $request->get('fid') > 0 ){
+            $data['fid']  = $request->get('fid');
+        }
         return view('admin.Tender.create', $data);
     }
 
@@ -71,7 +76,7 @@ class TenderController extends Controller
             $tender->$field = $request->get($field);
         }
         $file           = $request->file('files');
-        if($file[0]->isValid()){
+        if(!empty($file[0]) && $file[0]->isValid()){
             $entension  = $file[0]-> getClientOriginalExtension(); //上传文件的后缀.
             $newName    = date('YmdHis').mt_rand(100,999).'.'.$entension;
             $path       = $file[0]-> move(base_path().'/uploads/file/'.date('Ymd'),$newName);
@@ -79,7 +84,7 @@ class TenderController extends Controller
             $tender->file_path = $filepath;
         }
         $tender->save();
-        return redirect("/admin/Tender/index/".$request->get('project_id'))->withSuccess('添加成功！');
+        return redirect("/admin/tender/index?project_id=".$request->get('project_id').'&fid='.$request->get('fid') )->withSuccess('添加成功！');
     }
 
     /**
@@ -92,7 +97,7 @@ class TenderController extends Controller
     {
         $tender   = Tender::find((int)$id);
         if (!$tender) {
-            return redirect('/admin/tender?project_id='.$request->get('project_id'))->withErrors("找不到招标文件!");
+            return redirect('/admin/project')->withErrors("服务器异常");
         }
         foreach (array_keys($tender->fields) as $field) {
             $data[$field] = old($field, $tender->$field);
@@ -115,7 +120,7 @@ class TenderController extends Controller
             $tender->$field = $request->get($field);
         }
         $file           = $request->file('files');
-        if($file[0]->isValid()){
+        if(!empty($file[0]) && $file[0]->isValid()){
             $entension  = $file[0]-> getClientOriginalExtension(); //上传文件的后缀.
             $newName    = date('YmdHis').mt_rand(100,999).'.'.$entension;
             $path       = $file[0]-> move(base_path().'/uploads/file/'.date('Ymd'),$newName);
@@ -123,7 +128,7 @@ class TenderController extends Controller
             $tender->file_path = $filepath;
         }
         $tender->save();
-        return redirect('/admin/tender?project_id='.$request->get('project_id'))->withSuccess('修改成功');
+        return redirect("/admin/tender/index?project_id=".$request->get('project_id').'&fid='.$request->get('fid'))->withSuccess('修改成功');
     }
 
     /**

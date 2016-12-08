@@ -76,6 +76,9 @@ $router->group(['namespace' => 'Admin', 'middleware' => ['auth','menu','web','au
     Route::resource('admin/member', 'MemberController');
     Route::put('admin/member/update', ['as' => 'admin.member.edit', 'uses' => 'MemberController@update']); //修改
     Route::post('admin/member/store', ['as' => 'admin.member.create', 'uses' => 'MemberController@store']); //添加
+
+    //下载文件路由
+    Route::resource('admin/common/download', 'CommonController@download');
 });
 
 Route::get('admin', function () {
