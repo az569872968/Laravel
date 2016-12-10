@@ -9,25 +9,24 @@
 @section('content')
     <div class="main animsition">
         <div class="container-fluid">
-
             <div class="row">
-                <div class="">
+                <div class="col-md-8 col-md-offset-2">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            <h3 class="panel-title">编辑招标文件</h3>
+                            <h3 class="panel-title">添加招标文件</h3>
                         </div>
                         <div class="panel-body">
                             @include('admin.partials.errors')
                             @include('admin.partials.success')
-                            <form class="form-horizontal" role="form" enctype="multipart/form-data" method="POST" action="/admin/tender/{{ $id }}">
+                            <form class="form-horizontal" role="form" method="POST" enctype="multipart/form-data" action="/admin/contract/store">
                                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                                <input type="hidden" name="_method" value="PUT">
-                                <input type="hidden" name="id" value="{{ $id }}">
-                                @include('admin.Tender._form')
+                                <input type="hidden" name="cove_image"/>
+                                @include('admin.Contract._form')
                                 <div class="form-group">
                                     <div class="col-md-7 col-md-offset-3">
                                         <button type="submit" class="btn btn-primary btn-md">
-                                            <i class="fa fa-plus-circle"></i>保存
+                                            <i class="fa fa-plus-circle"></i>
+                                            添加
                                         </button>
                                     </div>
                                 </div>

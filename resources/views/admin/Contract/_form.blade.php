@@ -6,9 +6,9 @@
     </div>
 </div>
 <div class="form-group">
-    <label for="tag" class="col-md-3 control-label">招标名称</label>
+    <label for="tag" class="col-md-3 control-label">合同名称</label>
     <div class="col-md-6">
-        <input type="text" class="form-control" name="tender_name" id="tag" value="{{ $tender_name }}" autofocus>
+        <input type="text" class="form-control" name="name" id="tag" value="{{ $name }}" autofocus>
     </div>
 </div>
 <div class="form-group">
@@ -24,7 +24,7 @@
     </div>
 </div>
 <div class="form-group">
-    <label for="tag" class="col-md-3 control-label">招标文件</label>
+    <label for="tag" class="col-md-3 control-label">合同文件</label>
     <div class="col-md-6">
         <input type="file" name="files" id="demo-fileInput-7" multiple="multiple">
     </div>

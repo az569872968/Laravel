@@ -2,14 +2,16 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Models\Tender;
 use Illuminate\Http\Request;
 
-use App\Http\Controllers\Controller;
 use App\Http\Requests;
+use App\Http\Controllers\Controller;
 
-class TenderController extends Controller
+use App\Models\Contract;
+
+class ContractController extends Controller
 {
+
     /**
      * Display the specified resource.
      *
@@ -17,7 +19,6 @@ class TenderController extends Controller
      */
     public function index( Request $request ){
         $data = array();
-        $data['draw']   = $request->get('draw');
         $start          = $request->get('start');
         $length         = $request->get('length');
         $order          = $request->get('order');
@@ -25,9 +26,9 @@ class TenderController extends Controller
         $search         = $request->get('search');
         $Map['project_id']    = $request->get('project_id');
         $Map['fid']           = $request->get('fid');
-        $data['recordsTotal'] = Tender::count();
-        $data['list']         = Tender::select()->where($Map)->get();
-        return view('admin.Tender.index', array('data'=>$data, 'project_id'=>$request->get('project_id'), 'fid'=>$request->get('fid')));
+        $data['recordsTotal'] = Contract::count();
+        $data['list']         = Contract::select()->where($Map)->get();
+        return view('admin.Contract.index', array('data'=>$data, 'project_id'=>$request->get('project_id'), 'fid'=>$request->get('fid')));
     }
 
 
@@ -50,16 +51,16 @@ class TenderController extends Controller
      */
     public function create( Request $request )
     {
-        $tender                         = new Tender();
-        $tender->fields['project_id']   = (int)$request->get('project_id');
+        $contract                         = new Contract();
+        $contract->fields['project_id']   = (int)$request->get('project_id');
         $data                           = [];
-        foreach ($tender->fields as $field => $default) {
+        foreach ($contract->fields as $field => $default) {
             $data[$field] = old($field, $default);
         }
         if( $request->get('fid') > 0 ){
             $data['fid']  = $request->get('fid');
         }
-        return view('admin.Tender.create', $data);
+        return view('admin.Contract.create', $data);
     }
 
 
@@ -71,11 +72,9 @@ class TenderController extends Controller
      */
     public function store(Requests\TenderCreateRequest $request)
     {
-        $tender = new Tender();
-        foreach (array_keys($tender->fields) as $field) {
-            if( $field != 'file_path') {
-                $tender->$field = $request->get($field);
-            }
+        $contract       = new Contract();
+        foreach (array_keys($contract->fields) as $field) {
+            $contract->$field = $request->get($field);
         }
         $file           = $request->file('files');
         if(!empty($file[0]) && $file[0]->isValid()){
@@ -83,10 +82,10 @@ class TenderController extends Controller
             $newName    = date('YmdHis').mt_rand(100,999).'.'.$entension;
             $path       = $file[0]-> move(base_path().'/uploads/file/'.date('Ymd'),$newName);
             $filepath   = 'uploads/file/'.date('Ymd').'/'.$newName;
-            $tender->file_path = $filepath;
+            $contract->file_path = $filepath;
         }
-        $tender->save();
-        return redirect("/admin/tender/index?project_id=".$request->get('project_id').'&fid='.$request->get('fid') )->withSuccess('添加成功！');
+        $contract->save();
+        return redirect("/admin/contract/index?project_id=".$request->get('project_id').'&fid='.$request->get('fid') )->withSuccess('添加成功！');
     }
 
 
@@ -99,15 +98,15 @@ class TenderController extends Controller
      */
     public function edit(Request $request, $id)
     {
-        $tender   = Tender::find((int)$id);
-        if (!$tender) {
+        $contract   = Contract::find((int)$id);
+        if (!$contract) {
             return redirect('/admin/project')->withErrors("服务器异常");
         }
-        foreach (array_keys($tender->fields) as $field) {
-            $data[$field] = old($field, $tender->$field);
+        foreach (array_keys($contract->fields) as $field) {
+            $data[$field] = old($field, $contract->$field);
         }
         $data['id'] = (int)$id;
-        return view('admin.Tender.edit', $data);
+        return view('admin.Contract.edit', $data);
     }
 
     /**
@@ -119,10 +118,10 @@ class TenderController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $tender   = Tender::find((int)$id);
-        foreach (array_keys($tender->fields) as $field) {
-            if( $field != 'file_path') {
-                $tender->$field = $request->get($field);
+        $contract   = Contract::find((int)$id);
+        foreach (array_keys($contract->fields) as $field) {
+            if( $field != 'file_path'){
+                $contract->$field = $request->get($field);
             }
         }
         $file           = $request->file('files');
@@ -131,10 +130,10 @@ class TenderController extends Controller
             $newName    = date('YmdHis').mt_rand(100,999).'.'.$entension;
             $path       = $file[0]-> move(base_path().'/uploads/file/'.date('Ymd'),$newName);
             $filepath   = 'uploads/file/'.date('Ymd').'/'.$newName;
-            $tender->file_path = $filepath;
+            $contract->file_path = $filepath;
         }
-        $tender->save();
-        return redirect("/admin/tender/index?project_id=".$request->get('project_id').'&fid='.$request->get('fid'))->withSuccess('修改成功');
+        $contract->save();
+        return redirect("/admin/contract/index?project_id=".$request->get('project_id').'&fid='.$request->get('fid'))->withSuccess('修改成功');
     }
 
     /**
@@ -144,9 +143,9 @@ class TenderController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function destroy($id){
-        $tender = Tender::find((int)$id);
-        if ($tender) {
-            $tender->delete();
+        $contract   = Contract::find((int)$id);
+        if ($contract) {
+            $contract->delete();
         } else {
             return redirect()->back()
                 ->withErrors("删除失败");

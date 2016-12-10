@@ -36,8 +36,8 @@
     </div>
 </div>
 <div class="form-group">
-    <label for="tag" class="col-md-3 control-label">工程图片</label>
+    <label for="tag" class="col-md-3 control-label">合同文件</label>
     <div class="col-md-6">
-         <input type="file" name="files" id="demo-fileInput-3" value="{{ $project_path }}" multiple="multiple">
+        <input type="file" name="files" id="demo-fileInput-7" multiple="multiple">
     </div>
 </div>

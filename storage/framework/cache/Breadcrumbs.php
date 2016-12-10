@@ -66,9 +66,13 @@ Breadcrumbs::register("admin.user.manage", function ($breadcrumbs){
                         $breadcrumbs->parent("admin.article.manage");
                         $breadcrumbs->push("会员管理", route("admin.member.index"));
                     });
+                    Breadcrumbs::register("admin.contract.index", function ($breadcrumbs) {
+                        $breadcrumbs->parent("admin.article.manage");
+                        $breadcrumbs->push("合同列表", route("admin.contract.index"));
+                    });
                     Breadcrumbs::register("admin.tender.index", function ($breadcrumbs) {
                         $breadcrumbs->parent("admin.article.manage");
-                        $breadcrumbs->push("招标文件", route("admin.tender.index"));
+                        $breadcrumbs->push("招投标列表", route("admin.tender.index"));
                     });
                     Breadcrumbs::register("admin.article.create", function ($breadcrumbs) {
                   $breadcrumbs->parent("admin.article.index");
@@ -106,17 +110,17 @@ Breadcrumbs::register("admin.user.manage", function ($breadcrumbs){
                   $breadcrumbs->parent("admin.member.index");
                           $breadcrumbs->push("删除会员", route("admin.member.destroy"));
                         });
-                  Breadcrumbs::register("admin.project.user", function ($breadcrumbs) {
-                  $breadcrumbs->parent("admin.project.index");
-                          $breadcrumbs->push("工程会员", route("admin.project.user"));
+                  Breadcrumbs::register("admin.contract.create", function ($breadcrumbs) {
+                  $breadcrumbs->parent("admin.contract.index");
+                          $breadcrumbs->push("添加合同文件", route("admin.contract.create"));
                         });
-                  Breadcrumbs::register("admin.project.user_add", function ($breadcrumbs) {
-                  $breadcrumbs->parent("admin.project.index");
-                          $breadcrumbs->push("添加工程会员", route("admin.project.user_add"));
+                  Breadcrumbs::register("admin.contract.edit", function ($breadcrumbs) {
+                  $breadcrumbs->parent("admin.contract.index");
+                          $breadcrumbs->push("编辑合同文件", route("admin.contract.edit"));
                         });
-                  Breadcrumbs::register("admin.project.user_del", function ($breadcrumbs) {
-                  $breadcrumbs->parent("admin.project.index");
-                          $breadcrumbs->push("删除工程会员", route("admin.project.user_del"));
+                  Breadcrumbs::register("admin.contract.destroy", function ($breadcrumbs) {
+                  $breadcrumbs->parent("admin.contract.index");
+                          $breadcrumbs->push("删除合同文件", route("admin.contract.destroy"));
                         });
                   Breadcrumbs::register("admin.tender.create", function ($breadcrumbs) {
                   $breadcrumbs->parent("admin.tender.index");
@@ -124,7 +128,7 @@ Breadcrumbs::register("admin.user.manage", function ($breadcrumbs){
                         });
                   Breadcrumbs::register("admin.tender.edit", function ($breadcrumbs) {
                   $breadcrumbs->parent("admin.tender.index");
-                          $breadcrumbs->push("编辑招标文件", route("admin.tender.edit"));
+                          $breadcrumbs->push("修改招标文件", route("admin.tender.edit"));
                         });
                   Breadcrumbs::register("admin.tender.destroy", function ($breadcrumbs) {
                   $breadcrumbs->parent("admin.tender.index");

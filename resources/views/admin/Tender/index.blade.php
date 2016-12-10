@@ -43,8 +43,8 @@
                         <tr>
                             <th data-sortable="false" class="hidden-sm"></th>
                             <th class="hidden-sm">合同编号</th>
-                            <th class="hidden-sm">招标文件名称</th>
-                            <th class="hidden-md">招标文件编号</th>
+                            <th class="hidden-sm">招标名称</th>
+                            <th class="hidden-md">招标编号</th>
                             <th class="hidden-sm">添加日期</th>
                             <th class="hidden-sm">备注</th>
                             <th class="hidden-sm">文件下载</th>
