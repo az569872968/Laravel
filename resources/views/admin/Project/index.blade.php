@@ -19,15 +19,10 @@
     </div>
     <div class="row page-title-row" style="margin:5px;">
         <div class="col-md-6">
-            查询数量<select>
-                <option>10</option>
-                <option>20</option>
-                <option>30</option>
-            </select>
         </div>
         <div class="col-md-6 text-right">
-            <form action="" method="get">
-                工程名称<input type="text">
+            <form action="{{ URL("/admin/project/index") }}" method="get">
+                工程名称<input type="text" name="search">
                 <input type="submit" value="搜索">
             </form>
         </div>
@@ -48,7 +43,7 @@
                             <th class="hidden-sm">项目相关资料</th>
                             <th data-sortable="false">操作</th>
                         </tr>
-                        @foreach($data['list'] as $item=>$value)
+                        @foreach($list as $item=>$value)
                             <tr>
                                 <th data-sortable="false" class="hidden-sm">{{$item+1}}</th>
                                 <th class="hidden-sm">{{$value['project_pinyin']}}</th>
@@ -73,15 +68,7 @@
         <div class="col-sm-7">
             <div class="dataTables_paginate paging_simple_numbers">
                 <ul class="pagination">
-                    <li class="paginate_button previous disabled">
-                        <a href="#" aria-controls="tags-table" data-dt-idx="0" tabindex="0">上页</a>
-                    </li>
-                    <li class="paginate_button active">
-                        <a href="#" aria-controls="tags-table" data-dt-idx="1" tabindex="0">1</a>
-                    </li>
-                    <li class="paginate_button next disabled">
-                        <a href="#" aria-controls="tags-table" data-dt-idx="2" tabindex="0">下页</a>
-                    </li>
+                    {{ $list->render() }}
                 </ul>
             </div>
         </div>

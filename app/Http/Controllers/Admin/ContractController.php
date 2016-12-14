@@ -19,16 +19,21 @@ class ContractController extends Controller
      */
     public function index( Request $request ){
         $data = array();
-        $start          = $request->get('start');
-        $length         = $request->get('length');
-        $order          = $request->get('order');
-        $columns        = $request->get('columns');
-        $search         = $request->get('search');
+        $search               = '';
+        if( isset($_GET['search']) && !empty($_GET['search'])){
+            $search           = $request->get('search');
+        }
         $Map['project_id']    = $request->get('project_id');
         $Map['fid']           = $request->get('fid');
-        $data['recordsTotal'] = Contract::count();
-        $data['list']         = Contract::select()->where($Map)->get();
-        return view('admin.Contract.index', array('data'=>$data, 'project_id'=>$request->get('project_id'), 'fid'=>$request->get('fid')));
+        if( count($search) > 0){
+            $list   = Contract::where(function ($query) use ($search) {
+                $query->where('numbering', 'LIKE', '%' . $search. '%')
+                    ->orWhere('name', 'like', '%' . $search . '%');
+            })->paginate(5);
+        }else{
+            $list   = Contract::where($Map)->paginate(5);
+        }
+        return view('admin.Contract.index', array('list'=>$list, 'project_id'=>$request->get('project_id'), 'fid'=>$request->get('fid')));
     }
 
 

@@ -19,15 +19,12 @@
     </div>
     <div class="row page-title-row" style="margin:5px;">
         <div class="col-md-6">
-            查询数量<select>
-                <option>10</option>
-                <option>20</option>
-                <option>30</option>
-            </select>
         </div>
         <div class="col-md-6 text-right">
-            <form action="" method="get">
-                合同名称<input type="text">
+            <form action="{{ URL("/admin/contract/index") }}" method="get">
+                <input type="hidden" name="project_id" value="{{ $project_id }}">
+                <input type="hidden" name="fid" value="{{ $fid }}">
+                工程名称<input type="text" name="search">
                 <input type="submit" value="搜索">
             </form>
         </div>
@@ -50,7 +47,7 @@
                             <th class="hidden-sm">文件下载</th>
                             <th data-sortable="false">操作</th>
                         </tr>
-                        @foreach($data['list'] as $item=>$value)
+                        @foreach($list as $item=>$value)
                             <tr>
                                 <th data-sortable="false" class="hidden-sm">{{$item+1}}</th>
                                 <th class="hidden-sm">{{$value['numbering']}}</th>
@@ -72,20 +69,11 @@
     </div>
     <div class="row">
         <div class="col-sm-5">
-            {{--<div class="dataTables_info" id="tags-table_info" role="status" aria-live="polite">显示第 1 至 2 项结果，共 2 项</div>--}}
         </div>
         <div class="col-sm-7">
             <div class="dataTables_paginate paging_simple_numbers">
                 <ul class="pagination">
-                    <li class="paginate_button previous disabled">
-                        <a href="#" aria-controls="tags-table" data-dt-idx="0" tabindex="0">上页</a>
-                    </li>
-                    <li class="paginate_button active">
-                        <a href="#" aria-controls="tags-table" data-dt-idx="1" tabindex="0">1</a>
-                    </li>
-                    <li class="paginate_button next disabled">
-                        <a href="#" aria-controls="tags-table" data-dt-idx="2" tabindex="0">下页</a>
-                    </li>
+                    {{ $list->appends(['project_id' => $project_id, 'fid'=>$fid])->render() }}
                 </ul>
             </div>
         </div>

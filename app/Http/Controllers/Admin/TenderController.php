@@ -16,18 +16,21 @@ class TenderController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index( Request $request ){
-        $data = array();
-        $data['draw']   = $request->get('draw');
-        $start          = $request->get('start');
-        $length         = $request->get('length');
-        $order          = $request->get('order');
-        $columns        = $request->get('columns');
-        $search         = $request->get('search');
+        $search               = '';
+        if( isset($_GET['search']) && !empty($_GET['search'])){
+            $search           = $request->get('search');
+        }
         $Map['project_id']    = $request->get('project_id');
         $Map['fid']           = $request->get('fid');
-        $data['recordsTotal'] = Tender::count();
-        $data['list']         = Tender::select()->where($Map)->get();
-        return view('admin.Tender.index', array('data'=>$data, 'project_id'=>$request->get('project_id'), 'fid'=>$request->get('fid')));
+        if( count($search) > 0){
+            $list   = Tender::where(function ($query) use ($search) {
+                $query->where('numbering', 'LIKE', '%' . $search. '%')
+                    ->orWhere('tender_name', 'like', '%' . $search . '%');
+            })->paginate(5);
+        }else{
+            $list   = Tender::where($Map)->paginate(5);
+        }
+        return view('admin.Tender.index', array('list'=>$list, 'project_id'=>$request->get('project_id'), 'fid'=>$request->get('fid')));
     }
 
 
