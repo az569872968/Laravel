@@ -64,6 +64,7 @@ $router->group(['namespace' => 'Admin', 'middleware' => ['auth','menu','web','au
     Route::get('admin/project/{id?}/user', ['as' => 'admin.project.user', 'uses' => 'ProjectController@user']); //会员列表
     Route::get('admin/project/{id}/user_add', ['as' => 'admin.project.user_add', 'uses' => 'ProjectController@user_add']); //会员列表
     Route::get('admin/project/{id}/user_del', ['as' => 'admin.project.user_del', 'uses' => 'ProjectController@user_del']); //会员列表
+    Route::get('admin/project/{id?}/summary', ['as' => 'admin.project.summary', 'uses' => 'ProjectController@summary']);
 
     //招标文件路由
     Route::get('admin/tender/index', ['as' => 'admin.tender.index', 'uses' => 'TenderController@index']);

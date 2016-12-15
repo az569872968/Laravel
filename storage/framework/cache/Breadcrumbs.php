@@ -134,4 +134,8 @@ Breadcrumbs::register("admin.user.manage", function ($breadcrumbs){
                   $breadcrumbs->parent("admin.tender.index");
                           $breadcrumbs->push("删除招标文件", route("admin.tender.destroy"));
                         });
+                  Breadcrumbs::register("admin.project.summary", function ($breadcrumbs) {
+                  $breadcrumbs->parent("admin.project.index");
+                          $breadcrumbs->push("工程结算文件", route("admin.project.summary"));
+                        });
                   

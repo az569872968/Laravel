@@ -126,6 +126,14 @@ class ProjectController extends Controller
             $filepath   = 'uploads/imges/'.date('Ymd').'/'.$newName;
             $project->project_path = $filepath;
         }
+        $file           = $request->file('upload');
+        if(!empty($file[0]) && $file[0]->isValid()){
+            $entension  = $file[0]-> getClientOriginalExtension(); //上传文件的后缀.
+            $newName    = date('YmdHis').mt_rand(100,999).'.'.$entension;
+            $path       = $file[0]-> move(base_path().'/uploads/imges/'.date('Ymd'),$newName);
+            $filepath   = 'uploads/file/'.date('Ymd').'/'.$newName;
+            $project->summary = $filepath;
+        }
         $project->save();
         return redirect('/admin/project')->withSuccess('修改成功');
     }
@@ -209,5 +217,21 @@ class ProjectController extends Controller
         $project->user_id   = ','.implode(',', $row);
         $project->save();
         return redirect("/admin/project/$id/user")->withSuccess('添加成功！');
+    }
+
+
+    /**
+     * 上传结算文件
+     *
+     * @param $id
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function summary($id){
+        $project            = Project::find( (int)$id );
+        foreach (array_keys($project->fields) as $field) {
+            $data[$field] = old($field, $project->$field);
+        }
+        $data['id'] = (int)$id;
+        return view('admin.Project.summary', $data);
     }
 }

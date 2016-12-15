@@ -26,6 +26,7 @@ class Project extends Model{
         'project_address'=>'',
         'project_start_time'=>'',
         'project_end_time'=>'',
-        'user_id'=>''
+        'user_id'=>'',
+        'summary'=>''
     ];
 }
