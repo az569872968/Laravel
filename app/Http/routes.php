@@ -84,8 +84,15 @@ $router->group(['namespace' => 'Admin', 'middleware' => ['auth','menu','web','au
     Route::put('admin/member/update', ['as' => 'admin.member.edit', 'uses' => 'MemberController@update']); //修改
     Route::post('admin/member/store', ['as' => 'admin.member.create', 'uses' => 'MemberController@store']); //添加
 
+    //首页图片管理理由
+    Route::get('admin/homeimage/manage', ['as' => 'admin.homeimage.manage', 'uses' => 'HomeImageController@index']);  //内容管理
+    Route::post('admin/homeimage/index', ['as' => 'admin.homeimage.index', 'uses' => 'HomeImageController@index']);
+    Route::resource('admin/homeimage', 'HomeImageController');
+    Route::put('admin/homeimage/update', ['as' => 'admin.homeimage.edit', 'uses' => 'HomeImageController@update']); //修改
+
     //下载文件路由
     Route::resource('admin/common/download', 'CommonController@download');
+
 });
 
 Route::get('admin', function () {

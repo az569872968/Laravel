@@ -138,4 +138,14 @@ Breadcrumbs::register("admin.user.manage", function ($breadcrumbs){
                   $breadcrumbs->parent("admin.project.index");
                           $breadcrumbs->push("工程结算文件", route("admin.project.summary"));
                         });
+                  Breadcrumbs::register("admin.homeimage.manage", function ($breadcrumbs){
+        $breadcrumbs->push("首页管理", route("admin.homeimage.manage"));
+    });Breadcrumbs::register("admin.homeimage.index", function ($breadcrumbs) {
+                        $breadcrumbs->parent("admin.homeimage.manage");
+                        $breadcrumbs->push("首页图片", route("admin.homeimage.index"));
+                    });
+                    Breadcrumbs::register("admin.homeimage.update", function ($breadcrumbs) {
+                  $breadcrumbs->parent("admin.homeimage.index");
+                          $breadcrumbs->push("修改首页图片", route("admin.homeimage.update"));
+                        });
                   
