@@ -12,9 +12,9 @@
         <div class="col-md-6">
         </div>
         <div class="col-md-6 text-right">
-            <a href="/admin/article/create" class="btn btn-success btn-md">
-                <i class="fa fa-plus-circle"></i> 添加工程
-            </a>
+            {{--<a href="/admin/article/create" class="btn btn-success btn-md">--}}
+                {{--<i class="fa fa-plus-circle"></i> 添加工程--}}
+            {{--</a>--}}
         </div>
     </div>
     <div class="row page-title-row" style="margin:5px;">
@@ -128,9 +128,9 @@
                                 {
                                     'targets': -1, "render": function (data, type, row) {
                                     var caozuo = '<a style="margin:3px;" href="/admin/article/' + row['id'] + '/edit" class="X-Small btn-xs text-success "><i class="fa fa-edit"></i> 编辑</a>';
-                                    if (row['id'] != 1) {
-                                        caozuo += '<a style="margin:3px;" href="#" attr="' + row['id'] + '" class="delBtn X-Small btn-xs text-danger "><i class="fa fa-times-circle-o"></i> 删除</a>';
-                                    }
+//                                    if (row['id'] != 1) {
+//                                        caozuo += '<a style="margin:3px;" href="#" attr="' + row['id'] + '" class="delBtn X-Small btn-xs text-danger "><i class="fa fa-times-circle-o"></i> 删除</a>';
+//                                    }
                                     return caozuo;
                                 }
                                 }

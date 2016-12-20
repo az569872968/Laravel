@@ -7,12 +7,12 @@
         <input type="hidden" class="form-control" name="sort" id="tag" value="{{ $sort }}" autofocus>
     </div>
 </div>
-<div class="form-group">
-    <label for="tag" class="col-md-3 control-label">文章摘要</label>
-    <div class="col-md-6">
-        <input type="text" class="form-control" name="bewrite" id="tag" value="{{ $bewrite }}" autofocus>
-    </div>
-</div>
+{{--<div class="form-group">--}}
+    {{--<label for="tag" class="col-md-3 control-label">文章摘要</label>--}}
+    {{--<div class="col-md-6">--}}
+        {{--<input type="text" class="form-control" name="bewrite" id="tag" value="{{ $bewrite }}" autofocus>--}}
+    {{--</div>--}}
+{{--</div>--}}
 <div class="form-group">
     <label for="tag" class="col-md-3 control-label">作者</label>
     <div class="col-md-6">
@@ -22,6 +22,6 @@
 <div class="form-group">
     <label for="tag" class="col-md-3 control-label">文章内容</label>
     <div class="col-md-6">
-        <textarea name="remark" class="form-control" rows="3">{{ $remark }}</textarea>
+        <textarea name="remark" class="form-control" rows="15">{{ $remark }}</textarea>
     </div>
 </div>
