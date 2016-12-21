@@ -62,7 +62,7 @@ class HomeImageController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id){
-        dd($_FILES['files']);
+        dd($_FILES);
         //dd($file);die;
         $HomeImage   = HomeImage::find((int)$id);
         foreach (array_keys($HomeImage->fields) as $field) {

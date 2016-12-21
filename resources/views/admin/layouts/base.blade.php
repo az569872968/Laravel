@@ -210,6 +210,8 @@ desired effect
 <script src="/plugins/upload-form/js/jquery.filer.min.js" type="text/javascript"></script>
 <script src="/plugins/upload-form/js/prettify.js" type="text/javascript"></script>
 <script src="/plugins/upload-form/js/custom.js" type="text/javascript"></script>
+<script src="/plugins/control/js/zyUpload.js" type="text/javascript"></script>
+
 <!-- Optionally, you can add Slimscroll and FastClick plugins.
      Both of these plugins are recommended to enhance the
      user experience. Slimscroll is required when using the
