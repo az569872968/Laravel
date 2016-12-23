@@ -33,7 +33,7 @@ class ContractController extends Controller
         }else{
             $list   = Contract::where($Map)->paginate(5);
         }
-        return view('admin.Contract.index', array('list'=>$list, 'project_id'=>$request->get('project_id'), 'fid'=>$request->get('fid')));
+        return view('admin.contract.index', array('list'=>$list, 'project_id'=>$request->get('project_id'), 'fid'=>$request->get('fid')));
     }
 
 
@@ -65,7 +65,7 @@ class ContractController extends Controller
         if( $request->get('fid') > 0 ){
             $data['fid']  = $request->get('fid');
         }
-        return view('admin.Contract.create', $data);
+        return view('admin.contract.create', $data);
     }
 
 
@@ -111,7 +111,7 @@ class ContractController extends Controller
             $data[$field] = old($field, $contract->$field);
         }
         $data['id'] = (int)$id;
-        return view('admin.Contract.edit', $data);
+        return view('admin.contract.edit', $data);
     }
 
     /**

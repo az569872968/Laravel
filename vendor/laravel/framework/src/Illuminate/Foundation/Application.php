@@ -689,6 +689,7 @@ class Application extends Container implements ApplicationContract, HttpKernelIn
     public function make($abstract, array $parameters = [])
     {
         $abstract = $this->getAlias($abstract);
+
         if (isset($this->deferredServices[$abstract])) {
             $this->loadDeferredProvider($abstract);
         }

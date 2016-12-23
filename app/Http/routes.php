@@ -24,6 +24,14 @@ $this->group(['namespace' => 'Admin','prefix' => '/admin',], function () {
     Route::auth();
 });
 
+
+//前台路由
+$router->group(['namespace' => 'Home', 'middleware' => ['web', 'auth.home']], function (){
+
+});
+
+
+//后台路由
 $router->group(['namespace' => 'Admin', 'middleware' => ['auth','menu','web','authAdmin']], function () {
     //权限管理路由
     Route::get('admin/permission/{cid}/create', ['as' => 'admin.permission.create', 'uses' => 'PermissionController@create']);

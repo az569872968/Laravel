@@ -51,7 +51,7 @@ class HomeImageController extends Controller
             $data[$field] = old($field, $HomeImage->$field);
         }
         $data['id'] = (int)$id;
-        return view('admin.HomeImage.edit', $data);
+        return view('admin.homeimage.edit', $data);
     }
 
     /**

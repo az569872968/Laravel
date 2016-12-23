@@ -12,12 +12,15 @@ class HomeController extends Controller
 {
     public function index()
     {
-        $data = 112;
-        return $data;
+        return value('home.home.index');
     }
 
     public function testdata()
     {
         return response()->json(['return_code'=>'3','return_message'=>'fuck!you','data'=>Input::get(),'get'=>$_GET]);
+    }
+
+    public function info(){
+
     }
 }

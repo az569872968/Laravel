@@ -15,6 +15,9 @@ class AuthHome
      */
     public function handle($request, Closure $next)
     {
+        if(!session('user')){
+            return redirect('home/index');
+        }
         return $next($request);
     }
 }

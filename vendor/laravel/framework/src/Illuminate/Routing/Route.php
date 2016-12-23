@@ -136,6 +136,7 @@ class Route
             if (! is_string($this->action['uses'])) {
                 return $this->runCallable($request);
             }
+
             return $this->runController($request);
         } catch (HttpResponseException $e) {
             return $e->getResponse();

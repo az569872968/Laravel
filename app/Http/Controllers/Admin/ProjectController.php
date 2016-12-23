@@ -30,7 +30,7 @@ class ProjectController extends Controller
         }else{
             $list   = Project::paginate(5);
         }
-        return view('admin.Project.index')->with('list',$list);
+        return view('admin.project.index')->with('list',$list);
     }
 
 
@@ -58,7 +58,7 @@ class ProjectController extends Controller
         foreach ($project->fields as $field => $default) {
             $data[$field] = old($field, $default);
         }
-        return view('admin.Project.create', $data);
+        return view('admin.project.create', $data);
     }
 
 
@@ -102,7 +102,7 @@ class ProjectController extends Controller
             $data[$field] = old($field, $project->$field);
         }
         $data['id'] = (int)$id;
-        return view('admin.Project.edit', $data);
+        return view('admin.project.edit', $data);
     }
 
     /**
@@ -174,7 +174,7 @@ class ProjectController extends Controller
         }else{
             $MemberList   = Member::select('id','user_name','user_nickname','created_at','user_role','user_phone')->where('user_name', 'LIKE', '%' .$search. '%')->orwhere('user_nickname', 'LIKE', '%'.$search.'%')->get();
         }
-        return view('admin.Project.member', array('id'=>$id, 'list'=>$MemberList, 'mapuser'=>$MapUser));
+        return view('admin.project.member', array('id'=>$id, 'list'=>$MemberList, 'mapuser'=>$MapUser));
     }
 
 
@@ -232,6 +232,6 @@ class ProjectController extends Controller
             $data[$field] = old($field, $project->$field);
         }
         $data['id'] = (int)$id;
-        return view('admin.Project.summary', $data);
+        return view('admin.project.summary', $data);
     }
 }

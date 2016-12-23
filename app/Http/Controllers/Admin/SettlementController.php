@@ -2,13 +2,13 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Models\Tender;
+use App\Models\Settlement;
 use Illuminate\Http\Request;
 
-use App\Http\Controllers\Controller;
 use App\Http\Requests;
+use App\Http\Controllers\Controller;
 
-class TenderController extends Controller
+class SettlementController extends Controller
 {
     /**
      * Display the specified resource.
@@ -30,7 +30,7 @@ class TenderController extends Controller
         }else{
             $list   = Tender::where($Map)->paginate(5);
         }
-        return view('admin.tender.index', array('list'=>$list, 'project_id'=>$request->get('project_id'), 'fid'=>$request->get('fid')));
+        return view('admin.settlement.index', array('list'=>$list, 'project_id'=>$request->get('project_id'), 'fid'=>$request->get('fid')));
     }
 
 
@@ -53,16 +53,16 @@ class TenderController extends Controller
      */
     public function create( Request $request )
     {
-        $tender                         = new Tender();
-        $tender->fields['project_id']   = (int)$request->get('project_id');
+        $settlement                     = new Settlement();
+        $settlement->fields['project_id']   = (int)$request->get('project_id');
         $data                           = [];
-        foreach ($tender->fields as $field => $default) {
+        foreach ($settlement->fields as $field => $default) {
             $data[$field] = old($field, $default);
         }
         if( $request->get('fid') > 0 ){
             $data['fid']  = $request->get('fid');
         }
-        return view('admin.tender.create', $data);
+        return view('admin.settlement.create', $data);
     }
 
 
@@ -72,12 +72,12 @@ class TenderController extends Controller
      * @param PremissionCreateRequest|Request $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Requests\TenderCreateRequest $request)
+    public function store(Requests $request)
     {
-        $tender = new Tender();
-        foreach (array_keys($tender->fields) as $field) {
+        $settlement                     = new Settlement();
+        foreach (array_keys($settlement->fields) as $field) {
             if( $field != 'file_path') {
-                $tender->$field = $request->get($field);
+                $settlement->$field = $request->get($field);
             }
         }
         $file           = $request->file('files');
@@ -86,10 +86,10 @@ class TenderController extends Controller
             $newName    = date('YmdHis').mt_rand(100,999).'.'.$entension;
             $path       = $file[0]-> move(base_path().'/uploads/file/'.date('Ymd'),$newName);
             $filepath   = 'uploads/file/'.date('Ymd').'/'.$newName;
-            $tender->file_path = $filepath;
+            $settlement->file_path = $filepath;
         }
-        $tender->save();
-        return redirect("/admin/tender/index?project_id=".$request->get('project_id').'&fid='.$request->get('fid') )->withSuccess('添加成功！');
+        $settlement->save();
+        return redirect("/admin/settlement/index?project_id=".$request->get('project_id').'&fid='.$request->get('fid') )->withSuccess('添加成功！');
     }
 
 
@@ -102,15 +102,15 @@ class TenderController extends Controller
      */
     public function edit(Request $request, $id)
     {
-        $tender   = Tender::find((int)$id);
-        if (!$tender) {
+        $settlement   = Settlement::find((int)$id);
+        if (!$settlement) {
             return redirect('/admin/project')->withErrors("服务器异常");
         }
-        foreach (array_keys($tender->fields) as $field) {
-            $data[$field] = old($field, $tender->$field);
+        foreach (array_keys($settlement->fields) as $field) {
+            $data[$field] = old($field, $settlement->$field);
         }
         $data['id'] = (int)$id;
-        return view('admin.tender.edit', $data);
+        return view('admin.settlement.edit', $data);
     }
 
     /**
@@ -122,10 +122,10 @@ class TenderController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $tender   = Tender::find((int)$id);
-        foreach (array_keys($tender->fields) as $field) {
+        $settlement   = Settlement::find((int)$id);
+        foreach (array_keys($settlement->fields) as $field) {
             if( $field != 'file_path') {
-                $tender->$field = $request->get($field);
+                $settlement->$field = $request->get($field);
             }
         }
         $file           = $request->file('files');
@@ -134,10 +134,10 @@ class TenderController extends Controller
             $newName    = date('YmdHis').mt_rand(100,999).'.'.$entension;
             $path       = $file[0]-> move(base_path().'/uploads/file/'.date('Ymd'),$newName);
             $filepath   = 'uploads/file/'.date('Ymd').'/'.$newName;
-            $tender->file_path = $filepath;
+            $settlement->file_path = $filepath;
         }
-        $tender->save();
-        return redirect("/admin/tender/index?project_id=".$request->get('project_id').'&fid='.$request->get('fid'))->withSuccess('修改成功');
+        $settlement->save();
+        return redirect("/admin/settlement/index?project_id=".$request->get('project_id').'&fid='.$request->get('fid'))->withSuccess('修改成功');
     }
 
     /**
@@ -147,9 +147,9 @@ class TenderController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function destroy($id){
-        $tender = Tender::find((int)$id);
-        if ($tender) {
-            $tender->delete();
+        $settlement   = Settlement::find((int)$id);
+        if ($settlement) {
+            $settlement->delete();
         } else {
             return redirect()->back()
                 ->withErrors("删除失败");
