@@ -49,7 +49,7 @@
                                 <th class="hidden-sm">{{$value['project_pinyin']}}</th>
                                 <th class="hidden-sm">{{$value['project_name']}}</th>
                                 <th class="hidden-md">{{$value['created_at']}}</th>
-                                <th class="hidden-sm"><a href="/admin/tender/index?project_id={{$value['id']}}&fid=0">查看招投标</a>&nbsp;&nbsp;<a href="/admin/contract/index?project_id={{$value['id']}}&fid=0">查看进度及变更</a>&nbsp;&nbsp;<a href="">查看施工预算</a>&nbsp;&nbsp;<a href="/admin/project/{{$value['id']}}/summary">查看结算</a>&nbsp;&nbsp;<a href="">查看审计</a> </th>
+                                <th class="hidden-sm"><a href="/admin/tender/index?project_id={{$value['id']}}&fid=0">查看招投标</a>&nbsp;&nbsp;<a href="/admin/contract/index?project_id={{$value['id']}}&fid=0">查看进度及变更</a>&nbsp;&nbsp;<a href="/admin/settlement/index?project_id={{$value['id']}}&fid=0">查看施工预算</a>&nbsp;&nbsp;<a href="/admin/project/{{$value['id']}}/summary">查看结算</a>&nbsp;&nbsp;<a href="">查看审计</a> </th>
                                 <th class="hidden-md"><a href="/admin/project/{{$value['id']}}/user">会员列表</a>&nbsp;&nbsp;<a href="/admin/project/{{$value['id']}}/edit">编辑</a>&nbsp;&nbsp;<span style="cursor: pointer;" class="delBtn X-Small btn-xs text-danger "><li class="fa fa-times-circle-o" onclick="check_del({{$value['id']}})">删除</li></span> </th>
                             </tr>
                         @endforeach

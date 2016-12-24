@@ -92,11 +92,22 @@ $router->group(['namespace' => 'Admin', 'middleware' => ['auth','menu','web','au
     Route::put('admin/member/update', ['as' => 'admin.member.edit', 'uses' => 'MemberController@update']); //修改
     Route::post('admin/member/store', ['as' => 'admin.member.create', 'uses' => 'MemberController@store']); //添加
 
+
+    //结算文件路由
+    Route::get('admin/settlement/index', ['as' => 'admin.settlement.index', 'uses' => 'SettlementController@index']);
+    Route::resource('admin/settlement', 'SettlementController');
+    Route::put('admin/settlement/update', ['as' => 'admin.settlement.edit', 'uses' => 'SettlementController@update']);
+    Route::post('admin/settlement/store', ['as' => 'admin.settlement.create', 'uses' => 'SettlementController@store']);
+
+
     //首页图片管理理由
     Route::get('admin/homeimage/manage', ['as' => 'admin.homeimage.manage', 'uses' => 'HomeImageController@index']);  //内容管理
     Route::resource('admin/homeimage', 'HomeImageController');
     Route::post('admin/homeimage/update', ['as' => 'admin.homeimage.edit', 'uses' => 'HomeImageController@update']); //修改
 
+
+    //结算
+    Route::get('admin/budget/index',['as'=>'admin.budget.index','uses'=>'budgetController@index']);
     //下载文件路由
     Route::resource('admin/common/download', 'CommonController@download');
 

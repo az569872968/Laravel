@@ -74,6 +74,14 @@ Breadcrumbs::register("admin.user.manage", function ($breadcrumbs){
                         $breadcrumbs->parent("admin.article.manage");
                         $breadcrumbs->push("招投标列表", route("admin.tender.index"));
                     });
+                    Breadcrumbs::register("admin.budget.index", function ($breadcrumbs) {
+                        $breadcrumbs->parent("admin.article.manage");
+                        $breadcrumbs->push("预算", route("admin.budget.index"));
+                    });
+                    Breadcrumbs::register("admin.settlement.index", function ($breadcrumbs) {
+                        $breadcrumbs->parent("admin.article.manage");
+                        $breadcrumbs->push("项目结算", route("admin.settlement.index"));
+                    });
                     Breadcrumbs::register("admin.article.create", function ($breadcrumbs) {
                   $breadcrumbs->parent("admin.article.index");
                           $breadcrumbs->push("添加文章", route("admin.article.create"));
@@ -137,6 +145,18 @@ Breadcrumbs::register("admin.user.manage", function ($breadcrumbs){
                   Breadcrumbs::register("admin.project.summary", function ($breadcrumbs) {
                   $breadcrumbs->parent("admin.project.index");
                           $breadcrumbs->push("工程结算文件", route("admin.project.summary"));
+                        });
+                  Breadcrumbs::register("admin.settlement.create", function ($breadcrumbs) {
+                  $breadcrumbs->parent("admin.settlement.index");
+                          $breadcrumbs->push("添加结算文件", route("admin.settlement.create"));
+                        });
+                  Breadcrumbs::register("admin.settlement.edit", function ($breadcrumbs) {
+                  $breadcrumbs->parent("admin.settlement.index");
+                          $breadcrumbs->push("修改结算文件", route("admin.settlement.edit"));
+                        });
+                  Breadcrumbs::register("admin.settlement.destroy", function ($breadcrumbs) {
+                  $breadcrumbs->parent("admin.settlement.index");
+                          $breadcrumbs->push("删除结算文件", route("admin.settlement.destroy"));
                         });
                   Breadcrumbs::register("admin.homeimage.manage", function ($breadcrumbs){
         $breadcrumbs->push("首页管理", route("admin.homeimage.manage"));

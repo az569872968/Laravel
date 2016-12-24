@@ -51,10 +51,10 @@
                         @foreach($list as $item=>$value)
                             <tr>
                                 <th data-sortable="false" class="hidden-sm">{{$item+1}}</th>
-                                <th class="hidden-sm">{{$value['numbering']}}</th>
-                                <th class="hidden-sm">{{$value['tender_name']}}</th>
-                                <th class="hidden-md">{{$value['file_num']}}</th>
-                                <th class="hidden-md">{{$value['created_at']}}</th>
+                                <th class="hidden-sm">{{$value['member']}}</th>
+                                <th class="hidden-sm">{{$value['name']}}</th>
+                                <th class="hidden-md">{{$value['file_member']}}</th>
+                                <th class="hidden-md">{{$value['date']}}</th>
                                 <th class="hidden-md">{{$value['remark']}}</th>
                                 <th class="hidden-md"><a href="/admin/common/download?path={{ $value['file_path'] }}&name={{$value['tender_name']}}" >下载</a></th>
                                 <th class="hidden-md"><a href="/admin/common/download?path={{ $value['file_path'] }}&name={{$value['tender_name']}}" >下载</a></th>

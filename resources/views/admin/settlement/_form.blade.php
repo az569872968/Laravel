@@ -6,15 +6,21 @@
     </div>
 </div>
 <div class="form-group">
-    <label for="tag" class="col-md-3 control-label">招标名称</label>
+    <label for="tag" class="col-md-3 control-label">名称</label>
     <div class="col-md-6">
-        <input type="text" class="form-control" name="tender_name" id="tag" value="{{ $tender_name }}" autofocus>
+        <input type="text" class="form-control" name="name" id="tag" value="{{ $name }}" autofocus>
     </div>
 </div>
 <div class="form-group">
     <label for="tag" class="col-md-3 control-label">文件编号</label>
     <div class="col-md-6">
-        <input type="text" class="form-control" name="file_num" id="tag" value="{{ $file_num }}" autofocus>
+        <input type="text" class="form-control" name="file_member" id="tag" value="{{ $file_member }}" autofocus>
+    </div>
+</div>
+<div class="form-group">
+    <label for="tag" class="col-md-3 control-label">时间</label>
+    <div class="col-md-6">
+        <input type="date" class="form-control" name="date" id="tag" value="{{ $date }}" autofocus>
     </div>
 </div>
 <div class="form-group">
@@ -24,9 +30,15 @@
     </div>
 </div>
 <div class="form-group">
-    <label for="tag" class="col-md-3 control-label">招标文件</label>
+    <label for="tag" class="col-md-3 control-label">上传Excel</label>
     <div class="col-md-6">
-        <input type="file" name="files" id="demo-fileInput-7" multiple="multiple">
+        <input type="file" name="excel" id="demo-fileInput-7" multiple="multiple">
+    </div>
+</div>
+<div class="form-group">
+    <label for="tag" class="col-md-3 control-label">上传CAD</label>
+    <div class="col-md-6">
+        <input type="file" name="cad" id="demo-fileInput-7" multiple="multiple">
     </div>
 </div>
 <input type="hidden" name="project_id" value="{{ $project_id }}">

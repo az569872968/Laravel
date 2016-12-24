@@ -23,12 +23,12 @@ class SettlementController extends Controller
         $Map['project_id']    = $request->get('project_id');
         $Map['fid']           = $request->get('fid');
         if( count($search) > 0){
-            $list   = Tender::where(function ($query) use ($search) {
-                $query->where('numbering', 'LIKE', '%' . $search. '%')
-                    ->orWhere('tender_name', 'like', '%' . $search . '%');
+            $list   = Settlement::where(function ($query) use ($search) {
+                $query->where('member', 'LIKE', '%' . $search. '%')
+                    ->orWhere('name', 'like', '%' . $search . '%');
             })->paginate(5);
         }else{
-            $list   = Tender::where($Map)->paginate(5);
+            $list   = Settlement::where($Map)->paginate(5);
         }
         return view('admin.settlement.index', array('list'=>$list, 'project_id'=>$request->get('project_id'), 'fid'=>$request->get('fid')));
     }
@@ -53,9 +53,9 @@ class SettlementController extends Controller
      */
     public function create( Request $request )
     {
-        $settlement                     = new Settlement();
+        $settlement                         = new Settlement();
         $settlement->fields['project_id']   = (int)$request->get('project_id');
-        $data                           = [];
+        $data                               = [];
         foreach ($settlement->fields as $field => $default) {
             $data[$field] = old($field, $default);
         }
