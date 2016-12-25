@@ -29,7 +29,7 @@ class ContractController extends Controller
             $list   = Contract::where(function ($query) use ($search) {
                 $query->where('numbering', 'LIKE', '%' . $search. '%')
                     ->orWhere('name', 'like', '%' . $search . '%');
-            })->paginate(5);
+            })->where($Map)->paginate(5);
         }else{
             $list   = Contract::where($Map)->paginate(5);
         }

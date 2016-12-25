@@ -97,7 +97,7 @@ $router->group(['namespace' => 'Admin', 'middleware' => ['auth','menu','web','au
     Route::get('admin/settlement/index', ['as' => 'admin.settlement.index', 'uses' => 'SettlementController@index']);
     Route::resource('admin/settlement', 'SettlementController');
     Route::put('admin/settlement/update', ['as' => 'admin.settlement.edit', 'uses' => 'SettlementController@update']);
-    Route::post('admin/settlement/store', ['as' => 'admin.settlement.create', 'uses' => 'SettlementController@store']);
+    Route::any('admin/settlement/store', ['as' => 'admin.settlement.create', 'uses' => 'SettlementController@store']);
 
 
     //首页图片管理理由

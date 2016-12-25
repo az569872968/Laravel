@@ -7,7 +7,6 @@
 @section('pageDesc','DashBoard')
 
 @section('content')
-
     <div class="row page-title-row" style="margin:5px;">
         <div class="col-md-6">
         </div>
@@ -58,7 +57,7 @@
                                 <th class="hidden-md">{{$value['remark']}}</th>
                                 <th class="hidden-md"><a href="/admin/common/download?path={{ $value['file_path'] }}&name={{$value['tender_name']}}" >下载</a></th>
                                 <th class="hidden-md"><a href="/admin/common/download?path={{ $value['file_path'] }}&name={{$value['tender_name']}}" >下载</a></th>
-                                <th class="hidden-md"><a href="{{ URL("/admin/tender/index?project_id=$project_id&fid=".$value['id']) }}">查看下级文件</a>&nbsp;&nbsp;<a href="/admin/tender/{{$value['id']}}/edit?project_id={{ $value['project_id'] }}">编辑</a>&nbsp;&nbsp;<span style="cursor: pointer;" class="delBtn X-Small btn-xs text-danger "><li class="fa fa-times-circle-o" onclick="check_del({{$value['id']}})">删除</li></span> </th>
+                                <th class="hidden-md"><a href="{{ URL("/admin/settlement/index?project_id=$project_id&fid=".$value['id']) }}">查看下级文件</a>&nbsp;&nbsp;<a href="/admin/settlement/{{$value['id']}}/edit?project_id={{ $value['project_id'] }}">编辑</a>&nbsp;&nbsp;<span style="cursor: pointer;" class="delBtn X-Small btn-xs text-danger "><li class="fa fa-times-circle-o" onclick="check_del({{$value['id']}})">删除</li></span> </th>
                             </tr>
                         @endforeach
                         </thead>
@@ -110,7 +109,7 @@
             </div>
     <script type="text/javascript">
         function check_del(id) {
-            $('.deleteForm').attr('action', '/admin/tender/' + id);
+            $('.deleteForm').attr('action', '/admin/settlement/' + id);
             $("#modal-delete").modal();
             return false;
         }

@@ -19,6 +19,7 @@ class Settlement extends Model
 
     //设置字段
     public $fields      = array(
+        'project_id'    =>'',
         'member'        =>'',
         'name'          =>'',
         'file_member'   =>'',

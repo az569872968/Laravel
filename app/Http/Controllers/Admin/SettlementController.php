@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Admin;
 use App\Models\Settlement;
 use Illuminate\Http\Request;
 
-use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
 class SettlementController extends Controller
@@ -26,7 +25,7 @@ class SettlementController extends Controller
             $list   = Settlement::where(function ($query) use ($search) {
                 $query->where('member', 'LIKE', '%' . $search. '%')
                     ->orWhere('name', 'like', '%' . $search . '%');
-            })->paginate(5);
+            })->where($Map)->paginate(5);
         }else{
             $list   = Settlement::where($Map)->paginate(5);
         }
@@ -72,7 +71,7 @@ class SettlementController extends Controller
      * @param PremissionCreateRequest|Request $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Requests $request)
+    public function store(Request $request)
     {
         $settlement                     = new Settlement();
         foreach (array_keys($settlement->fields) as $field) {
@@ -80,13 +79,22 @@ class SettlementController extends Controller
                 $settlement->$field = $request->get($field);
             }
         }
-        $file           = $request->file('files');
+        $file           = $request->file('excel');
         if(!empty($file[0]) && $file[0]->isValid()){
             $entension  = $file[0]-> getClientOriginalExtension(); //上传文件的后缀.
             $newName    = date('YmdHis').mt_rand(100,999).'.'.$entension;
             $path       = $file[0]-> move(base_path().'/uploads/file/'.date('Ymd'),$newName);
             $filepath   = 'uploads/file/'.date('Ymd').'/'.$newName;
-            $settlement->file_path = $filepath;
+            $settlement->excel = $filepath;
+        }
+        unset($file);
+        $file           = $request->file('cad');
+        if(!empty($file[0]) && $file[0]->isValid()){
+            $entension  = $file[0]-> getClientOriginalExtension(); //上传文件的后缀.
+            $newName    = date('YmdHis').mt_rand(100,999).'.'.$entension;
+            $path       = $file[0]-> move(base_path().'/uploads/imges/'.date('Ymd'),$newName);
+            $filepath   = 'uploads/file/'.date('Ymd').'/'.$newName;
+            $settlement->cad = $filepath;
         }
         $settlement->save();
         return redirect("/admin/settlement/index?project_id=".$request->get('project_id').'&fid='.$request->get('fid') )->withSuccess('添加成功！');
@@ -128,13 +136,22 @@ class SettlementController extends Controller
                 $settlement->$field = $request->get($field);
             }
         }
-        $file           = $request->file('files');
+        $file           = $request->file('excel');
         if(!empty($file[0]) && $file[0]->isValid()){
             $entension  = $file[0]-> getClientOriginalExtension(); //上传文件的后缀.
             $newName    = date('YmdHis').mt_rand(100,999).'.'.$entension;
             $path       = $file[0]-> move(base_path().'/uploads/file/'.date('Ymd'),$newName);
             $filepath   = 'uploads/file/'.date('Ymd').'/'.$newName;
-            $settlement->file_path = $filepath;
+            $settlement->excel = $filepath;
+        }
+        unset($file);
+        $file           = $request->file('cad');
+        if(!empty($file[0]) && $file[0]->isValid()){
+            $entension  = $file[0]-> getClientOriginalExtension(); //上传文件的后缀.
+            $newName    = date('YmdHis').mt_rand(100,999).'.'.$entension;
+            $path       = $file[0]-> move(base_path().'/uploads/imges/'.date('Ymd'),$newName);
+            $filepath   = 'uploads/file/'.date('Ymd').'/'.$newName;
+            $settlement->cad = $filepath;
         }
         $settlement->save();
         return redirect("/admin/settlement/index?project_id=".$request->get('project_id').'&fid='.$request->get('fid'))->withSuccess('修改成功');

@@ -26,7 +26,7 @@ class TenderController extends Controller
             $list   = Tender::where(function ($query) use ($search) {
                 $query->where('numbering', 'LIKE', '%' . $search. '%')
                     ->orWhere('tender_name', 'like', '%' . $search . '%');
-            })->paginate(5);
+            })->where($Map)->paginate(5);
         }else{
             $list   = Tender::where($Map)->paginate(5);
         }
