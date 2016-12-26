@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Models\Member;
+use Crypt;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
@@ -76,7 +77,7 @@ class MemberController extends Controller{
         $Member     = new Member();
         foreach (array_keys($Member->fields) as $field) {
             if( $field == "user_pass" && $request->get("user_pass") != ""){
-                $Member->$field = bcrypt( $request->get('user_pass') );
+                $Member->$field = Crypt::encrypt( $request->get('user_pass') );
             }else{
                 $Member->$field = $request->get($field);
             }
@@ -115,7 +116,7 @@ class MemberController extends Controller{
                 continue;
             }
             if( $field == "user_pass" && $request->get("user_pass") != ""){
-                $Member->$field = bcrypt( $request->get('user_pass') );
+                $Member->$field = Crypt::encrypt( $request->get('user_pass') );
             }else{
                 $Member->$field = $request->get($field);
             }

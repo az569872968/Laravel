@@ -1,0 +1,18 @@
+/*外层容器*/
+.main-module{width: 1024px;margin: 0px auto;}
+
+/*Hint*/
+.Hint-wrap{position: fixed;top: 0;left: 0;width: 100%;height: 100%;z-index: 999;min-width: 1080px;min-height: 500px;display: none;}
+.Hint-wrap.active{display: block;}
+.Hint-wrap .Hint-background{background: url(../../../images/common/Hint-background.png);width: 100%;height: 100%;z-index: 10;}
+.Hint-wrap .Hint-box{position: absolute;width: 400px;height: 260px;background-color: #FFFFFF;z-index: 1999;top: 50%;left: 50%;margin-top: -170px;margin-left: -225px;border-radius: 5px;}
+.Hint-wrap .Hint-box .Hint-header{background-color: #d40035;border-radius: 5px 5px 0px 0px;color: #FFFFFF;padding: 0px 15px;line-height: 40px;position: relative;font-size: 16px;}
+.Hint-wrap .Hint-box .Hint-header .Hint-close-btn{width: 40px;height: 40px;position: absolute;right: 5px;top: 0;}
+.Hint-wrap .Hint-box .Hint-header .Hint-close-btn img{margin: 9px;}
+.Hint-wrap .Hint-box .Hint-content{width: 520px;height: 150px;padding: 0px 15px;text-align: center;display: table-cell;vertical-align: middle;font-size: 16px;line-height: 30px;}
+.Hint-wrap .Hint-box .Hint-footer{height: 70px;border-top: 1px solid #ebebeb;}
+.Hint-wrap .Hint-box .Hint-footer .Hint-btn-group{display: table-cell;vertical-align: middle;width: 550px;height: 70px;border-radius: 0px 0px 5px 5px;}
+.Hint-wrap .Hint-box .Hint-footer .Hint-btn-group .Hint-btn{display: inline-block;vertical-align: middle;width: 125px;height: 32px;text-align: center;color: #FFFFFF;line-height: 32px;text-decoration: none;border-radius: 5px;}
+.Hint-wrap .Hint-box .Hint-footer .Hint-btn-group .Hint-btn-cancel{background-color: #929292;margin-right: 85px;}
+.Hint-wrap .Hint-box .Hint-footer .Hint-btn-group .Hint-btn-confirm{background-color: #d40035;}
+

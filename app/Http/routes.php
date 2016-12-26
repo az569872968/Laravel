@@ -10,15 +10,20 @@
 | and give it the controller to call when that URI is requested.
 |
 */
-Route::get('/',function(){
-    return view('home');
-});
 
-Route::get('/home',function(){
-    return view('welcome');
-});
 
+//后台首页
 Route::get('admin/index', ['as' => 'admin.index', 'middleware' => ['auth','menu','web'], 'uses'=>'Admin\\IndexController@index']);
+
+//前台首页
+Route::group(['middleware' => ['web']], function () {
+    Route::get('/', ['as' => 'home.index', 'uses'=>'Home\\IndexController@index']);
+    Route::post('home/index/login', ['as' => 'home.index.login', 'uses'=>'Home\\IndexController@Login']);
+    Route::get('home/index/loginout', ['as' => 'home.index.loginout', 'uses'=>'Home\\IndexController@loginout']);
+
+});
+
+
 
 $this->group(['namespace' => 'Admin','prefix' => '/admin',], function () {
     Route::auth();
@@ -116,6 +121,7 @@ $router->group(['namespace' => 'Admin', 'middleware' => ['auth','menu','web','au
 Route::get('admin', function () {
     return redirect('/admin/index');
 });
+
 
 
 Route::auth();
