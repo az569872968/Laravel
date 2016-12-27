@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers\Home;
 
+use App\Models\Project;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 
-use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
 class ProjectController extends Controller
@@ -16,16 +17,25 @@ class ProjectController extends Controller
      */
     public function index( Request $request ){
         $search               = '';
-        if( isset($_GET['search']) && !empty($_GET['search'])){
-            $search           = $request->get('search');
+        $user_id   = Session::get('user')->id;
+        if( isset($_GET['id']) && !empty($_GET['id'])){
+            $search           = $request->get('id');
         }
-        if( count($search) > 0){
-            $list   = Project::where(function ($query) use ($search) {
-                $query->where('project_name', 'LIKE', '%' . $search. '%');
-            })->paginate(5);
+        if( !empty($search) ){
+            $result   = Project::where('id', '=', $search)->first();
         }else{
-            $list   = Project::paginate(15);
+            $result   = Project::where('user_id', 'LIKE', '%,'.$user_id.',%')->first();
         }
-        return view('admin.Project.index')->with('list',$list);
+        return view('home.project.index')->with('result',$result);
+    }
+
+
+    /**
+     * @param Request $request
+     * @return $this
+     */
+    public function show(Request $request){
+        $info    = Project::find((int)$request->get('id'));
+        return view('home.project.list')->with('info',$info);
     }
 }

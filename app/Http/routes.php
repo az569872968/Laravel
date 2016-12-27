@@ -32,7 +32,11 @@ $this->group(['namespace' => 'Admin','prefix' => '/admin',], function () {
 
 //前台路由
 $router->group(['namespace' => 'Home', 'middleware' => ['web', 'auth.home']], function (){
+    Route::get('home/project/index', ['as' => 'home.project.index', 'uses' => 'ProjectController@index']);
+    Route::get('home/project/show', ['as' => 'home.project.show', 'uses' => 'ProjectController@show']);
 
+
+    Route::get('home/tender/index', ['as' => 'home.tender.index', 'uses' => 'TenderController@index']);
 });
 
 

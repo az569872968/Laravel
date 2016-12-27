@@ -116,7 +116,9 @@ class ProjectController extends Controller
     {
         $project   = Project::find((int)$id);
         foreach (array_keys($project->fields) as $field) {
-            $project->$field = $request->get($field);
+            if( !empty($request->get($field)) ){
+                $project->$field = $request->get($field);
+            }
         }
         $file           = $request->file('files');
         if(!empty($file[0]) && $file[0]->isValid()){
