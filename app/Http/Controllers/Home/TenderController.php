@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\DB;
 
 class TenderController extends Controller
 {
@@ -21,26 +22,62 @@ class TenderController extends Controller
         if( isset($_GET['search']) && !empty($_GET['search'])){
             $search           = $request->get('search');
         }
-        $Map['project_id']    = $request->get('project_id');
-        if( count($search) > 0){
+        $Map['project_id']    = $request->get('project');
+        $Map['fid']           = 0;
+        if( !empty($search) ){
             $list   = Tender::where(function ($query) use ($search, $Map) {
                 $query->where('numbering', 'LIKE', '%' . $search. '%')
-                    ->orWhere('tender_name', 'like', '%' . $search . '%')
-                    ->where('project_id', '=', $Map['project_id']);
-            })->paginate(15);
+                    ->orWhere('tender_name', 'like', '%' . $search . '%');
+            })->where($Map)->paginate(15);
         }else{
             $list   = Tender::where($Map)->paginate(15);
         }
+        $list       = $this->SelectAll($list);
+        dd($list);
         return view('home.tender.index', array('list'=>$list) );
     }
 
 
+
+
+    /**
+     * 递归所有的子节点
+     *
+     * @param $list
+     * @return mixed
+     */
     private function SelectAll($list){
         $Map        = array();
-        foreach ($list as $item){
-            $Map[]  = $item['id'];
+        $HasArr     = array();
+        foreach ($list as $item => &$value){
+            $Map[]          = $value['id'];
         }
-        $result     = Tender::inwhere('fid', $Map)->get();
-        foreach ($result)
+        $bool   = true;
+        do{
+            $result     = Tender::whereIn('fid', $Map)->get();
+            if( count($result) > 0 ){
+                foreach ($result as $item=>$value){
+                    $list[]     = $value;
+                    unset($value);
+                }
+                unset($Map);
+                unset($HasArr);
+                foreach ($result as $item => &$value){
+                    $Map[]          = $value['id'];
+                }
+            }else{
+                $bool   = false;
+            }
+        }while($bool);
+        $tree = array();
+        foreach($list as $item){
+            if(isset($list[$item['fid']])){
+                $list[$item['fid']]['son'][] = $list[$item['id']];
+            }else{
+                $tree[] = $list[$item['id']];
+            }
+        }
+        dd($tree);
+        return $list;
     }
 }
