@@ -8,11 +8,11 @@
     <div class="bread-crumbs-wrap">
         <div class="main-module">
             <ul class="list-item clearfix">
-                <li><a href="javascript:;"><img src="/home/images/common/home-icon.png" width="14" height="14" class="mr15" /><span>首页</span></a></li>
+                <li><a href="/"><img src="/home/images/common/home-icon.png" width="14" height="14" class="mr15" /><span>首页</span></a></li>
                 <li class="ml25 mr25"><i class="fa fa-angle-right"></i></li>
-                <li><a href="javascript:;"><span>项目列表</span></a></li>
+                <li><a href="/home/project/index"><span>项目列表</span></a></li>
                 <li class="ml25 mr25"><i class="fa fa-angle-right"></i></li>
-                <li><a href="javascript:;"><span>aaa住宅项目</span></a></li>
+                <li><a href="/home/project/show?id={{ $info['id'] }}"><span>{{ $info['project_name'] }}</span></a></li>
             </ul><!--./list-item-->
         </div><!--./main-module-->
     </div><!--./bread-crumbs-wrap-->
@@ -25,8 +25,8 @@
                 <div class="info-details">
                     <div class="swiper-container swiper-container-a">
                         <div class="swiper-wrapper">
-                            <div class="swiper-slide"><a href="/home/tender/index?project={{ $info['id'] }}"><img src="/home/images/index/001.png" width="194" height="235"/></a></div>
-                            <div class="swiper-slide"><a href="/home/tender/index?project={{ $info['id'] }}"><img src="/home/images/index/002.png" width="194" height="235"/></a></div>
+                            <div class="swiper-slide"><a href="/home/tender/index?project_id={{ $info['id'] }}"><img src="/home/images/index/001.png" width="194" height="235"/></a></div>
+                            <div class="swiper-slide"><a href="/home/tender/index?project_id={{ $info['id'] }}"><img src="/home/images/index/002.png" width="194" height="235"/></a></div>
                         </div>
                         <div class="swiper-pagination swiper-pagination-a"></div>
                     </div>
@@ -40,8 +40,8 @@
                 <div class="info-details">
                     <div class="swiper-container swiper-container-b">
                         <div class="swiper-wrapper">
-                            <div class="swiper-slide"><img src="/home/images/index/002.png" width="194" height="235"/></div>
-                            <div class="swiper-slide"><img src="/home/images/index/003.png" width="194" height="235"/></div>
+                            <div class="swiper-slide"><a href="/home/contract/index?project_id={{ $info['id'] }}"><img src="/home/images/index/002.png" width="194" height="235"/></a></div>
+                            <div class="swiper-slide"><a href="/home/contract/index?project_id={{ $info['id'] }}"><img src="/home/images/index/003.png" width="194" height="235"/></a></div>
                         </div>
                         <div class="swiper-pagination swiper-pagination-b"></div>
                     </div>

@@ -38,4 +38,16 @@ class ProjectController extends Controller
         $info    = Project::find((int)$request->get('id'));
         return view('home.project.list')->with('info',$info);
     }
+
+
+    /**
+     * 工程结算
+     *
+     * @param Request $request
+     * @return $this
+     */
+    public function summary(Request $request){
+        $info    = Project::find((int)$request->get('id'));
+        return view('home.project.summary')->with('info',$info);
+    }
 }

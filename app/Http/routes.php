@@ -35,8 +35,9 @@ $router->group(['namespace' => 'Home', 'middleware' => ['web', 'auth.home']], fu
     Route::get('home/project/index', ['as' => 'home.project.index', 'uses' => 'ProjectController@index']);
     Route::get('home/project/show', ['as' => 'home.project.show', 'uses' => 'ProjectController@show']);
 
-
     Route::get('home/tender/index', ['as' => 'home.tender.index', 'uses' => 'TenderController@index']);
+
+    Route::get('home/contract/index', ['as' => 'home.contract.index', 'uses' => 'ContractController@index']);
 });
 
 

@@ -9,11 +9,11 @@
     <div class="bread-crumbs-wrap">
         <div class="main-module">
             <ul class="list-item clearfix">
-                <li><a href="javascript:;"><img src="/home/images/common/home-icon.png" width="14" height="14" class="mr15" /><span>首页</span></a></li>
+                <li><a href="/"><img src="/home/images/common/home-icon.png" width="14" height="14" class="mr15" /><span>首页</span></a></li>
                 <li class="ml25 mr25"><i class="fa fa-angle-right"></i></li>
-                <li><a href="javascript:;"><span>项目列表</span></a></li>
+                <li><a href="/home/project/index"><span>项目列表</span></a></li>
                 <li class="ml25 mr25"><i class="fa fa-angle-right"></i></li>
-                <li><a href="javascript:;"><span>aaa住宅项目</span></a></li>
+                <li><a href="/home/project/show?id={{ $info['id'] }}"><span>{{ $info['project_name'] }}</span></a></li>
             </ul><!--./list-item-->
         </div><!--./main-module-->
     </div><!--./bread-crumbs-wrap-->
@@ -72,7 +72,7 @@
                     <td>{{ $value['numbering'] }}</td>
                     <td>{{ $value['tender_name'] }}</td>
                     <td>{{ $value['file_num'] }}</td>
-                    <td>{{ $value['updated_at'] }}</td>
+                    <td>{{ date('Y-m-d', strtotime($value['updated_at'])) }}</td>
                     <td>{{ $value['remark'] }}</td>
                     <td>
                         <button type="button" class="down-btn"><i class="fa fa-download mr5"></i>下载</button>
@@ -91,7 +91,7 @@
                                 <td width="100">{{ $val['numbering'] }}</td>
                                 <td width="195">{{ $val['tender_name'] }}</td>
                                 <td width="140">{{ $val['file_num'] }}</td>
-                                <td width="110">{{ $val['updated_at'] }}</td>
+                                <td width="110">{{ date('Y-m-d', strtotime($val['updated_at'])) }}</td>
                                 <td width="150">{{ $val['remark'] }}</td>
                                 <td>
                                     <button type="button" class="down-btn"><i class="fa fa-download mr5"></i>下载</button>
@@ -110,7 +110,7 @@
                                             <td width="100">{{ $data['numbering'] }}</td>
                                             <td width="195">{{ $data['tender_name'] }}</td>
                                             <td width="140">{{ $data['file_num'] }}</td>
-                                            <td width="110">{{ $data['updated_at'] }}</td>
+                                            <td width="110">{{ date('Y-m-d', strtotime($data['updated_at'])) }}</td>
                                             <td width="150">{{ $data['remark'] }}</td>
                                             <td>
                                                 <button type="button" class="down-btn"><i class="fa fa-download mr5"></i>下载</button>
@@ -129,7 +129,7 @@
                                                         <td width="100">{{ $values['numbering'] }}</td>
                                                         <td width="195">{{ $values['tender_name'] }}</td>
                                                         <td width="140">{{ $values['file_num'] }}</td>
-                                                        <td width="110">{{ $values['updated_at'] }}</td>
+                                                        <td width="110">{{ date('Y-m-d', strtotime($values['updated_at'])) }}</td>
                                                         <td width="150">{{ $values['remark'] }}</td>
                                                         <td>
                                                             <button type="button" class="down-btn"><i class="fa fa-download mr5"></i>下载</button>
@@ -154,7 +154,7 @@
             </table><!--./page5-table-->
             <div style="margin: 0; white-space: nowrap; text-align: right">
                 <ul>
-                {{ $tender->appends(['project' => $project_id])->render() }}
+                {{ $tender->appends(['project_id' => $project_id])->render() }}
                 </ul>
             </div>
         </div><!--./main-module-->

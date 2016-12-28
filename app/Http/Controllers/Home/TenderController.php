@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Home;
 
+use App\Models\Project;
 use App\Models\Tender;
 use Illuminate\Http\Request;
 
@@ -22,21 +23,20 @@ class TenderController extends Controller
         if( isset($_GET['search']) && !empty($_GET['search'])){
             $search           = $request->get('search');
         }
-        $Map['project_id']    = $request->get('project');
+        $Map['project_id']    = $request->get('project_id');
         $Map['fid']           = 0;
         if( !empty($search) ){
             $tender   = Tender::where(function ($query) use ($search, $Map) {
                 $query->where('numbering', 'LIKE', '%' . $search. '%')
                     ->orWhere('tender_name', 'like', '%' . $search . '%');
-            })->where($Map)->paginate(5);
+            })->where($Map)->paginate(15);
         }else{
-            $tender   = Tender::where($Map)->paginate(5);
+            $tender   = Tender::where($Map)->paginate(15);
         }
         $list         = $this->SelectAll($tender);
-        return view('home.tender.index', array('tender'=>$tender, 'list'=>$list, 'project_id'=>$Map['project_id']) );
+        $info         = Project::find((int)$request->get('project_id'));
+        return view('home.tender.index', array('tender'=>$tender, 'list'=>$list, 'project_id'=>$Map['project_id'], 'info'=>$info) );
     }
-
-
 
 
     /**
