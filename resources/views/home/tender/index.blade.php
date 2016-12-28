@@ -56,9 +56,6 @@
                             <i class="fa fa-angle-down"></i>
                         </a>
                     </th>
-                    <th width="100">
-                        <span>进度</span>
-                    </th>
                     <th width="150">
                         <span>备注</span>
                     </th>
@@ -66,254 +63,100 @@
                         <span>文件下载</span>
                     </th>
                 </tr>
+                @foreach($list as $item=>$value)
                 <tr>
                     <td class="tc">
                         <i class="fa fa-plus-square-o ver-mid spread"></i>
-                        <span class="ver-mid w60">一</span>
+                        <span class="ver-mid w60">{{ $item+1 }}</span>
                     </td>
-                    <td>00001</td>
-                    <td>总承包招标</td>
-                    <td>2.1.1-001</td>
-                    <td>2016.09.09</td>
-                    <td>已完成</td>
-                    <td>已发送至业主</td>
+                    <td>{{ $value['numbering'] }}</td>
+                    <td>{{ $value['tender_name'] }}</td>
+                    <td>{{ $value['file_num'] }}</td>
+                    <td>{{ $value['updated_at'] }}</td>
+                    <td>{{ $value['remark'] }}</td>
                     <td>
                         <button type="button" class="down-btn"><i class="fa fa-download mr5"></i>下载</button>
                     </td>
                 </tr>
                 <tr class="lower">
                     <td colspan="8">
+                        @if( !empty($value['son']) )
                         <table border="0" cellspacing="0" cellpadding="0" class="lower-table">
+                            @foreach($value['son'] as $key=>$val)
                             <tr>
                                 <td class="tc" width="100">
                                     <i class="fa fa-plus-square-o ver-mid spread"></i>
-                                    <span class="ver-mid w50">1</span>
+                                    <span class="ver-mid w50">{{ $item+1 }}-{{ $key+1 }}</span>
                                 </td>
-                                <td width="100">00001</td>
-                                <td width="195">总承包招标</td>
-                                <td width="140">2.1.1-001</td>
-                                <td width="110">2016.09.09</td>
-                                <td width="100">已完成</td>
-                                <td width="150">已发送至业主</td>
-                                <td>
-                                    <button type="button" class="down-btn"><i class="fa fa-download mr5"></i>下载</button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="tc" width="100">
-                                    <i class="fa fa-plus-square-o ver-mid spread"></i>
-                                    <span class="ver-mid w50">2</span>
-                                </td>
-                                <td width="100">00001</td>
-                                <td width="195">总承包招标</td>
-                                <td width="140">2.1.1-001</td>
-                                <td width="110">2016.09.09</td>
-                                <td width="100">已完成</td>
-                                <td width="150">已发送至业主</td>
+                                <td width="100">{{ $val['numbering'] }}</td>
+                                <td width="195">{{ $val['tender_name'] }}</td>
+                                <td width="140">{{ $val['file_num'] }}</td>
+                                <td width="110">{{ $val['updated_at'] }}</td>
+                                <td width="150">{{ $val['remark'] }}</td>
                                 <td>
                                     <button type="button" class="down-btn"><i class="fa fa-download mr5"></i>下载</button>
                                 </td>
                             </tr>
                             <tr class="lower">
                                 <td colspan="8">
+                                    @if( !empty($val['son']))
                                     <table border="0" cellspacing="0" cellpadding="0" class="lower-table">
+                                        @foreach($val['son'] as $i=>$data)
                                         <tr>
                                             <td class="tc" width="100">
                                                 <i class="fa fa-plus-square-o ver-mid spread"></i>
-                                                <span class="ver-mid w40">1</span>
+                                                <span class="ver-mid w40">{{ $item+1 }}-{{ $key+1 }}-{{ $i+1 }}</span>
                                             </td>
-                                            <td width="100">00001</td>
-                                            <td width="195">总承包招标</td>
-                                            <td width="140">2.1.1-001</td>
-                                            <td width="110">2016.09.09</td>
-                                            <td width="100">已完成</td>
-                                            <td width="150">已发送至业主</td>
-                                            <td>
-                                                <button type="button" class="down-btn"><i class="fa fa-download mr5"></i>下载</button>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td class="tc" width="100">
-                                                <i class="fa fa-plus-square-o ver-mid spread"></i>
-                                                <span class="ver-mid w40">2</span>
-                                            </td>
-                                            <td width="100">00001</td>
-                                            <td width="195">总承包招标</td>
-                                            <td width="140">2.1.1-001</td>
-                                            <td width="110">2016.09.09</td>
-                                            <td width="100">已完成</td>
-                                            <td width="150">已发送至业主</td>
+                                            <td width="100">{{ $data['numbering'] }}</td>
+                                            <td width="195">{{ $data['tender_name'] }}</td>
+                                            <td width="140">{{ $data['file_num'] }}</td>
+                                            <td width="110">{{ $data['updated_at'] }}</td>
+                                            <td width="150">{{ $data['remark'] }}</td>
                                             <td>
                                                 <button type="button" class="down-btn"><i class="fa fa-download mr5"></i>下载</button>
                                             </td>
                                         </tr>
                                         <tr class="lower">
                                             <td colspan="8">
+                                                @if( !empty($data['son']) )
                                                 <table border="0" cellspacing="0" cellpadding="0" class="lower-table">
+                                                    @foreach($data['son'] as $ite=>$values)
                                                     <tr>
                                                         <td class="tc" width="100">
                                                             <i class="fa fa-plus-square-o ver-mid spread"></i>
-                                                            <span class="ver-mid w30">1</span>
+                                                            <span class="ver-mid w30">{{ $item+1 }}-{{ $key+1 }}-{{ $i+1 }}-{{ $ite+1 }}</span>
                                                         </td>
-                                                        <td width="100">00001</td>
-                                                        <td width="195">总承包招标</td>
-                                                        <td width="140">2.1.1-001</td>
-                                                        <td width="110">2016.09.09</td>
-                                                        <td width="100">已完成</td>
-                                                        <td width="150">已发送至业主</td>
+                                                        <td width="100">{{ $values['numbering'] }}</td>
+                                                        <td width="195">{{ $values['tender_name'] }}</td>
+                                                        <td width="140">{{ $values['file_num'] }}</td>
+                                                        <td width="110">{{ $values['updated_at'] }}</td>
+                                                        <td width="150">{{ $values['remark'] }}</td>
                                                         <td>
                                                             <button type="button" class="down-btn"><i class="fa fa-download mr5"></i>下载</button>
                                                         </td>
                                                     </tr>
-                                                    <tr>
-                                                        <td class="tc" width="100">
-                                                            <i class="fa fa-plus-square-o ver-mid spread"></i>
-                                                            <span class="ver-mid w30">2</span>
-                                                        </td>
-                                                        <td width="100">00001</td>
-                                                        <td width="195">总承包招标</td>
-                                                        <td width="140">2.1.1-001</td>
-                                                        <td width="110">2016.09.09</td>
-                                                        <td width="100">已完成</td>
-                                                        <td width="150">已发送至业主</td>
-                                                        <td>
-                                                            <button type="button" class="down-btn"><i class="fa fa-download mr5"></i>下载</button>
-                                                        </td>
-                                                    </tr>
+                                                    @endforeach
                                                 </table>
+                                                @endif
                                             </td>
                                         </tr>
+                                        @endforeach
                                     </table>
+                                    @endif
                                 </td>
                             </tr>
+                            @endforeach
                         </table>
+                        @endif
                     </td>
                 </tr>
-                <tr>
-                    <td class="tc">
-                        <i class="fa fa-plus-square-o ver-mid spread"></i>
-                        <span class="ver-mid w60">一</span>
-                    </td>
-                    <td>00001</td>
-                    <td>总承包招标</td>
-                    <td>2.1.1-001</td>
-                    <td>2016.09.09</td>
-                    <td>已完成</td>
-                    <td>已发送至业主</td>
-                    <td>
-                        <button type="button" class="down-btn"><i class="fa fa-download mr5"></i>下载</button>
-                    </td>
-                </tr>
-                <tr class="lower">
-                    <td colspan="8">
-                        <table border="0" cellspacing="0" cellpadding="0" class="lower-table">
-                            <tr>
-                                <td class="tc" width="100">
-                                    <i class="fa fa-plus-square-o ver-mid spread"></i>
-                                    <span class="ver-mid w50">1</span>
-                                </td>
-                                <td width="100">00001</td>
-                                <td width="195">总承包招标</td>
-                                <td width="140">2.1.1-001</td>
-                                <td width="110">2016.09.09</td>
-                                <td width="100">已完成</td>
-                                <td width="150">已发送至业主</td>
-                                <td>
-                                    <button type="button" class="down-btn"><i class="fa fa-download mr5"></i>下载</button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="tc" width="100">
-                                    <i class="fa fa-plus-square-o ver-mid spread"></i>
-                                    <span class="ver-mid w50">2</span>
-                                </td>
-                                <td width="100">00001</td>
-                                <td width="195">总承包招标</td>
-                                <td width="140">2.1.1-001</td>
-                                <td width="110">2016.09.09</td>
-                                <td width="100">已完成</td>
-                                <td width="150">已发送至业主</td>
-                                <td>
-                                    <button type="button" class="down-btn"><i class="fa fa-download mr5"></i>下载</button>
-                                </td>
-                            </tr>
-                            <tr class="lower">
-                                <td colspan="8">
-                                    <table border="0" cellspacing="0" cellpadding="0" class="lower-table">
-                                        <tr>
-                                            <td class="tc" width="100">
-                                                <i class="fa fa-plus-square-o ver-mid spread"></i>
-                                                <span class="ver-mid w40">1</span>
-                                            </td>
-                                            <td width="100">00001</td>
-                                            <td width="195">总承包招标</td>
-                                            <td width="140">2.1.1-001</td>
-                                            <td width="110">2016.09.09</td>
-                                            <td width="100">已完成</td>
-                                            <td width="150">已发送至业主</td>
-                                            <td>
-                                                <button type="button" class="down-btn"><i class="fa fa-download mr5"></i>下载</button>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td class="tc" width="100">
-                                                <i class="fa fa-plus-square-o ver-mid spread"></i>
-                                                <span class="ver-mid w40">2</span>
-                                            </td>
-                                            <td width="100">00001</td>
-                                            <td width="195">总承包招标</td>
-                                            <td width="140">2.1.1-001</td>
-                                            <td width="110">2016.09.09</td>
-                                            <td width="100">已完成</td>
-                                            <td width="150">已发送至业主</td>
-                                            <td>
-                                                <button type="button" class="down-btn"><i class="fa fa-download mr5"></i>下载</button>
-                                            </td>
-                                        </tr>
-                                        <tr class="lower">
-                                            <td colspan="8">
-                                                <table border="0" cellspacing="0" cellpadding="0" class="lower-table">
-                                                    <tr>
-                                                        <td class="tc" width="100">
-                                                            <i class="fa fa-plus-square-o ver-mid spread"></i>
-                                                            <span class="ver-mid w30">1</span>
-                                                        </td>
-                                                        <td width="100">00001</td>
-                                                        <td width="195">总承包招标</td>
-                                                        <td width="140">2.1.1-001</td>
-                                                        <td width="110">2016.09.09</td>
-                                                        <td width="100">已完成</td>
-                                                        <td width="150">已发送至业主</td>
-                                                        <td>
-                                                            <button type="button" class="down-btn"><i class="fa fa-download mr5"></i>下载</button>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td class="tc" width="100">
-                                                            <i class="fa fa-plus-square-o ver-mid spread"></i>
-                                                            <span class="ver-mid w30">2</span>
-                                                        </td>
-                                                        <td width="100">00001</td>
-                                                        <td width="195">总承包招标</td>
-                                                        <td width="140">2.1.1-001</td>
-                                                        <td width="110">2016.09.09</td>
-                                                        <td width="100">已完成</td>
-                                                        <td width="150">已发送至业主</td>
-                                                        <td>
-                                                            <button type="button" class="down-btn"><i class="fa fa-download mr5"></i>下载</button>
-                                                        </td>
-                                                    </tr>
-                                                </table><!--./lower-table-->
-                                            </td>
-                                        </tr><!--./lower-->
-                                    </table><!--./lower-table-->
-                                </td>
-                            </tr><!--./lower-->
-                        </table><!--./lower-table-->
-                    </td>
-                </tr><!--./lower-->
+                @endforeach
             </table><!--./page5-table-->
-            <div class="paging-wrap mt50">上一页.1.2.3.4.5.6.7.下一页</div>
+            <div style="margin: 0; white-space: nowrap; text-align: right">
+                <ul>
+                {{ $tender->appends(['project' => $project_id])->render() }}
+                </ul>
+            </div>
         </div><!--./main-module-->
 
     </div><!--./page5-1-->

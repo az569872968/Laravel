@@ -25,16 +25,15 @@ class TenderController extends Controller
         $Map['project_id']    = $request->get('project');
         $Map['fid']           = 0;
         if( !empty($search) ){
-            $list   = Tender::where(function ($query) use ($search, $Map) {
+            $tender   = Tender::where(function ($query) use ($search, $Map) {
                 $query->where('numbering', 'LIKE', '%' . $search. '%')
                     ->orWhere('tender_name', 'like', '%' . $search . '%');
-            })->where($Map)->paginate(15);
+            })->where($Map)->paginate(5);
         }else{
-            $list   = Tender::where($Map)->paginate(15);
+            $tender   = Tender::where($Map)->paginate(5);
         }
-        $list       = $this->SelectAll($list);
-        dd($list);
-        return view('home.tender.index', array('list'=>$list) );
+        $list         = $this->SelectAll($tender);
+        return view('home.tender.index', array('tender'=>$tender, 'list'=>$list, 'project_id'=>$Map['project_id']) );
     }
 
 
@@ -69,15 +68,22 @@ class TenderController extends Controller
                 $bool   = false;
             }
         }while($bool);
+        $arr=$list->toArray()['data'];
+        $refer = array();
         $tree = array();
-        foreach($list as $item){
-            if(isset($list[$item['fid']])){
-                $list[$item['fid']]['son'][] = $list[$item['id']];
+        foreach($arr as $k => $v){
+            $refer[$v['id']] = & $arr[$k];  //创建主键的数组引用
+        }
+        foreach($arr as $k => $v){
+            $pid = $v['fid'];   //获取当前分类的父级id
+            if($pid == 0){
+                $tree[] = & $arr[$k];   //顶级栏目
             }else{
-                $tree[] = $list[$item['id']];
+                if(isset($refer[$pid])){
+                    $refer[$pid]['son'][] = & $arr[$k];  //如果存在父级栏目，则添加进父级栏目的子栏目数组中
+                }
             }
         }
-        dd($tree);
-        return $list;
+        return $tree;
     }
 }
