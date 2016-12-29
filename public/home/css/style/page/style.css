@@ -140,7 +140,7 @@
 .page5-table .lower-table{width: 100%;}
 .page5-table tr.lower{display: none;}
 .page5-table tr.lower.active{display: table-row;}
-.page5-table tr th .sort-btn{} 
+.page5-table tr th .sort-btn{}
 .page5-table tr th .sort-btn.active .fa:before{content: '\f106';/*color: #ff4c1b;*/}
 
 .page531-wrap{background-color: #FFFFFF;}
@@ -155,6 +155,12 @@
 .page531-wrap .btn-group .btn.blue-btn{background-color: #4aa1ea;}
 .page531-wrap .btn-group .btn.orange-btn{background-color: #ff6d2a;}
 
+.page532-wrap{background-color: #FFFFFF;}
+.page532-wrap .page532-down-btn{width: 110px;height: 26px;line-height: 26px;background-color: #3189d4;color: #FFFFFF;border: none;border-radius: 3px;cursor: pointer;}
+.page532-table{width: 100%;}
+.page532-table th,
+.page532-table td{text-align: center;border: 1px solid #d2d2d2;font-weight: bold;padding: 10px 0px;}
+
 .feedback-wrap{}
 .feedback-wrap .feedback-form-container .feedback-table{width: 100%;}
 .feedback-wrap .feedback-form-container .feedback-table,
@@ -164,3 +170,18 @@
 .feedback-wrap .feedback-form-container .feedback-table td textarea{width: 100%;max-width: 100%;border: none;resize: none;}
 .feedback-wrap .feedback-form-container .feedback-btn{}
 .feedback-wrap .feedback-form-container .feedback-btn button{padding: 0px 40px;height: 42px;border: none;background-color: #4aa1ea;color: #FFFFFF;border-radius: 3px;cursor: pointer;}
+
+.paging-wrap{font-size: 0px;}
+.paging-wrap a{text-decoration: none;}
+.paging-wrap .page-pre,
+.paging-wrap .page-next,
+.paging-wrap .page-list{display: inline-block;vertical-align: middle;font-size: 12px;}
+.paging-wrap .page-list li{float: left;}
+.paging-wrap .page-pre,
+.paging-wrap .page-next,
+.paging-wrap .page-list li{padding: 0px 15px;height: 30px;border: 1px solid #dedede;text-align: center;line-height: 30px;cursor: pointer;margin-right: 6px;}
+.paging-wrap .page-list li a{display: block;}
+.paging-wrap .page-list li:hover{border: 1px solid #ff4c1b;}
+.paging-wrap .page-list li:hover a{color: #ff4c1b;}
+.paging-wrap .page-list li.active{background-color: #FF4C1B;border: 1px solid #FF4C1B;}
+.paging-wrap .page-list li.active a{color: #FFFFFF;}

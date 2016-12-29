@@ -47,7 +47,7 @@ class ProjectController extends Controller
      * @return $this
      */
     public function summary(Request $request){
-        $info    = Project::find((int)$request->get('id'));
+        $info    = Project::find((int)$request->get('project_id'));
         return view('home.project.summary')->with('info',$info);
     }
 }

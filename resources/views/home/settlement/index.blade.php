@@ -75,8 +75,12 @@
                     <td>{{ date('Y-m-d', strtotime($value['updated_at'])) }}</td>
                     <td>{{ $value['remark'] }}</td>
                     <td>
+                        @if( is_null($value['excel']) )
                         <button type="button" class="down-btn"><i class="fa fa-download mr5"></i>下载文件</button>
+                        @endif
+                        @if( is_null($value['cad']) )
                         <button type="button" class="down-btn"><i class="fa fa-download mr5"></i>下载CAD</button>
+                        @endif
                     </td>
                 </tr>
                 <tr class="lower">
@@ -95,8 +99,12 @@
                                 <td width="110">{{ date('Y-m-d', strtotime($val['updated_at'])) }}</td>
                                 <td width="150">{{ $val['remark'] }}</td>
                                 <td>
+                                @if( is_null($val['excel']) )
                                     <button type="button" class="down-btn"><i class="fa fa-download mr5"></i>下载文件</button>
+                                @endif
+                                @if( is_null($val['cad']) )
                                     <button type="button" class="down-btn"><i class="fa fa-download mr5"></i>下载CAD</button>
+                                @endif
                                 </td>
                             </tr>
                             <tr class="lower">
@@ -115,8 +123,12 @@
                                             <td width="110">{{ date('Y-m-d', strtotime($data['updated_at'])) }}</td>
                                             <td width="150">{{ $data['remark'] }}</td>
                                             <td>
+                                            @if( is_null($data['excel']) )
                                                 <button type="button" class="down-btn"><i class="fa fa-download mr5"></i>下载文件</button>
+                                            @endif
+                                            @if( is_null($data['cad']) )
                                                 <button type="button" class="down-btn"><i class="fa fa-download mr5"></i>下载CAD</button>
+                                            @endif
                                             </td>
                                         </tr>
                                         <tr class="lower">
@@ -135,8 +147,12 @@
                                                         <td width="110">{{ date('Y-m-d', strtotime($values['updated_at'])) }}</td>
                                                         <td width="150">{{ $values['remark'] }}</td>
                                                         <td>
+                                                        @if( is_null($values['excel']) )
                                                             <button type="button" class="down-btn"><i class="fa fa-download mr5"></i>下载文件</button>
+                                                        @endif
+                                                        @if( is_null($values['cad']) )
                                                             <button type="button" class="down-btn"><i class="fa fa-download mr5"></i>下载CAD</button>
+                                                        @endif
                                                         </td>
                                                     </tr>
                                                     @endforeach
@@ -156,9 +172,9 @@
                 </tr>
                 @endforeach
             </table><!--./page5-table-->
-            <div style="margin: 0; white-space: nowrap; text-align: right">
-                <ul>
-                {{ $Object->appends(['project_id' => $project_id])->render() }}
+            <div class="paging-wrap mt50">
+                <ul class="page-list clearfix">
+                    {{ $Object->appends(['project_id' => $project_id])->render() }}
                 </ul>
             </div>
         </div><!--./main-module-->

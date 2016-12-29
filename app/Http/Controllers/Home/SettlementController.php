@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Home;
 
+use App\Models\Project;
 use App\Models\Settlement;
 use Illuminate\Http\Request;
 

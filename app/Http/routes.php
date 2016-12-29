@@ -34,10 +34,13 @@ $this->group(['namespace' => 'Admin','prefix' => '/admin',], function () {
 $router->group(['namespace' => 'Home', 'middleware' => ['web', 'auth.home']], function (){
     Route::get('home/project/index', ['as' => 'home.project.index', 'uses' => 'ProjectController@index']);
     Route::get('home/project/show', ['as' => 'home.project.show', 'uses' => 'ProjectController@show']);
+    Route::get('home/project/summary', ['as' => 'home.project.summary', 'uses' => 'ProjectController@summary']);
 
     Route::get('home/tender/index', ['as' => 'home.tender.index', 'uses' => 'TenderController@index']);
 
     Route::get('home/contract/index', ['as' => 'home.contract.index', 'uses' => 'ContractController@index']);
+
+    Route::get('home/settlement/index', ['as' => 'home.settlement.index', 'uses' => 'SettlementController@index']);
 });
 
 

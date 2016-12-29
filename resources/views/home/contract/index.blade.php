@@ -152,8 +152,8 @@
                         </tr>
                     @endforeach
                 </table><!--./page5-table-->
-                <div style="margin: 0; white-space: nowrap; text-align: right">
-                    <ul>
+                <div class="paging-wrap mt50">
+                    <ul class="page-list clearfix">
                         {{ $Object->appends(['project_id' => $project_id])->render() }}
                     </ul>
                 </div>

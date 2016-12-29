@@ -55,8 +55,8 @@
                 <div class="info-details">
                     <div class="swiper-container swiper-container-c">
                         <div class="swiper-wrapper">
-                            <div class="swiper-slide"><img src="/home/images/index/004.png" width="194" height="235"/></div>
-                            <div class="swiper-slide"><img src="/home/images/index/005.png" width="194" height="235"/></div>
+                            <div class="swiper-slide"><a href="/home/settlement/index?project_id={{ $info['id'] }}"><img src="/home/images/index/004.png" width="194" height="235"/></a></div>
+                            <div class="swiper-slide"><a href="/home/settlement/index?project_id={{ $info['id'] }}"><img src="/home/images/index/005.png" width="194" height="235"/></a></div>
                         </div>
                         <div class="swiper-pagination swiper-pagination-c"></div>
                     </div>
@@ -70,8 +70,8 @@
                 <div class="info-details">
                     <div class="swiper-container swiper-container-d">
                         <div class="swiper-wrapper">
-                            <div class="swiper-slide"><img src="/home/images/index/005.png" width="194" height="235"/></div>
-                            <div class="swiper-slide"><img src="/home/images/index/002.png" width="194" height="235"/></div>
+                            <div class="swiper-slide"><a href="/home/project/summary?project_id={{ $info['id'] }}"><img src="/home/images/index/005.png" width="194" height="235"/></a></div>
+                            <div class="swiper-slide"><a href="/home/project/summary?project_id={{ $info['id'] }}"><img src="/home/images/index/002.png" width="194" height="235"/></a></div>
                         </div>
                         <div class="swiper-pagination swiper-pagination-d"></div>
                     </div>
