@@ -69,13 +69,14 @@
                         <i class="fa fa-plus-square-o ver-mid spread"></i>
                         <span class="ver-mid w60">{{ $item+1 }}</span>
                     </td>
-                    <td>{{ $value['numbering'] }}</td>
-                    <td>{{ $value['tender_name'] }}</td>
-                    <td>{{ $value['file_num'] }}</td>
+                    <td>{{ $value['member'] }}</td>
+                    <td>{{ $value['name'] }}</td>
+                    <td>{{ $value['file_member'] }}</td>
                     <td>{{ date('Y-m-d', strtotime($value['updated_at'])) }}</td>
                     <td>{{ $value['remark'] }}</td>
                     <td>
-                        <button type="button" class="down-btn"><i class="fa fa-download mr5"></i>下载</button>
+                        <button type="button" class="down-btn"><i class="fa fa-download mr5"></i>下载文件</button>
+                        <button type="button" class="down-btn"><i class="fa fa-download mr5"></i>下载CAD</button>
                     </td>
                 </tr>
                 <tr class="lower">
@@ -88,13 +89,14 @@
                                     <i class="fa fa-plus-square-o ver-mid spread"></i>
                                     <span class="ver-mid w50">{{ $item+1 }}-{{ $key+1 }}</span>
                                 </td>
-                                <td width="100">{{ $val['numbering'] }}</td>
-                                <td width="195">{{ $val['tender_name'] }}</td>
-                                <td width="140">{{ $val['file_num'] }}</td>
+                                <td width="100">{{ $val['member'] }}</td>
+                                <td width="195">{{ $val['name'] }}</td>
+                                <td width="140">{{ $val['file_member'] }}</td>
                                 <td width="110">{{ date('Y-m-d', strtotime($val['updated_at'])) }}</td>
                                 <td width="150">{{ $val['remark'] }}</td>
                                 <td>
-                                    <button type="button" class="down-btn"><i class="fa fa-download mr5"></i>下载</button>
+                                    <button type="button" class="down-btn"><i class="fa fa-download mr5"></i>下载文件</button>
+                                    <button type="button" class="down-btn"><i class="fa fa-download mr5"></i>下载CAD</button>
                                 </td>
                             </tr>
                             <tr class="lower">
@@ -107,13 +109,14 @@
                                                 <i class="fa fa-plus-square-o ver-mid spread"></i>
                                                 <span class="ver-mid w40">{{ $item+1 }}-{{ $key+1 }}-{{ $i+1 }}</span>
                                             </td>
-                                            <td width="100">{{ $data['numbering'] }}</td>
-                                            <td width="195">{{ $data['tender_name'] }}</td>
-                                            <td width="140">{{ $data['file_num'] }}</td>
+                                            <td width="100">{{ $data['member'] }}</td>
+                                            <td width="195">{{ $data['name'] }}</td>
+                                            <td width="140">{{ $data['file_member'] }}</td>
                                             <td width="110">{{ date('Y-m-d', strtotime($data['updated_at'])) }}</td>
                                             <td width="150">{{ $data['remark'] }}</td>
                                             <td>
-                                                <button type="button" class="down-btn"><i class="fa fa-download mr5"></i>下载</button>
+                                                <button type="button" class="down-btn"><i class="fa fa-download mr5"></i>下载文件</button>
+                                                <button type="button" class="down-btn"><i class="fa fa-download mr5"></i>下载CAD</button>
                                             </td>
                                         </tr>
                                         <tr class="lower">
@@ -126,13 +129,14 @@
                                                             <i class="fa fa-plus-square-o ver-mid spread"></i>
                                                             <span class="ver-mid w30">{{ $item+1 }}-{{ $key+1 }}-{{ $i+1 }}-{{ $ite+1 }}</span>
                                                         </td>
-                                                        <td width="100">{{ $values['numbering'] }}</td>
-                                                        <td width="195">{{ $values['tender_name'] }}</td>
-                                                        <td width="140">{{ $values['file_num'] }}</td>
+                                                        <td width="100">{{ $values['member'] }}</td>
+                                                        <td width="195">{{ $values['name'] }}</td>
+                                                        <td width="140">{{ $values['file_member'] }}</td>
                                                         <td width="110">{{ date('Y-m-d', strtotime($values['updated_at'])) }}</td>
                                                         <td width="150">{{ $values['remark'] }}</td>
                                                         <td>
-                                                            <button type="button" class="down-btn"><i class="fa fa-download mr5"></i>下载</button>
+                                                            <button type="button" class="down-btn"><i class="fa fa-download mr5"></i>下载文件</button>
+                                                            <button type="button" class="down-btn"><i class="fa fa-download mr5"></i>下载CAD</button>
                                                         </td>
                                                     </tr>
                                                     @endforeach

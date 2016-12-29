@@ -26,16 +26,16 @@ class TenderController extends Controller
         $Map['project_id']    = $request->get('project_id');
         $Map['fid']           = 0;
         if( !empty($search) ){
-            $tender   = Tender::where(function ($query) use ($search, $Map) {
+            $Object   = Tender::where(function ($query) use ($search, $Map) {
                 $query->where('numbering', 'LIKE', '%' . $search. '%')
                     ->orWhere('tender_name', 'like', '%' . $search . '%');
             })->where($Map)->paginate(15);
         }else{
-            $tender   = Tender::where($Map)->paginate(15);
+            $Object   = Tender::where($Map)->paginate(15);
         }
-        $list         = $this->SelectAll($tender);
+        $list         = $this->SelectAll($Object);
         $info         = Project::find((int)$request->get('project_id'));
-        return view('home.tender.index', array('tender'=>$tender, 'list'=>$list, 'project_id'=>$Map['project_id'], 'info'=>$info) );
+        return view('home.tender.index', array('Object'=>$Object, 'list'=>$list, 'project_id'=>$Map['project_id'], 'info'=>$info) );
     }
 
 

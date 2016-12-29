@@ -2,16 +2,14 @@
 
 namespace App\Http\Controllers\Home;
 
-use App\Models\Contract;
-use App\Models\Project;
+use App\Models\Settlement;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
-class ContractController extends Controller
+class SettlementController extends Controller
 {
-
     /**
      * Display the specified resource.
      *
@@ -25,16 +23,16 @@ class ContractController extends Controller
         $Map['project_id']    = $request->get('project_id');
         $Map['fid']           = 0;
         if( !empty($search) ){
-            $Object   = Contract::where(function ($query) use ($search, $Map) {
+            $Object   = Settlement::where(function ($query) use ($search, $Map) {
                 $query->where('numbering', 'LIKE', '%' . $search. '%')
                     ->orWhere('tender_name', 'like', '%' . $search . '%');
             })->where($Map)->paginate(15);
         }else{
-            $Object   = Contract::where($Map)->paginate(15);
+            $Object   = Settlement::where($Map)->paginate(15);
         }
         $list         = $this->SelectAll($Object);
         $info         = Project::find((int)$request->get('project_id'));
-        return view('home.contract.index', array('Object'=>$Object, 'list'=>$list, 'project_id'=>$Map['project_id'], 'info'=>$info) );
+        return view('home.settlement.index', array('Object'=>$Object, 'list'=>$list, 'project_id'=>$Map['project_id'], 'info'=>$info) );
     }
 
 
@@ -52,7 +50,7 @@ class ContractController extends Controller
         }
         $bool   = true;
         do{
-            $result     = Contract::whereIn('fid', $Map)->get();
+            $result     = Settlement::whereIn('fid', $Map)->get();
             if( count($result) > 0 ){
                 foreach ($result as $item=>$value){
                     $list[]     = $value;
