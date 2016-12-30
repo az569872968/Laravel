@@ -77,6 +77,12 @@ $router->group(['namespace' => 'Admin', 'middleware' => ['auth','menu','web','au
     Route::put('admin/article/update', ['as' => 'admin.article.edit', 'uses' => 'ArticleController@update']); //修改
     Route::post('admin/article/store', ['as' => 'admin.article.create', 'uses' => 'ArticleController@store']); //添加
 
+    //友情链接路由
+    Route::post('admin/link/index', ['as' => 'admin.link.index', 'uses' => 'LinkController@index']);
+    Route::resource('admin/link', 'LinkController');
+    Route::put('admin/link/update', ['as' => 'admin.link.edit', 'uses' => 'LinkController@update']); //修改
+    Route::post('admin/link/store', ['as' => 'admin.link.create', 'uses' => 'LinkController@store']); //添加
+
     //工程项目路由
     Route::post('admin/project/index', ['as' => 'admin.project.index', 'uses' => 'ProjectController@index']);
     Route::resource('admin/project', 'ProjectController');

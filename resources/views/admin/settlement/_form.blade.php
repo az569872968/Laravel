@@ -40,7 +40,7 @@
         <input type="file" name="excel" id="demo-fileInput-1" multiple="multiple">
     </div>
 </div>
-<div class="jFiler-items jFiler-row">
+{{--<div class="jFiler-items jFiler-row" id="jFiler_excel" style="width: 795px;margin-left: 400px">
     <ul class="jFiler-items-list jFiler-items-default">
         <li class="jFiler-item" data-jfiler-index="0" style="">
             <div class="jFiler-item-container">
@@ -52,16 +52,13 @@
                         <div class="jFiler-item-title" title="20161208000056593.xlsx">20161208000056593.xlsx</div>
                         <div class="jFiler-item-others"><span>size: 10.9 KB</span><span>type: xlsx</span><span class="jFiler-item-status"></span></div>
                         <div class="jFiler-item-assets">
-                            <ul class="list-inline">
-                                <li><a class="icon-jfi-trash jFiler-item-trash-action"></a></li>
-                            </ul>
                         </div>
                     </div>
                 </div>
             </div>
         </li>
     </ul>
-</div>
+</div>--}}
 <div class="form-group">
     <label for="tag" class="col-md-3 control-label">上传CAD</label>
     <div class="col-md-6">

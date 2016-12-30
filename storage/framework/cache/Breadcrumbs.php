@@ -158,14 +158,34 @@ Breadcrumbs::register("admin.user.manage", function ($breadcrumbs){
                   $breadcrumbs->parent("admin.settlement.index");
                           $breadcrumbs->push("删除结算文件", route("admin.settlement.destroy"));
                         });
+                  Breadcrumbs::register("admin.budget.save", function ($breadcrumbs) {
+                  $breadcrumbs->parent("admin.budget.index");
+                          $breadcrumbs->push("预算保存", route("admin.budget.save"));
+                        });
                   Breadcrumbs::register("admin.homeimage.manage", function ($breadcrumbs){
         $breadcrumbs->push("首页管理", route("admin.homeimage.manage"));
     });Breadcrumbs::register("admin.homeimage.index", function ($breadcrumbs) {
                         $breadcrumbs->parent("admin.homeimage.manage");
                         $breadcrumbs->push("首页图片", route("admin.homeimage.index"));
                     });
+                    Breadcrumbs::register("admin.link.index", function ($breadcrumbs) {
+                        $breadcrumbs->parent("admin.homeimage.manage");
+                        $breadcrumbs->push("友情连接列表", route("admin.link.index"));
+                    });
                     Breadcrumbs::register("admin.homeimage.update", function ($breadcrumbs) {
                   $breadcrumbs->parent("admin.homeimage.index");
                           $breadcrumbs->push("修改首页图片", route("admin.homeimage.update"));
+                        });
+                  Breadcrumbs::register("admin.link.create", function ($breadcrumbs) {
+                  $breadcrumbs->parent("admin.link.index");
+                          $breadcrumbs->push("添加友情连接", route("admin.link.create"));
+                        });
+                  Breadcrumbs::register("admin.link.edit", function ($breadcrumbs) {
+                  $breadcrumbs->parent("admin.link.index");
+                          $breadcrumbs->push("修改友情链接", route("admin.link.edit"));
+                        });
+                  Breadcrumbs::register("admin.link.destroy", function ($breadcrumbs) {
+                  $breadcrumbs->parent("admin.link.index");
+                          $breadcrumbs->push("删除友情链接", route("admin.link.destroy"));
                         });
                   
