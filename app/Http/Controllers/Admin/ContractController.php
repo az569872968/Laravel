@@ -85,8 +85,8 @@ class ContractController extends Controller
         if(!empty($file[0]) && $file[0]->isValid()){
             $entension  = $file[0]-> getClientOriginalExtension(); //上传文件的后缀.
             $newName    = date('YmdHis').mt_rand(100,999).'.'.$entension;
-            $path       = $file[0]-> move(base_path().'/uploads/file/'.date('Ymd'),$newName);
-            $filepath   = 'uploads/file/'.date('Ymd').'/'.$newName;
+            $path       = $file[0]-> move(base_path().'/public/uploads/file/'.date('Ymd'),$newName);
+            $filepath   = 'public/uploads/file/'.date('Ymd').'/'.$newName;
             $contract->file_path = $filepath;
         }
         $contract->save();
@@ -125,7 +125,7 @@ class ContractController extends Controller
     {
         $contract   = Contract::find((int)$id);
         foreach (array_keys($contract->fields) as $field) {
-            if( $field != 'file_path'){
+            if( $field != 'files'){
                 $contract->$field = $request->get($field);
             }
         }
@@ -133,8 +133,8 @@ class ContractController extends Controller
         if(!empty($file[0]) && $file[0]->isValid()){
             $entension  = $file[0]-> getClientOriginalExtension(); //上传文件的后缀.
             $newName    = date('YmdHis').mt_rand(100,999).'.'.$entension;
-            $path       = $file[0]-> move(base_path().'/uploads/file/'.date('Ymd'),$newName);
-            $filepath   = 'uploads/file/'.date('Ymd').'/'.$newName;
+            $path       = $file[0]-> move(base_path().'/public/uploads/file/'.date('Ymd'),$newName);
+            $filepath   = 'public/uploads/file/'.date('Ymd').'/'.$newName;
             $contract->file_path = $filepath;
         }
         $contract->save();

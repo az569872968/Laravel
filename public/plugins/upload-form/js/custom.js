@@ -5,7 +5,7 @@ $(document).ready(function(){
         extensions: ['jpg', 'jpeg', 'png'],
         changeInput: true,
         showThumbs: true,
-        files:[{name:"sdfsdf.jgp",size:6542,type:"image/jpg",file:"http://img1.gtimg.com/news/pics/hv1/70/12/2174/141367480.png"}]
+        files:[{name:'图片.jpg',size:'',type:"image/jpg",file:$('#file_img').val()}]
     });
     $('#demo-fileInput-1').filer({
         limit: 3,
@@ -13,6 +13,6 @@ $(document).ready(function(){
         extensions: ['xlsx', 'xls'],
         changeInput: true,
         showThumbs: true,
-        files:[{name:"sdfsdf.jgp",size:6542,type:"image/jpg",file:"http://img1.gtimg.com/news/pics/hv1/70/12/2174/141367480.png"}]
+        files:[{name:'Excel.xlsx',size:'',type:"xlsx",file:$('#file_excel').val()}]
     });
 });

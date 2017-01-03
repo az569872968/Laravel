@@ -40,30 +40,14 @@
         <input type="file" name="excel" id="demo-fileInput-1" multiple="multiple">
     </div>
 </div>
-{{--<div class="jFiler-items jFiler-row" id="jFiler_excel" style="width: 795px;margin-left: 400px">
-    <ul class="jFiler-items-list jFiler-items-default">
-        <li class="jFiler-item" data-jfiler-index="0" style="">
-            <div class="jFiler-item-container">
-                <div class="jFiler-item-inner">
-                    <div class="jFiler-item-icon pull-left">
-                        <i class="icon-jfi-file-o jfi-file-type-application jfi-file-ext-xlsx"></i>
-                    </div>
-                    <div class="jFiler-item-info pull-left">
-                        <div class="jFiler-item-title" title="20161208000056593.xlsx">20161208000056593.xlsx</div>
-                        <div class="jFiler-item-others"><span>size: 10.9 KB</span><span>type: xlsx</span><span class="jFiler-item-status"></span></div>
-                        <div class="jFiler-item-assets">
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </li>
-    </ul>
-</div>--}}
 <div class="form-group">
     <label for="tag" class="col-md-3 control-label">上传CAD</label>
     <div class="col-md-6">
         <input type="file" name="cad" id="demo-fileInput-2" multiple="multiple">
     </div>
 </div>
+<image height="" xlink:href="" width="" src="{{$excel}}"></image>
+<input type="hidden" id="file_excel" value="{{ asset("$excel") }}">
+<input type="hidden" id="file_img" value="{{ asset("$cad") }}">
 <input type="hidden" name="project_id" value="{{ $project_id }}">
 <input type="hidden" name="fid" value="{{ $fid }}">

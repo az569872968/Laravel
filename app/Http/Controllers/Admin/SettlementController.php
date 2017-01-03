@@ -83,8 +83,8 @@ class SettlementController extends Controller
         if(!empty($file[0]) && $file[0]->isValid()){
             $entension  = $file[0]-> getClientOriginalExtension(); //上传文件的后缀.
             $newName    = date('YmdHis').mt_rand(100,999).'.'.$entension;
-            $path       = $file[0]-> move(base_path().'/uploads/file/'.date('Ymd'),$newName);
-            $filepath   = 'uploads/file/'.date('Ymd').'/'.$newName;
+            $path       = $file[0]-> move(base_path().'/public/uploads/file/'.date('Ymd'),$newName);
+            $filepath   = 'public/uploads/file/'.date('Ymd').'/'.$newName;
             $settlement->excel = $filepath;
         }
         unset($file);
@@ -92,8 +92,8 @@ class SettlementController extends Controller
         if(!empty($file[0]) && $file[0]->isValid()){
             $entension  = $file[0]-> getClientOriginalExtension(); //上传文件的后缀.
             $newName    = date('YmdHis').mt_rand(100,999).'.'.$entension;
-            $path       = $file[0]-> move(base_path().'/uploads/imges/'.date('Ymd'),$newName);
-            $filepath   = 'uploads/file/'.date('Ymd').'/'.$newName;
+            $path       = $file[0]-> move(base_path().'/public/uploads/imges/'.date('Ymd'),$newName);
+            $filepath   = 'public/uploads/file/'.date('Ymd').'/'.$newName;
             $settlement->cad = $filepath;
         }
         $settlement->save();
@@ -132,7 +132,7 @@ class SettlementController extends Controller
     {
         $settlement   = Settlement::find((int)$id);
         foreach (array_keys($settlement->fields) as $field) {
-            if( $field != 'file_path') {
+            if( !empty($request->get($field)) ){
                 $settlement->$field = $request->get($field);
             }
         }
@@ -140,8 +140,8 @@ class SettlementController extends Controller
         if(!empty($file[0]) && $file[0]->isValid()){
             $entension  = $file[0]-> getClientOriginalExtension(); //上传文件的后缀.
             $newName    = date('YmdHis').mt_rand(100,999).'.'.$entension;
-            $path       = $file[0]-> move(base_path().'/uploads/file/'.date('Ymd'),$newName);
-            $filepath   = 'uploads/file/'.date('Ymd').'/'.$newName;
+            $path       = $file[0]-> move(base_path().'/public/uploads/file/'.date('Ymd'),$newName);
+            $filepath   = 'public/uploads/file/'.date('Ymd').'/'.$newName;
             $settlement->excel = $filepath;
         }
         unset($file);
@@ -149,8 +149,8 @@ class SettlementController extends Controller
         if(!empty($file[0]) && $file[0]->isValid()){
             $entension  = $file[0]-> getClientOriginalExtension(); //上传文件的后缀.
             $newName    = date('YmdHis').mt_rand(100,999).'.'.$entension;
-            $path       = $file[0]-> move(base_path().'/uploads/imges/'.date('Ymd'),$newName);
-            $filepath   = 'uploads/file/'.date('Ymd').'/'.$newName;
+            $path       = $file[0]-> move(base_path().'/public/uploads/imges/'.date('Ymd'),$newName);
+            $filepath   = 'public/uploads/file/'.date('Ymd').'/'.$newName;
             $settlement->cad = $filepath;
         }
         $settlement->save();
