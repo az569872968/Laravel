@@ -43,12 +43,12 @@
                     </th>
                     <th width="195">
                         <a href="jvascript:;" class="sort-btn">
-                            <span>招标文件名称</span>
+                            <span>合同名称</span>
                             <i class="fa fa-angle-down"></i>
                         </a>
                     </th>
                     <th width="140">
-                        <span>招标文件编号</span>
+                        <span>合同编号</span>
                     </th>
                     <th width="110">
                         <a href="javascript:;" class="sort-btn">

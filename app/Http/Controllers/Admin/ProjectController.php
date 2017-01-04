@@ -26,9 +26,9 @@ class ProjectController extends Controller
         if( count($search) > 0){
             $list   = Project::where(function ($query) use ($search) {
                 $query->where('project_name', 'LIKE', '%' . $search. '%');
-            })->paginate(5);
+            })->orderBy('id', 'desc')->paginate(5);
         }else{
-            $list   = Project::paginate(5);
+            $list   = Project::orderBy('id', 'desc')->paginate(5);
         }
         return view('admin.project.index')->with('list',$list);
     }
@@ -215,10 +215,10 @@ class ProjectController extends Controller
         $row                = ltrim(rtrim($project->user_id, ','), ',');
         $row                = explode(',', $row);
         $key                = array_search($user_id, $row);
-        $row                = array_splice($row,$key,1);
-        $project->user_id   = ','.implode(',', $row);
+        unset($row[$key]);
+        $project->user_id   = ','.implode(',', $row).',';
         $project->save();
-        return redirect("/admin/project/$id/user")->withSuccess('添加成功！');
+        return redirect("/admin/project/$id/user")->withSuccess('成功！');
     }
 
 

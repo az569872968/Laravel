@@ -23,6 +23,8 @@ class Tender extends Model{
         'tender_name'=>'',
         'file_num'=>'',
         'file_path'=>'',
+        'schedule'=>'',
+        'date_time'=>'',
         'remark'=>''
     ];
 }

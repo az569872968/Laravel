@@ -43,18 +43,21 @@
                     </th>
                     <th width="195">
                         <a href="jvascript:;" class="sort-btn">
-                            <span>招标文件名称</span>
+                            <span>招标名称</span>
                             <i class="fa fa-angle-down"></i>
                         </a>
                     </th>
                     <th width="140">
-                        <span>招标文件编号</span>
+                        <span>文件编号</span>
                     </th>
                     <th width="110">
                         <a href="javascript:;" class="sort-btn">
                             <span>日期</span>
                             <i class="fa fa-angle-down"></i>
                         </a>
+                    </th>
+                    <th width="50">
+                        <span>进度</span>
                     </th>
                     <th width="150">
                         <span>备注</span>
@@ -72,7 +75,8 @@
                     <td>{{ $value['numbering'] }}</td>
                     <td>{{ $value['tender_name'] }}</td>
                     <td>{{ $value['file_num'] }}</td>
-                    <td>{{ date('Y-m-d', strtotime($value['updated_at'])) }}</td>
+                    <td>{{ date('Y-m-d', strtotime($value['date_time'])) }}</td>
+                    <td>{{ $value['schedule'] }}</td>
                     <td>{{ $value['remark'] }}</td>
                     <td>
                         <button type="button" class="down-btn"><i class="fa fa-download mr5"></i>下载</button>
@@ -91,7 +95,8 @@
                                 <td width="100">{{ $val['numbering'] }}</td>
                                 <td width="195">{{ $val['tender_name'] }}</td>
                                 <td width="140">{{ $val['file_num'] }}</td>
-                                <td width="110">{{ date('Y-m-d', strtotime($val['updated_at'])) }}</td>
+                                <td width="110">{{ date('Y-m-d', strtotime($val['date_time'])) }}</td>
+                                <td width="150">{{ $val['schedule'] }}</td>
                                 <td width="150">{{ $val['remark'] }}</td>
                                 <td>
                                     <button type="button" class="down-btn"><i class="fa fa-download mr5"></i>下载</button>
@@ -110,7 +115,8 @@
                                             <td width="100">{{ $data['numbering'] }}</td>
                                             <td width="195">{{ $data['tender_name'] }}</td>
                                             <td width="140">{{ $data['file_num'] }}</td>
-                                            <td width="110">{{ date('Y-m-d', strtotime($data['updated_at'])) }}</td>
+                                            <td width="110">{{ date('Y-m-d', strtotime($data['date_time'])) }}</td>
+                                            <td width="150">{{ $data['schedule'] }}</td>
                                             <td width="150">{{ $data['remark'] }}</td>
                                             <td>
                                                 <button type="button" class="down-btn"><i class="fa fa-download mr5"></i>下载</button>
@@ -129,7 +135,8 @@
                                                         <td width="100">{{ $values['numbering'] }}</td>
                                                         <td width="195">{{ $values['tender_name'] }}</td>
                                                         <td width="140">{{ $values['file_num'] }}</td>
-                                                        <td width="110">{{ date('Y-m-d', strtotime($values['updated_at'])) }}</td>
+                                                        <td width="110">{{ date('Y-m-d', strtotime($values['date_time'])) }}</td>
+                                                        <td width="150">{{ $values['schedule'] }}</td>
                                                         <td width="150">{{ $values['remark'] }}</td>
                                                         <td>
                                                             <button type="button" class="down-btn"><i class="fa fa-download mr5"></i>下载</button>

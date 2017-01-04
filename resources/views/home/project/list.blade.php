@@ -36,21 +36,6 @@
                 </div><!--./info-details-->
             </li>
             <li>
-                <h4 class="title mb10 tc fb f18">工程预算</h4>
-                <div class="info-details">
-                    <div class="swiper-container swiper-container-b">
-                        <div class="swiper-wrapper">
-                            <div class="swiper-slide"><a href="/home/contract/index?project_id={{ $info['id'] }}"><img src="/home/images/index/002.png" width="194" height="235"/></a></div>
-                            <div class="swiper-slide"><a href="/home/contract/index?project_id={{ $info['id'] }}"><img src="/home/images/index/003.png" width="194" height="235"/></a></div>
-                        </div>
-                        <div class="swiper-pagination swiper-pagination-b"></div>
-                    </div>
-                    <div class="info-txt mt30 pl25 pr25">
-                        <p class="fb tc">使用VFI工程量计算文件，及时调整工程造价</p>
-                    </div><!--./info-txt-->
-                </div><!--./info-details-->
-            </li>
-            <li>
                 <h4 class="title mb10 tc fb f18">进度款统计</h4>
                 <div class="info-details">
                     <div class="swiper-container swiper-container-c">
@@ -62,6 +47,21 @@
                     </div>
                     <div class="info-txt mt30 pl25 pr25">
                         <p class="fb tc">实时监控变更对造价的影响</p>
+                    </div><!--./info-txt-->
+                </div><!--./info-details-->
+            </li>
+            <li>
+                <h4 class="title mb10 tc fb f18">工程预算</h4>
+                <div class="info-details">
+                    <div class="swiper-container swiper-container-b">
+                        <div class="swiper-wrapper">
+                            <div class="swiper-slide"><a href="/home/contract/index?project_id={{ $info['id'] }}"><img src="/home/images/index/002.png" width="194" height="235"/></a></div>
+                            <div class="swiper-slide"><a href="/home/contract/index?project_id={{ $info['id'] }}"><img src="/home/images/index/003.png" width="194" height="235"/></a></div>
+                        </div>
+                        <div class="swiper-pagination swiper-pagination-b"></div>
+                    </div>
+                    <div class="info-txt mt30 pl25 pr25">
+                        <p class="fb tc">使用VFI工程量计算文件，及时调整工程造价</p>
                     </div><!--./info-txt-->
                 </div><!--./info-details-->
             </li>

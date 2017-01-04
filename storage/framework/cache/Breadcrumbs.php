@@ -162,6 +162,14 @@ Breadcrumbs::register("admin.user.manage", function ($breadcrumbs){
                   $breadcrumbs->parent("admin.budget.index");
                           $breadcrumbs->push("预算保存", route("admin.budget.save"));
                         });
+                  Breadcrumbs::register("admin.project.user", function ($breadcrumbs) {
+                  $breadcrumbs->parent("admin.project.index");
+                          $breadcrumbs->push("项目会员", route("admin.project.user"));
+                        });
+                  Breadcrumbs::register("admin.tender.user", function ($breadcrumbs) {
+                  $breadcrumbs->parent("admin.tender.index");
+                          $breadcrumbs->push("招标会员列表", route("admin.tender.user"));
+                        });
                   Breadcrumbs::register("admin.homeimage.manage", function ($breadcrumbs){
         $breadcrumbs->push("首页管理", route("admin.homeimage.manage"));
     });Breadcrumbs::register("admin.homeimage.index", function ($breadcrumbs) {
@@ -170,7 +178,7 @@ Breadcrumbs::register("admin.user.manage", function ($breadcrumbs){
                     });
                     Breadcrumbs::register("admin.link.index", function ($breadcrumbs) {
                         $breadcrumbs->parent("admin.homeimage.manage");
-                        $breadcrumbs->push("友情连接列表", route("admin.link.index"));
+                        $breadcrumbs->push("友情连接", route("admin.link.index"));
                     });
                     Breadcrumbs::register("admin.homeimage.update", function ($breadcrumbs) {
                   $breadcrumbs->parent("admin.homeimage.index");

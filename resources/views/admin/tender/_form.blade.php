@@ -18,6 +18,18 @@
     </div>
 </div>
 <div class="form-group">
+    <label for="tag" class="col-md-3 control-label">日期</label>
+    <div class="col-md-6">
+        <input type="date" class="form-control" name="date_time" id="tag" value="{{ $date_time }}" autofocus>
+    </div>
+</div>
+<div class="form-group">
+    <label for="tag" class="col-md-3 control-label">进度</label>
+    <div class="col-md-6">
+        <input type="text" class="form-control" name="schedule" id="tag" value="{{ $schedule }}" autofocus>
+    </div>
+</div>
+<div class="form-group">
     <label for="tag" class="col-md-3 control-label">备注</label>
     <div class="col-md-6">
         <textarea name="remark" class="form-control" rows="3">{{ $remark }}</textarea>
@@ -26,7 +38,7 @@
 <div class="form-group">
     <label for="tag" class="col-md-3 control-label">招标文件</label>
     <div class="col-md-6">
-        <input type="file" name="files" id="demo-fileInput-7" multiple="multiple">
+        <input type="file" name="files" id="demo-fileInput-1" multiple="multiple">
     </div>
 </div>
 <input type="hidden" name="project_id" value="{{ $project_id }}">

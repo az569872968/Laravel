@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Models\Member;
 use App\Models\Tender;
 use Illuminate\Http\Request;
 
@@ -26,9 +27,9 @@ class TenderController extends Controller
             $list   = Tender::where(function ($query) use ($search) {
                 $query->where('numbering', 'LIKE', '%' . $search. '%')
                     ->orWhere('tender_name', 'like', '%' . $search . '%');
-            })->where($Map)->paginate(5);
+            })->where($Map)->orderBy('id', 'desc')->paginate(5);
         }else{
-            $list   = Tender::where($Map)->paginate(5);
+            $list   = Tender::where($Map)->orderBy('id', 'desc')->paginate(5);
         }
         return view('admin.tender.index', array('list'=>$list, 'project_id'=>$request->get('project_id'), 'fid'=>$request->get('fid')));
     }
@@ -156,5 +157,69 @@ class TenderController extends Controller
         }
         return redirect()->back()
             ->withSuccess("删除成功");
+    }
+
+
+    /**
+     * 项目会员列表
+     *
+     * @param Request $request
+     * @param $id
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function user( Request $request, $id ){
+        $tender       = Tender::find( (int)$id );
+        $search       = $request->get('search');
+        $user_id      = ltrim( $tender->user_id, ',');
+        $MapUser      = explode( ',', rtrim($user_id, ",") );
+        if( empty($search) ){
+            $MemberList   = Member::select('id','user_name','user_nickname','created_at','user_role','user_phone')->whereIn('id', $MapUser)->get();
+        }else{
+            $MemberList   = Member::select('id','user_name','user_nickname','created_at','user_role','user_phone')->where('user_name', 'LIKE', '%' .$search. '%')->orwhere('user_nickname', 'LIKE', '%'.$search.'%')->get();
+        }
+        return view('admin.tender.member', array('id'=>$id, 'list'=>$MemberList, 'mapuser'=>$MapUser, 'project_id'=>$tender['project_id'], 'fid'=>$tender['fid']));
+    }
+
+
+
+    /**
+     * 追加项目会员
+     *
+     * @param Request $request
+     * @param $id
+     * @return mixed
+     */
+    public function user_add( Request $request, $id){
+        $tender             = Tender::find( (int)$id );
+        $user_id            = $request->get('user_id');
+        $row                = $tender->user_id;
+        if( empty($row) ){
+            $row            = ','.$user_id.',';   //追加会员
+        }else{
+            $row            = $row.$user_id.',';   //追加会员
+        }
+        $tender->user_id    = $row;
+        $tender->save();
+        return redirect("/admin/tender/$id/user")->withSuccess('添加成功！');
+    }
+
+
+    /**
+     * 删除项目会员
+     *
+     * @param Request $request
+     * @param $id
+     * @return mixed
+     */
+    public function user_del( Request $request, $id){
+        $tender             = Tender::find( (int)$id );
+        $user_id            = $request->get('user_id');
+        $row                = ltrim(rtrim($tender->user_id, ','), ',');
+        $row                = explode(',', $row);
+        $key                = array_search($user_id, $row);
+        unset($row[$key]);
+        $tender->user_id   = ','.implode(',', $row).',';
+        $tender->save();
+        return redirect("/admin/tender/$id/user")->withSuccess('成功！');
     }
 }
