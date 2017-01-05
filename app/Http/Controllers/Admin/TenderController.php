@@ -27,9 +27,9 @@ class TenderController extends Controller
             $list   = Tender::where(function ($query) use ($search) {
                 $query->where('numbering', 'LIKE', '%' . $search. '%')
                     ->orWhere('tender_name', 'like', '%' . $search . '%');
-            })->where($Map)->orderBy('id', 'desc')->paginate(5);
+            })->where($Map)->orderBy('id', 'desc')->paginate(10);
         }else{
-            $list   = Tender::where($Map)->orderBy('id', 'desc')->paginate(5);
+            $list   = Tender::where($Map)->orderBy('id', 'desc')->paginate(10);
         }
         return view('admin.tender.index', array('list'=>$list, 'project_id'=>$request->get('project_id'), 'fid'=>$request->get('fid')));
     }
@@ -173,9 +173,9 @@ class TenderController extends Controller
         $user_id      = ltrim( $tender->user_id, ',');
         $MapUser      = explode( ',', rtrim($user_id, ",") );
         if( empty($search) ){
-            $MemberList   = Member::select('id','user_name','user_nickname','created_at','user_role','user_phone')->whereIn('id', $MapUser)->get();
+            $MemberList   = Member::select('id','user_name','user_nickname','created_at','user_role','user_phone')->whereIn('id', $MapUser)->paginate(10);
         }else{
-            $MemberList   = Member::select('id','user_name','user_nickname','created_at','user_role','user_phone')->where('user_name', 'LIKE', '%' .$search. '%')->orwhere('user_nickname', 'LIKE', '%'.$search.'%')->get();
+            $MemberList   = Member::select('id','user_name','user_nickname','created_at','user_role','user_phone')->where('user_name', 'LIKE', '%' .$search. '%')->orwhere('user_nickname', 'LIKE', '%'.$search.'%')->paginate(10);
         }
         return view('admin.tender.member', array('id'=>$id, 'list'=>$MemberList, 'mapuser'=>$MapUser, 'project_id'=>$tender['project_id'], 'fid'=>$tender['fid']));
     }

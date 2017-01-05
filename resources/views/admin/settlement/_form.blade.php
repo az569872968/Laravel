@@ -23,9 +23,15 @@
     </div>
 </div>
 <div class="form-group">
-    <label for="tag" class="col-md-3 control-label">时间</label>
+    <label for="tag" class="col-md-3 control-label">日期</label>
     <div class="col-md-6">
         <input type="date" class="form-control" name="date" id="tag" value="{{ $date }}" autofocus>
+    </div>
+</div>
+<div class="form-group">
+    <label for="tag" class="col-md-3 control-label">进度</label>
+    <div class="col-md-6">
+        <input type="text" class="form-control" name="schedule" id="tag" value="{{ $schedule }}" autofocus>
     </div>
 </div>
 <div class="form-group">

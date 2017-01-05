@@ -14,6 +14,8 @@
                 <li><a href="/home/project/index"><span>项目列表</span></a></li>
                 <li class="ml25 mr25"><i class="fa fa-angle-right"></i></li>
                 <li><a href="/home/project/show?id={{ $info['id'] }}"><span>{{ $info['project_name'] }}</span></a></li>
+                <li class="ml25 mr25"><i class="fa fa-angle-right"></i></li>
+                <li><a href="#"><span>工程预算</span></a></li>
             </ul><!--./list-item-->
         </div><!--./main-module-->
     </div><!--./bread-crumbs-wrap-->
@@ -57,7 +59,7 @@
                         </a>
                     </th>
                     <th width="150">
-                        <span>备注</span>
+                        <span>进度</span>
                     </th>
                     <th>
                         <span>文件下载</span>
@@ -73,7 +75,7 @@
                     <td>{{ $value['name'] }}</td>
                     <td>{{ $value['file_member'] }}</td>
                     <td>{{ date('Y-m-d', strtotime($value['updated_at'])) }}</td>
-                    <td>{{ $value['remark'] }}</td>
+                    <td>{{ $value['schedule'] }}</td>
                     <td>
                         @if( is_null($value['excel']) )
                         <button type="button" class="down-btn"><i class="fa fa-download mr5"></i>下载文件</button>
@@ -97,7 +99,7 @@
                                 <td width="195">{{ $val['name'] }}</td>
                                 <td width="140">{{ $val['file_member'] }}</td>
                                 <td width="110">{{ date('Y-m-d', strtotime($val['updated_at'])) }}</td>
-                                <td width="150">{{ $val['remark'] }}</td>
+                                <td width="150">{{ $val['schedule'] }}</td>
                                 <td>
                                 @if( is_null($val['excel']) )
                                     <button type="button" class="down-btn"><i class="fa fa-download mr5"></i>下载文件</button>
@@ -121,7 +123,7 @@
                                             <td width="195">{{ $data['name'] }}</td>
                                             <td width="140">{{ $data['file_member'] }}</td>
                                             <td width="110">{{ date('Y-m-d', strtotime($data['updated_at'])) }}</td>
-                                            <td width="150">{{ $data['remark'] }}</td>
+                                            <td width="150">{{ $data['schedule'] }}</td>
                                             <td>
                                             @if( is_null($data['excel']) )
                                                 <button type="button" class="down-btn"><i class="fa fa-download mr5"></i>下载文件</button>
@@ -145,7 +147,7 @@
                                                         <td width="195">{{ $values['name'] }}</td>
                                                         <td width="140">{{ $values['file_member'] }}</td>
                                                         <td width="110">{{ date('Y-m-d', strtotime($values['updated_at'])) }}</td>
-                                                        <td width="150">{{ $values['remark'] }}</td>
+                                                        <td width="150">{{ $values['schedule'] }}</td>
                                                         <td>
                                                         @if( is_null($values['excel']) )
                                                             <button type="button" class="down-btn"><i class="fa fa-download mr5"></i>下载文件</button>

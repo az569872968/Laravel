@@ -170,6 +170,14 @@ Breadcrumbs::register("admin.user.manage", function ($breadcrumbs){
                   $breadcrumbs->parent("admin.tender.index");
                           $breadcrumbs->push("招标会员列表", route("admin.tender.user"));
                         });
+                  Breadcrumbs::register("admin.contract.user", function ($breadcrumbs) {
+                  $breadcrumbs->parent("admin.contract.index");
+                          $breadcrumbs->push("会员权限", route("admin.contract.user"));
+                        });
+                  Breadcrumbs::register("admin.settlement.user", function ($breadcrumbs) {
+                  $breadcrumbs->parent("admin.settlement.index");
+                          $breadcrumbs->push("会员权限", route("admin.settlement.user"));
+                        });
                   Breadcrumbs::register("admin.homeimage.manage", function ($breadcrumbs){
         $breadcrumbs->push("首页管理", route("admin.homeimage.manage"));
     });Breadcrumbs::register("admin.homeimage.index", function ($breadcrumbs) {

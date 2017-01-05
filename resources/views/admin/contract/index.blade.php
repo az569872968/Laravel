@@ -24,7 +24,7 @@
             <form action="{{ URL("/admin/contract/index") }}" method="get">
                 <input type="hidden" name="project_id" value="{{ $project_id }}">
                 <input type="hidden" name="fid" value="{{ $fid }}">
-                工程名称<input type="text" name="search">
+                合同名称/合同编号<input type="text" name="search">
                 <input type="submit" value="搜索">
             </form>
         </div>
@@ -42,8 +42,8 @@
                             <th class="hidden-sm">合同编号</th>
                             <th class="hidden-sm">合同名称</th>
                             <th class="hidden-md">文件编号</th>
-                            <th class="hidden-sm">添加日期</th>
-                            <th class="hidden-sm">备注</th>
+                            <th class="hidden-sm">日期</th>
+                            <th class="hidden-sm">进度</th>
                             <th class="hidden-sm">文件下载</th>
                             <th data-sortable="false">操作</th>
                         </tr>
@@ -53,10 +53,11 @@
                                 <th class="hidden-sm">{{$value['numbering']}}</th>
                                 <th class="hidden-sm">{{$value['name']}}</th>
                                 <th class="hidden-md">{{$value['file_num']}}</th>
-                                <th class="hidden-md">{{$value['created_at']}}</th>
-                                <th class="hidden-md">{{$value['remark']}}</th>
-                                <th class="hidden-md"><a href="/admin/common/download?path={{ $value['file_path'] }}&name={{$value['tender_name']}}" >下载</a></th>
-                                <th class="hidden-md"><a href="{{ URL("/admin/contract/index?project_id=$project_id&fid=".$value['id']) }}">查看下级文件</a>&nbsp;&nbsp;<a href="/admin/contract/{{$value['id']}}/edit?project_id={{ $value['project_id'] }}">编辑</a>&nbsp;&nbsp;<span style="cursor: pointer;" class="delBtn X-Small btn-xs text-danger "><li class="fa fa-times-circle-o" onclick="check_del({{$value['id']}})">删除</li></span> </th>
+                                <th class="hidden-md">{{date('Y-m-d', strtotime($value['date_time']))}}</th>
+                                <th class="hidden-md">{{$value['schedule']}}</th>
+                                <th class="hidden-md"><a href="/admin/common/download?path={{ $value['file_path'] }}&name={{$value['tender_name']}}" >下载文件</a>
+                                <a href="/admin/common/download?path={{ $value['file_annex'] }}&name={{$value['tender_name']}}" >下载附件</a></th>
+                                <th class="hidden-md"><a href="/admin/contract/{{$value['id']}}/user">会员列表</a>  <a href="{{ URL("/admin/contract/index?project_id=$project_id&fid=".$value['id']) }}">查看下级文件</a>&nbsp;&nbsp;<a href="/admin/contract/{{$value['id']}}/edit?project_id={{ $value['project_id'] }}">编辑</a>&nbsp;&nbsp;<span style="cursor: pointer;" class="delBtn X-Small btn-xs text-danger "><li class="fa fa-times-circle-o" onclick="check_del({{$value['id']}})">删除</li></span> </th>
                             </tr>
                         @endforeach
                         </thead>

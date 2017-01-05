@@ -26,9 +26,9 @@ class ProjectController extends Controller
         if( count($search) > 0){
             $list   = Project::where(function ($query) use ($search) {
                 $query->where('project_name', 'LIKE', '%' . $search. '%');
-            })->orderBy('id', 'desc')->paginate(5);
+            })->orderBy('id', 'desc')->paginate(10);
         }else{
-            $list   = Project::orderBy('id', 'desc')->paginate(5);
+            $list   = Project::orderBy('id', 'desc')->paginate(10);
         }
         return view('admin.project.index')->with('list',$list);
     }
@@ -172,9 +172,9 @@ class ProjectController extends Controller
         $user_id      = ltrim( $project->user_id, ',');
         $MapUser      = explode( ',', rtrim($user_id, ",") );
         if( empty($search) ){
-            $MemberList   = Member::select('id','user_name','user_nickname','created_at','user_role','user_phone')->whereIn('id', $MapUser)->get();
+            $MemberList   = Member::select('id','user_name','user_nickname','created_at','user_role','user_phone')->whereIn('id', $MapUser)->paginate(15);
         }else{
-            $MemberList   = Member::select('id','user_name','user_nickname','created_at','user_role','user_phone')->where('user_name', 'LIKE', '%' .$search. '%')->orwhere('user_nickname', 'LIKE', '%'.$search.'%')->get();
+            $MemberList   = Member::select('id','user_name','user_nickname','created_at','user_role','user_phone')->where('user_name', 'LIKE', '%' .$search. '%')->orwhere('user_nickname', 'LIKE', '%'.$search.'%')->paginate(15);
         }
         return view('admin.project.member', array('id'=>$id, 'list'=>$MemberList, 'mapuser'=>$MapUser));
     }

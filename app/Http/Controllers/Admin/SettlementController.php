@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Models\Member;
 use App\Models\Settlement;
 use Illuminate\Http\Request;
 
@@ -173,5 +174,70 @@ class SettlementController extends Controller
         }
         return redirect()->back()
             ->withSuccess("删除成功");
+    }
+
+
+
+    /**
+     * 项目会员列表
+     *
+     * @param Request $request
+     * @param $id
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function user( Request $request, $id ){
+        $settlement   = Settlement::find( (int)$id );
+        $search       = $request->get('search');
+        $user_id      = ltrim( $settlement->user_id, ',');
+        $MapUser      = explode( ',', rtrim($user_id, ",") );
+        if( empty($search) ){
+            $MemberList   = Member::select('id','user_name','user_nickname','created_at','user_role','user_phone')->whereIn('id', $MapUser)->paginate(10);
+        }else{
+            $MemberList   = Member::select('id','user_name','user_nickname','created_at','user_role','user_phone')->where('user_name', 'LIKE', '%' .$search. '%')->orwhere('user_nickname', 'LIKE', '%'.$search.'%')->paginate(10);
+        }
+        return view('admin.settlement.member', array('id'=>$id, 'list'=>$MemberList, 'mapuser'=>$MapUser, 'project_id'=>$settlement['project_id'], 'fid'=>$settlement['fid']));
+    }
+
+
+
+    /**
+     * 追加项目会员
+     *
+     * @param Request $request
+     * @param $id
+     * @return mixed
+     */
+    public function user_add( Request $request, $id){
+        $settlement         = Settlement::find( (int)$id );
+        $user_id            = $request->get('user_id');
+        $row                = $settlement->user_id;
+        if( empty($row) ){
+            $row            = ','.$user_id.',';   //追加会员
+        }else{
+            $row            = $row.$user_id.',';   //追加会员
+        }
+        $settlement->user_id    = $row;
+        $settlement->save();
+        return redirect("/admin/settlement/$id/user")->withSuccess('添加成功！');
+    }
+
+
+    /**
+     * 删除项目会员
+     *
+     * @param Request $request
+     * @param $id
+     * @return mixed
+     */
+    public function user_del( Request $request, $id){
+        $settlement         = Settlement::find( (int)$id );
+        $user_id            = $request->get('user_id');
+        $row                = ltrim(rtrim($settlement->user_id, ','), ',');
+        $row                = explode(',', $row);
+        $key                = array_search($user_id, $row);
+        unset($row[$key]);
+        $settlement->user_id   = ','.implode(',', $row).',';
+        $settlement->save();
+        return redirect("/admin/settlement/$id/user")->withSuccess('成功！');
     }
 }

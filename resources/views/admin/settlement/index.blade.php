@@ -12,7 +12,7 @@
         </div>
         <div class="col-md-6 text-right">
             <a href="{{ URL("/admin/settlement/create?project_id=$project_id&fid=$fid") }}" class="btn btn-success btn-md">
-                <i class="fa fa-plus-circle"></i> 添加结算文件
+                <i class="fa fa-plus-circle"></i> 添加工程预算
             </a>
         </div>
     </div>
@@ -42,7 +42,7 @@
                             <th class="hidden-sm">名称</th>
                             <th class="hidden-md">文件编号</th>
                             <th class="hidden-sm">日期</th>
-                            <th class="hidden-sm">备注</th>
+                            <th class="hidden-sm">进度</th>
                             <th class="hidden-sm">Excel下载</th>
                             <th class="hidden-sm">CAD下载</th>
                             <th data-sortable="false">操作</th>
@@ -54,10 +54,10 @@
                                 <th class="hidden-sm">{{$value['name']}}</th>
                                 <th class="hidden-md">{{$value['file_member']}}</th>
                                 <th class="hidden-md">{{$value['date']}}</th>
-                                <th class="hidden-md">{{$value['remark']}}</th>
-                                <th class="hidden-md"><a href="/admin/common/download?path={{ $value['file_path'] }}&name={{$value['tender_name']}}" >下载</a></th>
-                                <th class="hidden-md"><a href="/admin/common/download?path={{ $value['file_path'] }}&name={{$value['tender_name']}}" >下载</a></th>
-                                <th class="hidden-md"><a href="{{ URL("/admin/settlement/index?project_id=$project_id&fid=".$value['id']) }}">查看下级文件</a>&nbsp;&nbsp;<a href="/admin/settlement/{{$value['id']}}/edit?project_id={{ $value['project_id'] }}">编辑</a>&nbsp;&nbsp;<span style="cursor: pointer;" class="delBtn X-Small btn-xs text-danger "><li class="fa fa-times-circle-o" onclick="check_del({{$value['id']}})">删除</li></span> </th>
+                                <th class="hidden-md">{{$value['schedule']}}</th>
+                                <th class="hidden-md"><a href="/admin/common/download?path={{ $value['excel'] }}&name={{$value['name']}}" >下载</a></th>
+                                <th class="hidden-md"><a href="/admin/common/download?path={{ $value['cad'] }}&name={{$value['name']}}" >下载</a></th>
+                                <th class="hidden-md"><a href="/admin/settlement/{{$value['id']}}/user">会员列表</a>  <a href="{{ URL("/admin/settlement/index?project_id=$project_id&fid=".$value['id']) }}">查看下级文件</a>&nbsp;&nbsp;<a href="/admin/settlement/{{$value['id']}}/edit?project_id={{ $value['project_id'] }}">编辑</a>&nbsp;&nbsp;<span style="cursor: pointer;" class="delBtn X-Small btn-xs text-danger "><li class="fa fa-times-circle-o" onclick="check_del({{$value['id']}})">删除</li></span> </th>
                             </tr>
                         @endforeach
                         </thead>

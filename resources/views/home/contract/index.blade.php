@@ -14,6 +14,8 @@
                     <li><a href="/home/project/index"><span>项目列表</span></a></li>
                     <li class="ml25 mr25"><i class="fa fa-angle-right"></i></li>
                     <li><a href="/home/project/show?id={{ $info['id'] }}"><span>{{ $info['project_name'] }}</span></a></li>
+                    <li class="ml25 mr25"><i class="fa fa-angle-right"></i></li>
+                    <li><a href="#"><span>进度变更统计</span></a></li>
                 </ul><!--./list-item-->
             </div><!--./main-module-->
         </div><!--./bread-crumbs-wrap-->
@@ -23,7 +25,7 @@
             <div class="main-module clearfix pt30 pb15">
                 <div class="form-search-container fr clearfix">
                     <div class="search-box fl mr15 clearfix">
-                        <input type="text" class="input-txt" name="" id="" value="" placeholder="输入文件编号进行搜索" />
+                        <input type="text" class="input-txt" name="" id="" value="" placeholder="名称或者编号" />
                     </div><!--./search-box-->
                     <div class="search-btn fr"><button type="button">搜索</button></div>
                 </div><!--./form-search-box-->
@@ -57,7 +59,7 @@
                             </a>
                         </th>
                         <th width="150">
-                            <span>备注</span>
+                            <span>进度</span>
                         </th>
                         <th>
                             <span>文件下载</span>
@@ -72,8 +74,8 @@
                             <td>{{ $value['numbering'] }}</td>
                             <td>{{ $value['name'] }}</td>
                             <td>{{ $value['file_num'] }}</td>
-                            <td>{{ date('Y-m-d', strtotime($value['updated_at'])) }}</td>
-                            <td>{{ $value['remark'] }}</td>
+                            <td>{{ date('Y-m-d', strtotime($value['date_time'])) }}</td>
+                            <td>{{ $value['schedule'] }}</td>
                             <td>
                                 <button type="button" class="down-btn"><i class="fa fa-download mr5"></i>下载</button>
                             </td>
@@ -91,8 +93,8 @@
                                                 <td width="100">{{ $val['numbering'] }}</td>
                                                 <td width="195">{{ $val['name'] }}</td>
                                                 <td width="140">{{ $val['file_num'] }}</td>
-                                                <td width="110">{{ date('Y-m-d', strtotime($val['updated_at'])) }}</td>
-                                                <td width="150">{{ $val['remark'] }}</td>
+                                                <td width="110">{{ date('Y-m-d', strtotime($val['date_time'])) }}</td>
+                                                <td width="150">{{ $val['schedule'] }}</td>
                                                 <td>
                                                     <button type="button" class="down-btn"><i class="fa fa-download mr5"></i>下载</button>
                                                 </td>
@@ -110,8 +112,8 @@
                                                                     <td width="100">{{ $data['numbering'] }}</td>
                                                                     <td width="195">{{ $data['name'] }}</td>
                                                                     <td width="140">{{ $data['file_num'] }}</td>
-                                                                    <td width="110">{{ date('Y-m-d', strtotime($data['updated_at'])) }}</td>
-                                                                    <td width="150">{{ $data['remark'] }}</td>
+                                                                    <td width="110">{{ date('Y-m-d', strtotime($data['date_time'])) }}</td>
+                                                                    <td width="150">{{ $data['schedule'] }}</td>
                                                                     <td>
                                                                         <button type="button" class="down-btn"><i class="fa fa-download mr5"></i>下载</button>
                                                                     </td>
@@ -129,8 +131,8 @@
                                                                                         <td width="100">{{ $values['numbering'] }}</td>
                                                                                         <td width="195">{{ $values['name'] }}</td>
                                                                                         <td width="140">{{ $values['file_num'] }}</td>
-                                                                                        <td width="110">{{ date('Y-m-d', strtotime($values['updated_at'])) }}</td>
-                                                                                        <td width="150">{{ $values['remark'] }}</td>
+                                                                                        <td width="110">{{ date('Y-m-d', strtotime($values['date_time'])) }}</td>
+                                                                                        <td width="150">{{ $values['schedule'] }}</td>
                                                                                         <td>
                                                                                             <button type="button" class="down-btn"><i class="fa fa-download mr5"></i>下载</button>
                                                                                         </td>

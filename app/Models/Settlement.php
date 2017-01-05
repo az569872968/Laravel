@@ -27,6 +27,8 @@ class Settlement extends Model
         'remark'        =>'',
         'fid'           =>0,
         'excel'         =>'',
+        'schedule'      =>'',
+        'date_time'     =>'',
         'cad'           =>''
     );
 }

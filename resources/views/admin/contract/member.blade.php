@@ -10,21 +10,22 @@
 
     <div class="row page-title-row" style="margin:5px;">
         <div class="col-md-6">
+            <a style="margin:3px;"  href="/admin/contract/index?project_id={{$project_id}}&fid={{$fid}}"
+               class="btn btn-warning btn-md animation-shake reloadBtn"><i class="fa fa-mail-reply-all"></i> 返回项目列表
+            </a>
         </div>
         <div class="col-md-6 text-right">
-            <a href="{{ URL("/admin/tender/create?project_id=$project_id&fid=$fid") }}" class="btn btn-success btn-md">
-                <i class="fa fa-plus-circle"></i> 添加招标文件
-            </a>
+            {{--<a href="/admin/project/user" class="btn btn-success btn-md">--}}
+                {{--<i class="fa fa-plus-circle"></i> 添加会员--}}
+            {{--</a>--}}
         </div>
     </div>
     <div class="row page-title-row" style="margin:5px;">
         <div class="col-md-6">
         </div>
         <div class="col-md-6 text-right">
-            <form action="{{ URL("/admin/tender/index") }}" method="get">
-                <input type="hidden" name="project_id" value="{{ $project_id }}">
-                <input type="hidden" name="fid" value="{{ $fid }}">
-                文件名称/文件编号<input type="text" name="search">
+            <form action="" method="get">
+                会员账号/昵称:<input type="text" name="search" value="{{ Request::get('search') }}">
                 <input type="submit" value="搜索">
             </form>
         </div>
@@ -39,26 +40,27 @@
                         <thead>
                         <tr>
                             <th data-sortable="false" class="hidden-sm"></th>
-                            <th class="hidden-sm">合同编号</th>
-                            <th class="hidden-sm">招标名称</th>
-                            <th class="hidden-md">招标编号</th>
-                            <th class="hidden-sm">日期</th>
-                            <th class="hidden-sm">进度</th>
-                            <th class="hidden-sm">备注</th>
-                            <th class="hidden-sm">文件下载</th>
+                            <th class="hidden-sm">会员账号</th>
+                            <th class="hidden-sm">会员昵称</th>
+                            <th class="hidden-sm">手机号码</th>
+                            <th class="hidden-sm">会员类型</th>
+                            <th class="hidden-md">注册时间</th>
                             <th data-sortable="false">操作</th>
                         </tr>
                         @foreach($list as $item=>$value)
                             <tr>
                                 <th data-sortable="false" class="hidden-sm">{{$item+1}}</th>
-                                <th class="hidden-sm">{{$value['numbering']}}</th>
-                                <th class="hidden-sm">{{$value['tender_name']}}</th>
-                                <th class="hidden-md">{{$value['file_num']}}</th>
-                                <th class="hidden-md">{{$value['date_time']}}</th>
-                                <th class="hidden-md">{{$value['schedule']}}</th>
-                                <th class="hidden-md">{{$value['remark']}}</th>
-                                <th class="hidden-md"><a href="/admin/common/download?path={{ $value['file_path'] }}&name={{$value['tender_name']}}" >下载</a></th>
-                                <th class="hidden-md"><a href="/admin/tender/{{$value['id']}}/user">会员列表</a>  <a href="{{ URL("/admin/tender/index?project_id=$project_id&fid=".$value['id']) }}">查看下级文件</a>&nbsp;&nbsp;<a href="/admin/tender/{{$value['id']}}/edit?project_id={{ $value['project_id'] }}">编辑</a>&nbsp;&nbsp;<span style="cursor: pointer;" class="delBtn X-Small btn-xs text-danger "><li class="fa fa-times-circle-o" onclick="check_del({{$value['id']}})">删除</li></span> </th>
+                                <th class="hidden-sm">{{$value['user_name']}}</th>
+                                <th class="hidden-sm">{{$value['user_nickname']}}</th>
+                                <th class="hidden-sm">{{$value['user_phone']}}</th>
+                                <th class="hidden-md">{{$value['user_role']}}</th>
+                                <th class="hidden-md">{{$value['created_at']}}</th>
+                                <th class="hidden-md">
+                                @if( !in_array($value['id'], $mapuser) )
+                                    <li class="fa fa-plus-circle" onclick=""><a href="/admin/contract/{{$id}}/user_add?user_id={{$value['id']}}">添加 </a></li>
+                                @endif
+                                    <li class="fa fa-times-circle-o"><a href="/admin/contract/{{$id}}/user_del?user_id={{$value['id']}}" style="color: red"> 删除</a></li>
+                                </th>
                             </tr>
                         @endforeach
                         </thead>
@@ -71,11 +73,12 @@
     </div>
     <div class="row">
         <div class="col-sm-5">
+            {{--<div class="dataTables_info" id="tags-table_info" role="status" aria-live="polite">显示第 1 至 2 项结果，共 2 项</div>--}}
         </div>
         <div class="col-sm-7">
             <div class="dataTables_paginate paging_simple_numbers">
                 <ul class="pagination">
-                    {{ $list->appends(['project_id' => $project_id, 'fid'=>$fid])->render() }}
+                    {{ $list->render() }}
                 </ul>
             </div>
         </div>
@@ -98,7 +101,7 @@
                     </p>
                 </div>
                 <div class="modal-footer">
-                    <form class="deleteForm" method="POST" action="/admin/project">
+                    <form class="deleteForm" method="POST" action="/admin/contract">
                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
                         <input type="hidden" name="_method" value="DELETE">
                         <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
@@ -108,11 +111,11 @@
                     </form>
                 </div>
             </div>
-    <script type="text/javascript">
-        function check_del(id) {
-            $('.deleteForm').attr('action', '/admin/tender/' + id);
-            $("#modal-delete").modal();
-            return false;
-        }
-    </script>
+            <script type="text/javascript">
+                function check_del(id) {
+                    $('.deleteForm').attr('action', '/admin/contract/' + id);
+                    $("#modal-delete").modal();
+                    return false;
+                }
+            </script>
 @stop

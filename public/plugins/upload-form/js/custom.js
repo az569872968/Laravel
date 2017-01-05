@@ -10,7 +10,13 @@ $(document).ready(function(){
     $('#demo-fileInput-1').filer({
         limit: 3,
         maxSize: 3,
-        extensions: ['xlsx', 'xls'],
+        changeInput: true,
+        showThumbs: true,
+        files:[{name:'Excel.xlsx',size:'',type:"xlsx",file:$('#file_excel').val()}]
+    });
+    $('#demo-fileInput-3').filer({
+        limit: 3,
+        maxSize: 3,
         changeInput: true,
         showThumbs: true,
         files:[{name:'Excel.xlsx',size:'',type:"xlsx",file:$('#file_excel').val()}]

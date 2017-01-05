@@ -78,15 +78,7 @@
         <div class="col-sm-7">
             <div class="dataTables_paginate paging_simple_numbers">
                 <ul class="pagination">
-                    <li class="paginate_button previous disabled">
-                        <a href="#" aria-controls="tags-table" data-dt-idx="0" tabindex="0">上页</a>
-                    </li>
-                    <li class="paginate_button active">
-                        <a href="#" aria-controls="tags-table" data-dt-idx="1" tabindex="0">1</a>
-                    </li>
-                    <li class="paginate_button next disabled">
-                        <a href="#" aria-controls="tags-table" data-dt-idx="2" tabindex="0">下页</a>
-                    </li>
+                    {{ $list->render() }}
                 </ul>
             </div>
         </div>

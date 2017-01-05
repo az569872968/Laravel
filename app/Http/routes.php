@@ -93,7 +93,7 @@ $router->group(['namespace' => 'Admin', 'middleware' => ['auth','menu','web','au
     Route::get('admin/project/{id}/user_del', ['as' => 'admin.project.user_del', 'uses' => 'ProjectController@user_del']); //会员列表
     Route::get('admin/project/{id?}/summary', ['as' => 'admin.project.summary', 'uses' => 'ProjectController@summary']);
 
-    //招标文件路由
+    //招标文件
     Route::get('admin/tender/index', ['as' => 'admin.tender.index', 'uses' => 'TenderController@index']);
     Route::resource('admin/tender', 'TenderController');
     Route::put('admin/tender/update', ['as' => 'admin.tender.edit', 'uses' => 'TenderController@update']); //修改
@@ -107,6 +107,9 @@ $router->group(['namespace' => 'Admin', 'middleware' => ['auth','menu','web','au
     Route::resource('admin/contract', 'ContractController');
     Route::put('admin/contract/update', ['as' => 'admin.contract.edit', 'uses' => 'ContractController@update']); //修改
     Route::any('admin/contract/store', ['as' => 'admin.contract.create', 'uses' => 'ContractController@store']); //添加
+    Route::get('admin/contract/{id?}/user', ['as' => 'admin.contract.user', 'uses' => 'ContractController@user']); //会员列表
+    Route::get('admin/contract/{id}/user_add', ['as' => 'admin.contract.user_add', 'uses' => 'ContractController@user_add']); //会员列表
+    Route::get('admin/contract/{id}/user_del', ['as' => 'admin.contract.user_del', 'uses' => 'ContractController@user_del']); //会员列表
 
     //会员管理路由
     Route::post('admin/member/index', ['as' => 'admin.member.index', 'uses' => 'MemberController@index']);
@@ -115,11 +118,14 @@ $router->group(['namespace' => 'Admin', 'middleware' => ['auth','menu','web','au
     Route::post('admin/member/store', ['as' => 'admin.member.create', 'uses' => 'MemberController@store']); //添加
 
 
-    //结算文件路由
+    //工程预算路由
     Route::get('admin/settlement/index', ['as' => 'admin.settlement.index', 'uses' => 'SettlementController@index']);
     Route::resource('admin/settlement', 'SettlementController');
     Route::put('admin/settlement/update', ['as' => 'admin.settlement.edit', 'uses' => 'SettlementController@update']);
     Route::any('admin/settlement/store', ['as' => 'admin.settlement.create', 'uses' => 'SettlementController@store']);
+    Route::get('admin/settlement/{id?}/user', ['as' => 'admin.settlement.user', 'uses' => 'SettlementController@user']); //会员列表
+    Route::get('admin/settlement/{id}/user_add', ['as' => 'admin.settlement.user_add', 'uses' => 'SettlementController@user_add']); //会员列表
+    Route::get('admin/settlement/{id}/user_del', ['as' => 'admin.settlement.user_del', 'uses' => 'SettlementController@user_del']); //会员列表
 
 
     //首页图片管理理由

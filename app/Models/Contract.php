@@ -25,6 +25,9 @@ class Contract extends Model
         'name'=>'',
         'file_num'=>'',
         'file_path'=>'',
+        'file_annex'=>'',
+        'schedule'=>'',
+        'date_time'=>'',
         'remark'=>''
     ];
 }

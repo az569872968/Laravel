@@ -69,6 +69,7 @@
                         </a>
                         <ul class="list-item">
                             <li><a href="javascript:;">{{ Session::get('user')->user_name }}</a></li>
+                            <li><a href="/home/project/index">进入项目</a></li>
                             <li><a href="javascript:;" class="login-out">登出</a></li>
                         </ul>
                     </li>

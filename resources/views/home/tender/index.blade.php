@@ -14,6 +14,8 @@
                 <li><a href="/home/project/index"><span>项目列表</span></a></li>
                 <li class="ml25 mr25"><i class="fa fa-angle-right"></i></li>
                 <li><a href="/home/project/show?id={{ $info['id'] }}"><span>{{ $info['project_name'] }}</span></a></li>
+                <li class="ml25 mr25"><i class="fa fa-angle-right"></i></li>
+                <li><a href="#"><span>工程招标</span></a></li>
             </ul><!--./list-item-->
         </div><!--./main-module-->
     </div><!--./bread-crumbs-wrap-->
