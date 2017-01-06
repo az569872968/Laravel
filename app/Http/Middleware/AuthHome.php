@@ -2,6 +2,7 @@
 
 namespace App\Http\Middleware;
 
+use App\Models\Link;
 use App\Models\Project;
 use Illuminate\Support\Facades\Session;
 use Closure;
@@ -33,7 +34,8 @@ class AuthHome
         }else{
             $list   = Project::where('user_id', 'LIKE', '%,'.$user_id.',%')->paginate(15);
         }
-        view()->share('project',$list);
+        $Link       = Link::get();
+        view()->with('project',$list, 'link', $Link);
         return $next($request);
     }
 }

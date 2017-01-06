@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Home;
 
+use App\Models\Link;
 use App\Models\Member;
 use App\QiDian;
 use Crypt;
@@ -15,7 +16,8 @@ class IndexController extends Controller
 {
     public function index()
     {
-        return view('home.index.index');
+        $Link       = Link::get(); // 友情链接
+        return view('home.index.index', array('link'=>$Link));
     }
 
     /**
