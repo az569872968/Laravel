@@ -35,7 +35,9 @@ class AuthHome
             $list   = Project::where('user_id', 'LIKE', '%,'.$user_id.',%')->paginate(15);
         }
         $Link       = Link::get();
-        view()->with('project',$list, 'link', $Link);
+        view()->share('project',$list);
+        view()->share('link',$Link);
+        //view()->with(array('project'=>$list, 'link'=>$Link));
         return $next($request);
     }
 }

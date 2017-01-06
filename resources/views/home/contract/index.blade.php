@@ -192,14 +192,9 @@
         <div class="bottom-link pb60">
             <h4 class="title tc pt30"><img src="/home/images/footer/link-title.png" width="254" height="46"/></h4>
             <ul class="link-list clearfix">
-                <li><a href="javascript:;"><img src="/home/images/footer/link-1.png" width="200" height="88"/></a></li>
-                <li><a href="javascript:;"><img src="/home/images/footer/link-2.png" width="200" height="88"/></a></li>
-                <li><a href="javascript:;"><img src="/home/images/footer/link-3.png" width="200" height="88"/></a></li>
-                <li><a href="javascript:;"><img src="/home/images/footer/link-4.png" width="200" height="88"/></a></li>
-                <li><a href="javascript:;"><img src="/home/images/footer/link-5.png" width="200" height="88"/></a></li>
-                <li><a href="javascript:;"><img src="/home/images/footer/link-6.png" width="200" height="88"/></a></li>
-                <li><a href="javascript:;"><img src="/home/images/footer/link-7.png" width="200" height="88"/></a></li>
-                <li><a href="javascript:;"><img src="/home/images/footer/link-8.png" width="200" height="88"/></a></li>
+                @foreach($link as $value)
+                    <li><a href="{{ $value['url'] }}" target="_blank"><img src="{{ $value['img'] }}" width="200" height="88"/></a></li>
+                @endforeach
             </ul><!--./link-list-->
         </div><!--./bottom-link-->
     </div><!--./end main-->

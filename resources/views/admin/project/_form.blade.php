@@ -36,7 +36,7 @@
     </div>
 </div>
 <div class="form-group">
-    <label for="tag" class="col-md-3 control-label">合同文件</label>
+    <label for="tag" class="col-md-3 control-label">项目图片</label>
     <div class="col-md-6">
         <input type="file" name="files" id="demo-fileInput-2" multiple="multiple">
     </div>

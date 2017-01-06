@@ -79,7 +79,7 @@ class ProjectController extends Controller
             $entension  = $file[0]-> getClientOriginalExtension(); //上传文件的后缀.
             $newName    = date('YmdHis').mt_rand(100,999).'.'.$entension;
             $path       = $file[0]-> move(base_path().'/public/uploads/'.date('Ymd'),$newName);
-            $filepath   = 'public/uploads/'.date('Ymd').'/'.$newName;
+            $filepath   = 'uploads/'.date('Ymd').'/'.$newName;
             $project->project_path = $filepath;
         }
         $project->save();
@@ -125,7 +125,7 @@ class ProjectController extends Controller
             $entension  = $file[0]-> getClientOriginalExtension(); //上传文件的后缀.
             $newName    = date('YmdHis').mt_rand(100,999).'.'.$entension;
             $path       = $file[0]-> move(base_path().'/public/uploads/imges/'.date('Ymd'),$newName);
-            $filepath   = 'public/uploads/imges/'.date('Ymd').'/'.$newName;
+            $filepath   = 'uploads/imges/'.date('Ymd').'/'.$newName;
             $project->project_path = $filepath;
         }
         $file           = $request->file('upload');
@@ -133,7 +133,7 @@ class ProjectController extends Controller
             $entension  = $file[0]-> getClientOriginalExtension(); //上传文件的后缀.
             $newName    = date('YmdHis').mt_rand(100,999).'.'.$entension;
             $path       = $file[0]-> move(base_path().'/public/uploads/imges/'.date('Ymd'),$newName);
-            $filepath   = 'public/uploads/file/'.date('Ymd').'/'.$newName;
+            $filepath   = 'uploads/file/'.date('Ymd').'/'.$newName;
             $project->summary = $filepath;
         }
         $project->save();

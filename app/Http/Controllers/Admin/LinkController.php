@@ -85,14 +85,16 @@ class LinkController extends Controller
     public function store(Request $request){
         $link    = new Link();
         foreach (array_keys($link->fields) as $field) {
-            $link->$field = $request->get($field);
+            if( !empty($request->get($field)) ){
+                $link->$field = $request->get($field);
+            }
         }
         $file           = $request->file('files');
         if(!empty($file[0]) && $file[0]->isValid()){
             $entension  = $file[0]-> getClientOriginalExtension(); //上传文件的后缀.
             $newName    = date('YmdHis').mt_rand(100,999).'.'.$entension;
             $path       = $file[0]-> move(base_path().'/public/uploads/imges/'.date('Ymd'),$newName);
-            $filepath   = 'public/uploads/imges/'.date('Ymd').'/'.$newName;
+            $filepath   = 'uploads/imges/'.date('Ymd').'/'.$newName;
             $link->img = $filepath;
         }
         $link->save();
@@ -125,7 +127,7 @@ class LinkController extends Controller
     public function update(Request $request, $id){
         $link    = Link::find((int)$id);
         foreach (array_keys($link->fields) as $field) {
-            if( $field != 'files'){
+            if( !empty($request->get($field)) ){
                 $link->$field = $request->get($field);
             }
         }
@@ -134,7 +136,7 @@ class LinkController extends Controller
             $entension  = $file[0]-> getClientOriginalExtension(); //上传文件的后缀.
             $newName    = date('YmdHis').mt_rand(100,999).'.'.$entension;
             $path       = $file[0]-> move(base_path().'/public/uploads/imges/'.date('Ymd'),$newName);
-            $filepath   = 'public/uploads/imges/'.date('Ymd').'/'.$newName;
+            $filepath   = 'uploads/imges/'.date('Ymd').'/'.$newName;
             $link->img = $filepath;
         }
         $link->save();

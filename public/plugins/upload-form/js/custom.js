@@ -5,7 +5,7 @@ $(document).ready(function(){
         extensions: ['jpg', 'jpeg', 'png'],
         changeInput: true,
         showThumbs: true,
-        files:[{name:'图片.jpg',size:'',type:"image/jpg",file:$('#file_img').val()}]
+        files:[{name:'图片.jpg',size:'',type:"image/jpg",file:'/uploads/imges/20170106/20170106215649861.jpg'}]
     });
     $('#demo-fileInput-1').filer({
         limit: 3,

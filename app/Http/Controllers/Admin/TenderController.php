@@ -86,7 +86,7 @@ class TenderController extends Controller
             $entension  = $file[0]-> getClientOriginalExtension(); //上传文件的后缀.
             $newName    = date('YmdHis').mt_rand(100,999).'.'.$entension;
             $path       = $file[0]-> move(base_path().'/public/uploads/file/'.date('Ymd'),$newName);
-            $filepath   = 'public/uploads/file/'.date('Ymd').'/'.$newName;
+            $filepath   = 'uploads/file/'.date('Ymd').'/'.$newName;
             $tender->file_path = $filepath;
         }
         $tender->save();
@@ -134,7 +134,7 @@ class TenderController extends Controller
             $entension  = $file[0]-> getClientOriginalExtension(); //上传文件的后缀.
             $newName    = date('YmdHis').mt_rand(100,999).'.'.$entension;
             $path       = $file[0]-> move(base_path().'/public/uploads/file/'.date('Ymd'),$newName);
-            $filepath   = 'public/uploads/file/'.date('Ymd').'/'.$newName;
+            $filepath   = 'uploads/file/'.date('Ymd').'/'.$newName;
             $tender->file_path = $filepath;
         }
         $tender->save();
