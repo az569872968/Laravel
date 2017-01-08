@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Session;
 
 class ContractController extends Controller
 {
@@ -22,15 +23,17 @@ class ContractController extends Controller
         if( isset($_GET['search']) && !empty($_GET['search'])){
             $search           = $request->get('search');
         }
+        $user_id              = Session::get('user')->id;
         $Map['project_id']    = $request->get('project_id');
         $Map['fid']           = 0;
         if( !empty($search) ){
-            $Object   = Contract::where(function ($query) use ($search, $Map) {
+            $Object   = Contract::where(function ($query) use ($search, $Map, $user_id) {
                 $query->where('numbering', 'LIKE', '%' . $search. '%')
-                    ->orWhere('tender_name', 'like', '%' . $search . '%');
+                    ->orWhere('tender_name', 'like', '%' . $search . '%')
+                    ->where('user_id', 'LIKE', '%,'.$user_id.',%');
             })->where($Map)->paginate(15);
         }else{
-            $Object   = Contract::where($Map)->paginate(15);
+            $Object   = Contract::where($Map)->where('user_id', 'LIKE', '%,'.$user_id.',%')->paginate(15);
         }
         $list         = $this->SelectAll($Object);
         $info         = Project::find((int)$request->get('project_id'));
