@@ -20,7 +20,6 @@ Route::group(['middleware' => ['web']], function () {
     Route::get('/', ['as' => 'home.index', 'uses'=>'Home\\IndexController@index']);
     Route::post('home/index/login', ['as' => 'home.index.login', 'uses'=>'Home\\IndexController@Login']);
     Route::get('home/index/loginout', ['as' => 'home.index.loginout', 'uses'=>'Home\\IndexController@loginout']);
-
 });
 
 
@@ -111,6 +110,12 @@ $router->group(['namespace' => 'Admin', 'middleware' => ['auth','menu','web','au
     Route::get('admin/contract/{id}/user_add', ['as' => 'admin.contract.user_add', 'uses' => 'ContractController@user_add']); //会员列表
     Route::get('admin/contract/{id}/user_del', ['as' => 'admin.contract.user_del', 'uses' => 'ContractController@user_del']); //会员列表
 
+    //施工预算路由
+    Route::resource('admin/budget', 'BudgetController');
+    Route::get('admin/budget/index', ['as' => 'admin.budget.index', 'uses' => 'BudgetController@index']);
+    Route::post('admin/budget/save' ,['as' => 'admin.budget.save', 'uses' => 'BudgetController@save']); //添加或者更新
+    Route::post('admin/budget/delete', ['as' => 'admin.budget.delete', 'uses' => 'BudgetController@delete']);//删除sheet
+
     //会员管理路由
     Route::post('admin/member/index', ['as' => 'admin.member.index', 'uses' => 'MemberController@index']);
     Route::resource('admin/member', 'MemberController');
@@ -144,7 +149,6 @@ $router->group(['namespace' => 'Admin', 'middleware' => ['auth','menu','web','au
 Route::get('admin', function () {
     return redirect('/admin/index');
 });
-
 
 
 Route::auth();
