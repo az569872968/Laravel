@@ -42,6 +42,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
   {{--loding--}}
   <link href="/dist/css/load/load.css" rel="stylesheet">
 
+  @yield('css')
+
 </head>
 <!--
 BODY TAG OPTIONS:
