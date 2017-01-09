@@ -37,23 +37,6 @@ class HomeImageController extends Controller
 
     }
 
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id){
-        $HomeImage   = HomeImage::find((int)$id);
-        if (!$HomeImage) return redirect('/admin/homeimage')->withErrors("找不到数据!");
-        foreach (array_keys($HomeImage->fields) as $field) {
-            $data[$field] = old($field, $HomeImage->$field);
-        }
-        $data['id'] = (int)$id;
-        return view('admin.homeimage.edit', $data);
-    }
-
     /**
      * Update the specified resource in storage.
      *
@@ -62,11 +45,16 @@ class HomeImageController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id){
-        dd($_FILES);
-        //dd($file);die;
         $HomeImage   = HomeImage::find((int)$id);
         foreach (array_keys($HomeImage->fields) as $field) {
-            $HomeImage->$field = $request->get($field);
+            $files          = $request->file($field);
+            if(!empty($files[0]) && $files[0]->isValid()){
+                $entension  = $files[0]-> getClientOriginalExtension(); //上传文件的后缀.
+                $newName    = date('YmdHis').mt_rand(100,999).'.'.$entension;
+                $path       = $files[0]-> move(base_path().'/public/uploads/file/'.date('Ymd'),$newName);
+                $filepath   = 'uploads/file/'.date('Ymd').'/'.$newName;
+                $HomeImage->$field = $filepath;
+            }
         }
         $HomeImage->save();
         return redirect('/admin/homeimage')->withSuccess('修改成功');
