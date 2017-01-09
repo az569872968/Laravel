@@ -178,6 +178,10 @@ Breadcrumbs::register("admin.user.manage", function ($breadcrumbs){
                   $breadcrumbs->parent("admin.settlement.index");
                           $breadcrumbs->push("会员权限", route("admin.settlement.user"));
                         });
+                  Breadcrumbs::register("admin.budget.delete", function ($breadcrumbs) {
+                  $breadcrumbs->parent("admin.budget.index");
+                          $breadcrumbs->push("预算删除sheet", route("admin.budget.delete"));
+                        });
                   Breadcrumbs::register("admin.homeimage.manage", function ($breadcrumbs){
         $breadcrumbs->push("首页管理", route("admin.homeimage.manage"));
     });Breadcrumbs::register("admin.homeimage.index", function ($breadcrumbs) {
@@ -187,6 +191,10 @@ Breadcrumbs::register("admin.user.manage", function ($breadcrumbs){
                     Breadcrumbs::register("admin.link.index", function ($breadcrumbs) {
                         $breadcrumbs->parent("admin.homeimage.manage");
                         $breadcrumbs->push("友情连接", route("admin.link.index"));
+                    });
+                    Breadcrumbs::register("admin.video.index", function ($breadcrumbs) {
+                        $breadcrumbs->parent("admin.homeimage.manage");
+                        $breadcrumbs->push("视频管理", route("admin.video.index"));
                     });
                     Breadcrumbs::register("admin.homeimage.update", function ($breadcrumbs) {
                   $breadcrumbs->parent("admin.homeimage.index");
@@ -203,5 +211,17 @@ Breadcrumbs::register("admin.user.manage", function ($breadcrumbs){
                   Breadcrumbs::register("admin.link.destroy", function ($breadcrumbs) {
                   $breadcrumbs->parent("admin.link.index");
                           $breadcrumbs->push("删除友情链接", route("admin.link.destroy"));
+                        });
+                  Breadcrumbs::register("admin.video.create", function ($breadcrumbs) {
+                  $breadcrumbs->parent("admin.video.index");
+                          $breadcrumbs->push("添加视频", route("admin.video.create"));
+                        });
+                  Breadcrumbs::register("admin.video.edit", function ($breadcrumbs) {
+                  $breadcrumbs->parent("admin.video.index");
+                          $breadcrumbs->push("修改视频", route("admin.video.edit"));
+                        });
+                  Breadcrumbs::register("admin.video.destroy", function ($breadcrumbs) {
+                  $breadcrumbs->parent("admin.video.index");
+                          $breadcrumbs->push("删除视频", route("admin.video.destroy"));
                         });
                   

@@ -14,7 +14,7 @@
                 <div class="col-md-8 col-md-offset-2">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            <h3 class="panel-title">添加进度款统计</h3>
+                            <h3 class="panel-title">添加首页图片</h3>
                         </div>
                         <div class="panel-body">
                             @include('admin.partials.errors')

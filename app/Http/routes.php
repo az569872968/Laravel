@@ -139,6 +139,13 @@ $router->group(['namespace' => 'Admin', 'middleware' => ['auth','menu','web','au
     Route::post('admin/homeimage/update', ['as' => 'admin.homeimage.edit', 'uses' => 'HomeImageController@update']); //修改
 
 
+    //视频管理
+    Route::post('admin/video/index', ['as' => 'admin.video.index', 'uses' => 'VideoController@index']);
+    Route::resource('admin/video', 'VideoController');
+    Route::put('admin/video/update', ['as' => 'admin.video.edit', 'uses' => 'VideoController@update']); //修改
+    Route::post('admin/video/store', ['as' => 'admin.video.create', 'uses' => 'VideoController@store']); //添加
+
+
     //结算
     Route::get('admin/budget/index',['as'=>'admin.budget.index','uses'=>'budgetController@index']);
     //下载文件路由
