@@ -154,7 +154,7 @@
                 rowHeaders: true,
                 contextMenu: true,
                 manualColumnResize: true,
-                formulas: config.formulas,
+                formulas: true,
                 mergeCells: config.mergeCells,
                 fixedColumnsLeft: 1,
                 manualColumnFreeze: true,
