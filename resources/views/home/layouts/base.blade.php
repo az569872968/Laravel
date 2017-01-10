@@ -20,8 +20,12 @@
     <!--[if IE]>
     <link rel="stylesheet" type="text/css" href="/home/css/lib/FontAwesome/font-awesome-ie7.min.css"/>
     <![endif]-->
+
+    @yield('css')
+
     <script src="/home/js/lib/jquery/jquery-1.11.0.js" type="text/javascript" charset="utf-8"></script>
 
+    @yield('js')
 </head>
 <body>
 <!--start header-->
