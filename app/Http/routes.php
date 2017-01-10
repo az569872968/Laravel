@@ -16,10 +16,11 @@
 Route::get('admin/index', ['as' => 'admin.index', 'middleware' => ['auth','menu','web'], 'uses'=>'Admin\\IndexController@index']);
 
 //前台首页
-Route::group(['middleware' => ['web']], function () {
-    Route::get('/', ['as' => 'home.index', 'uses'=>'Home\\IndexController@index']);
-    Route::post('home/index/login', ['as' => 'home.index.login', 'uses'=>'Home\\IndexController@Login']);
-    Route::get('home/index/loginout', ['as' => 'home.index.loginout', 'uses'=>'Home\\IndexController@loginout']);
+Route::group(['namespace' => 'Home','middleware' => ['web']], function () {
+    Route::get('/', ['as' => 'home.index', 'uses'=>'IndexController@index']);
+    Route::post('home/index/login', ['as' => 'home.index.login', 'uses'=>'IndexController@Login']);
+    Route::get('home/index/loginout', ['as' => 'home.index.loginout', 'uses'=>'IndexController@loginout']);
+
 });
 
 
@@ -34,14 +35,12 @@ $router->group(['namespace' => 'Home', 'middleware' => ['web', 'auth.home']], fu
     Route::get('home/project/index', ['as' => 'home.project.index', 'uses' => 'ProjectController@index']);
     Route::get('home/project/show', ['as' => 'home.project.show', 'uses' => 'ProjectController@show']);
     Route::get('home/project/summary', ['as' => 'home.project.summary', 'uses' => 'ProjectController@summary']);
-
     Route::get('home/tender/index', ['as' => 'home.tender.index', 'uses' => 'TenderController@index']);
-
     Route::get('home/contract/index', ['as' => 'home.contract.index', 'uses' => 'ContractController@index']);
 
     Route::get('home/settlement/index', ['as' => 'home.settlement.index', 'uses' => 'SettlementController@index']);
+    Route::get('home/budget/{id}', ['as' => 'home.budget.index', 'uses' => 'BudgetController@index'])->where('id', '[0-9]+');
 });
-
 
 //后台路由
 $router->group(['namespace' => 'Admin', 'middleware' => ['auth','menu','web','authAdmin']], function () {
