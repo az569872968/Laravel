@@ -139,6 +139,7 @@ class ContractController extends Controller
             }
         }
         $file           = $request->file('files');
+        dd($file);
         if(!empty($file[0]) && $file[0]->isValid()){
             $entension  = $file[0]-> getClientOriginalExtension(); //上传文件的后缀.
             $newName    = date('YmdHis').mt_rand(100,999).'.'.$entension;
@@ -146,11 +147,10 @@ class ContractController extends Controller
             $filepath   = 'uploads/file/'.date('Ymd').'/'.$newName;
             $contract->file_path = $filepath;
         }
-        $files          = $request->file('annex');
-        if(!empty($files[0]) && $files[0]->isValid()){
-            $entension  = $files[0]-> getClientOriginalExtension(); //上传文件的后缀.
+        if(!empty($file[1]) && $file[1]->isValid()){
+            $entension  = $file[1]-> getClientOriginalExtension(); //上传文件的后缀.
             $newName    = date('YmdHis').mt_rand(100,999).'.'.$entension;
-            $path       = $files[0]-> move(base_path().'/public/uploads/file/'.date('Ymd'),$newName);
+            $path       = $file[1]-> move(base_path().'/public/uploads/file/'.date('Ymd'),$newName);
             $filepath   = 'uploads/file/'.date('Ymd').'/'.$newName;
             $contract->file_annex = $filepath;
         }

@@ -213,7 +213,7 @@
         <h4 class="title tc pt30"><img src="/home/images/footer/link-title.png" width="254" height="46"/></h4>
         <ul class="link-list clearfix">
             @foreach($link as $value)
-                <li><a href="{{ $value['url'] }}" target="_blank"><img src="{{ $value['img'] }}" width="200" height="88"/></a></li>
+                <li><a href="{{ $value['url'] }}" target="_blank"><img src="{{ url($value['img']) }}" width="200" height="88"/></a></li>
             @endforeach
         </ul><!--./link-list-->
     </div><!--./bottom-link-->

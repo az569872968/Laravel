@@ -15,8 +15,8 @@ $(document).ready(function(){
         // files:[{name:'Excel.xlsx',size:'',type:"xlsx",file:$('#file_excel').val()}]
     });
     $('#demo-fileInput-3').filer({
-        limit: 3,
-        maxSize: 3,
+        limit: 6,
+        // maxSize: 10,
         changeInput: true,
         showThumbs: true,
         // files:[{name:'Excel.xlsx',size:'',type:"xlsx",file:$('#file_excel').val()}]

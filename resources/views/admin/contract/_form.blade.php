@@ -38,13 +38,13 @@
 <div class="form-group">
     <label for="tag" class="col-md-3 control-label">合同文件</label>
     <div class="col-md-6">
-        <input type="file" name="files" id="demo-fileInput-1" multiple="multiple">
+        <input type="file" name="files[]" class="form-control" id="demo-fileInput-1" multiple="multiple">
     </div>
 </div>
 <div class="form-group">
     <label for="tag" class="col-md-3 control-label">合同附件</label>
     <div class="col-md-6">
-        <input type="file" name="annex" id="demo-fileInput-3" multiple="multiple">
+        <input type="file" name="files[]" id="demo-fileInput-3" multiple="multiple">
     </div>
 </div>
 <input type="hidden" name="project_id" value="{{ $project_id }}">
