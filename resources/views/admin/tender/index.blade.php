@@ -57,7 +57,7 @@
                                 <th class="hidden-md">{{$value['date_time']}}</th>
                                 <th class="hidden-md">{{$value['schedule']}}</th>
                                 <th class="hidden-md">{{$value['remark']}}</th>
-                                <th class="hidden-md"><a href="/admin/common/download?path={{ $value['file_path'] }}&name={{$value['tender_name']}}" >下载</a></th>
+                                <th class="hidden-md"><a href="{{ asset($value['file_path']) }}" >下载</a></th>
                                 <th class="hidden-md"><a href="/admin/tender/{{$value['id']}}/user">会员列表</a>  <a href="{{ URL("/admin/tender/index?project_id=$project_id&fid=".$value['id']) }}">查看下级文件</a>&nbsp;&nbsp;<a href="/admin/tender/{{$value['id']}}/edit?project_id={{ $value['project_id'] }}">编辑</a>&nbsp;&nbsp;<span style="cursor: pointer;" class="delBtn X-Small btn-xs text-danger "><li class="fa fa-times-circle-o" onclick="check_del({{$value['id']}})">删除</li></span> </th>
                             </tr>
                         @endforeach

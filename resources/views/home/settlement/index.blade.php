@@ -78,10 +78,10 @@
                     <td>{{ $value['schedule'] }}</td>
                     <td>
                         @if( is_null($value['excel']) )
-                        <button type="button" class="down-btn"><i class="fa fa-download mr5"></i>下载文件</button>
+                        <button type="button" class="down-btn" data-files="{{ asset($value['excel']) }}"><i class="fa fa-download mr5"></i>下载文件</button>
                         @endif
                         @if( is_null($value['cad']) )
-                        <button type="button" class="down-btn"><i class="fa fa-download mr5"></i>下载CAD</button>
+                        <button type="button" class="down-btn" data-files="{{ asset($value['cad']) }}"><i class="fa fa-download mr5"></i>下载CAD</button>
                         @endif
                     </td>
                 </tr>
@@ -102,10 +102,10 @@
                                 <td width="150">{{ $val['schedule'] }}</td>
                                 <td>
                                 @if( is_null($val['excel']) )
-                                    <button type="button" class="down-btn"><i class="fa fa-download mr5"></i>下载文件</button>
+                                    <button type="button" class="down-btn" data-files="{{ asset($val['excel']) }}"><i class="fa fa-download mr5"></i>下载文件</button>
                                 @endif
                                 @if( is_null($val['cad']) )
-                                    <button type="button" class="down-btn"><i class="fa fa-download mr5"></i>下载CAD</button>
+                                    <button type="button" class="down-btn" data-files="{{ asset($val['cad']) }}"><i class="fa fa-download mr5"></i>下载CAD</button>
                                 @endif
                                 </td>
                             </tr>
@@ -125,12 +125,12 @@
                                             <td width="110">{{ date('Y-m-d', strtotime($data['updated_at'])) }}</td>
                                             <td width="150">{{ $data['schedule'] }}</td>
                                             <td>
-                                            @if( is_null($data['excel']) )
-                                                <button type="button" class="down-btn"><i class="fa fa-download mr5"></i>下载文件</button>
-                                            @endif
-                                            @if( is_null($data['cad']) )
-                                                <button type="button" class="down-btn"><i class="fa fa-download mr5"></i>下载CAD</button>
-                                            @endif
+                                                @if( is_null($data['excel']) )
+                                                    <button type="button" class="down-btn" data-files="{{ asset($data['excel']) }}"><i class="fa fa-download mr5"></i>下载文件</button>
+                                                @endif
+                                                @if( is_null($data['cad']) )
+                                                    <button type="button" class="down-btn" data-files="{{ asset($data['cad']) }}"><i class="fa fa-download mr5"></i>下载CAD</button>
+                                                @endif
                                             </td>
                                         </tr>
                                         <tr class="lower">
@@ -150,10 +150,10 @@
                                                         <td width="150">{{ $values['schedule'] }}</td>
                                                         <td>
                                                         @if( is_null($values['excel']) )
-                                                            <button type="button" class="down-btn"><i class="fa fa-download mr5"></i>下载文件</button>
+                                                            <button type="button" class="down-btn" data-files="{{ asset($values['excel']) }}"><i class="fa fa-download mr5"></i>下载文件</button>
                                                         @endif
                                                         @if( is_null($values['cad']) )
-                                                            <button type="button" class="down-btn"><i class="fa fa-download mr5"></i>下载CAD</button>
+                                                            <button type="button" class="down-btn" data-files="{{ asset($values['cad']) }}"><i class="fa fa-download mr5"></i>下载CAD</button>
                                                         @endif
                                                         </td>
                                                     </tr>
@@ -199,6 +199,11 @@
             $(this).addClass('active').parents('tr').next('tr.lower').addClass('active');;
         }
     });
+
+
+    $(document).on('click', '.down-btn', function () {
+        window.location.href=$(this).data('files');
+    })
 
     //是否展开下级
     function isSpread(obj){

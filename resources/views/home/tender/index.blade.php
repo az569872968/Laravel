@@ -81,7 +81,7 @@
                     <td>{{ $value['schedule'] }}</td>
                     <td>{{ $value['remark'] }}</td>
                     <td>
-                        <button type="button" class="down-btn"><i class="fa fa-download mr5"></i>下载</button>
+                        <button type="button" class="down-btn" data-files="{{asset($value['file_path'])}}"><i class="fa fa-download mr5"></i>下载</button>
                     </td>
                 </tr>
                 <tr class="lower">
@@ -101,7 +101,7 @@
                                 <td width="150">{{ $val['schedule'] }}</td>
                                 <td width="150">{{ $val['remark'] }}</td>
                                 <td>
-                                    <button type="button" class="down-btn"><i class="fa fa-download mr5"></i>下载</button>
+                                    <button type="button" class="down-btn" data-files="{{asset($val['file_path'])}}"><i class="fa fa-download mr5"></i>下载</button>
                                 </td>
                             </tr>
                             <tr class="lower">
@@ -121,7 +121,7 @@
                                             <td width="150">{{ $data['schedule'] }}</td>
                                             <td width="150">{{ $data['remark'] }}</td>
                                             <td>
-                                                <button type="button" class="down-btn"><i class="fa fa-download mr5"></i>下载</button>
+                                                <button type="button" class="down-btn" data-files="{{asset($data['file_path'])}}"><i class="fa fa-download mr5"></i>下载</button>
                                             </td>
                                         </tr>
                                         <tr class="lower">
@@ -141,7 +141,7 @@
                                                         <td width="150">{{ $values['schedule'] }}</td>
                                                         <td width="150">{{ $values['remark'] }}</td>
                                                         <td>
-                                                            <button type="button" class="down-btn"><i class="fa fa-download mr5"></i>下载</button>
+                                                            <button type="button" class="down-btn" data-files="{{asset($values['file_path'])}}"><i class="fa fa-download mr5"></i>下载</button>
                                                         </td>
                                                     </tr>
                                                     @endforeach
@@ -187,6 +187,10 @@
         }
     });
 
+    $(document).on('click', '.down-btn', function () {
+        window.location.href=$(this).data('files');
+    })
+    
     //是否展开下级
     function isSpread(obj){
         if($(obj).hasClass('active')){
@@ -200,7 +204,7 @@
         <h4 class="title tc pt30"><img src="/home/images/footer/link-title.png" width="254" height="46"/></h4>
         <ul class="link-list clearfix">
             @foreach($link as $value)
-                <li><a href="{{ $value['url'] }}" target="_blank"><img src="{{ $value['img'] }}" width="200" height="88"/></a></li>
+                <li><a href="{{ $value['url'] }}" target="_blank"><img src="{{ asset($value['img']) }}" width="200" height="88"/></a></li>
             @endforeach
         </ul><!--./link-list-->
     </div><!--./bottom-link-->

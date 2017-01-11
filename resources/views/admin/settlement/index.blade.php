@@ -55,8 +55,8 @@
                                 <th class="hidden-md">{{$value['file_member']}}</th>
                                 <th class="hidden-md">{{$value['date']}}</th>
                                 <th class="hidden-md">{{$value['schedule']}}</th>
-                                <th class="hidden-md"><a href="/admin/common/download?path={{ $value['excel'] }}&name={{$value['name']}}" >下载</a></th>
-                                <th class="hidden-md"><a href="/admin/common/download?path={{ $value['cad'] }}&name={{$value['name']}}" >下载</a></th>
+                                <th class="hidden-md"><a href="{{ asset($value['excel']) }}" >下载</a></th>
+                                <th class="hidden-md"><a href="{{ asset($value['cad']) }}" >下载</a></th>
                                 <th class="hidden-md"><a href="/admin/budget?id={{$value['id']}}">制作表格</a>  <a href="/admin/settlement/{{$value['id']}}/user">会员列表</a>  <a href="{{ URL("/admin/settlement/index?project_id=$project_id&fid=".$value['id']) }}">查看下级文件</a>&nbsp;&nbsp;<a href="/admin/settlement/{{$value['id']}}/edit?project_id={{ $value['project_id'] }}">编辑</a>&nbsp;&nbsp;<span style="cursor: pointer;" class="delBtn X-Small btn-xs text-danger "><li class="fa fa-times-circle-o" onclick="check_del({{$value['id']}})">删除</li></span> </th>
                             </tr>
                         @endforeach

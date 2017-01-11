@@ -77,7 +77,7 @@
                             <td>{{ date('Y-m-d', strtotime($value['date_time'])) }}</td>
                             <td>{{ $value['schedule'] }}</td>
                             <td>
-                                <button type="button" class="down-btn" data-file="{{ url($value['file_path']) }}"><i class="fa fa-download mr5"></i>下载</button>
+                                <button type="button" class="down-btn" data-files="{{ asset($value['file_path']) }}"><i class="fa fa-download mr5"></i>下载</button>
                             </td>
                         </tr>
                         <tr class="lower">
@@ -96,7 +96,7 @@
                                                 <td width="110">{{ date('Y-m-d', strtotime($val['date_time'])) }}</td>
                                                 <td width="150">{{ $val['schedule'] }}</td>
                                                 <td>
-                                                    <button type="button" class="down-btn" data-file="{{ url($value['file_path']) }}"><i class="fa fa-download mr5"></i>下载</button>
+                                                    <button type="button" class="down-btn" data-files="{{ asset($value['file_path']) }}"><i class="fa fa-download mr5"></i>下载</button>
                                                 </td>
                                             </tr>
                                             <tr class="lower">
@@ -115,7 +115,7 @@
                                                                     <td width="110">{{ date('Y-m-d', strtotime($data['date_time'])) }}</td>
                                                                     <td width="150">{{ $data['schedule'] }}</td>
                                                                     <td>
-                                                                        <button type="button" class="down-btn" data-file="{{ url($value['file_path']) }}"><i class="fa fa-download mr5"></i>下载</button>
+                                                                        <button type="button" class="down-btn" data-files="{{ asset($value['file_path']) }}"><i class="fa fa-download mr5"></i>下载</button>
                                                                     </td>
                                                                 </tr>
                                                                 <tr class="lower">
@@ -134,7 +134,7 @@
                                                                                         <td width="110">{{ date('Y-m-d', strtotime($values['date_time'])) }}</td>
                                                                                         <td width="150">{{ $values['schedule'] }}</td>
                                                                                         <td>
-                                                                                            <button type="button" class="down-btn" data-file="{{ url($value['file_path']) }}"><i class="fa fa-download mr5"></i>下载</button>
+                                                                                            <button type="button" class="down-btn" data-files="{{ asset($value['file_path']) }}"><i class="fa fa-download mr5"></i>下载</button>
                                                                                         </td>
                                                                                     </tr>
                                                                                 @endforeach
@@ -179,10 +179,11 @@
                     $(this).addClass('active').parents('tr').next('tr.lower').addClass('active');;
                 }
             });
-            $('.down-btn').click(function () {
-                var url = $(this).data('file');
-                window.location.href = url;
-            });
+
+
+            $(document).on('click', '.down-btn', function () {
+                window.location.href=$(this).data('files');
+            })
 
             //是否展开下级
             function isSpread(obj){
@@ -197,7 +198,7 @@
             <h4 class="title tc pt30"><img src="/home/images/footer/link-title.png" width="254" height="46"/></h4>
             <ul class="link-list clearfix">
                 @foreach($link as $value)
-                    <li><a href="{{ $value['url'] }}" target="_blank"><img src="{{ url($value['img']) }}" width="200" height="88"/></a></li>
+                    <li><a href="{{ $value['url'] }}" target="_blank"><img src="{{ asset($value['img']) }}" width="200" height="88"/></a></li>
                 @endforeach
             </ul><!--./link-list-->
         </div><!--./bottom-link-->
