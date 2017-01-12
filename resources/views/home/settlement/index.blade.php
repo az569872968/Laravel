@@ -71,7 +71,7 @@
                         <i class="fa fa-plus-square-o ver-mid spread"></i>
                         <span class="ver-mid w60">{{ $item+1 }}</span>
                     </td>
-                    <td>{{ $value['member'] }}</td>
+                    <td><a href="/home/budget/{{$value['id']}}"> {{ $value['member'] }}</a></td>
                     <td>{{ $value['name'] }}</td>
                     <td>{{ $value['file_member'] }}</td>
                     <td>{{ date('Y-m-d', strtotime($value['updated_at'])) }}</td>
